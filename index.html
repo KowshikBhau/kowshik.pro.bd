@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KOWSHIK | Elite Developer</title>
+    <title>KOWSHIK | Digital Architect</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
         :root {
             --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08); --grad: linear-gradient(135deg, #ff4d4d, #f9cb28, #7c3aed);
+            --border: rgba(255, 255, 255, 0.08); --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
         }
 
         .light-mode {
@@ -23,64 +23,63 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: 0.5s; scroll-behavior: smooth; }
 
-        /* --- Matrix Rain Background --- */
+        /* --- Custom Matrix --- */
         #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.12; pointer-events: none; }
-        
-        /* --- Navbar --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.1rem; font-weight: 800; }
+
+        /* --- Advanced Navbar --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.85); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -1px; }
         .logo span { color: var(--secondary); }
 
-        .controls { display: flex; gap: 12px; }
-        .sw-box { position: relative; width: 42px; height: 22px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; }
-        .sw-btn { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: var(--primary); border-radius: 50%; transition: 0.4s; }
-        .lang-bn .sw-lang .sw-btn { left: 22px; background: var(--secondary); }
-        .light-mode .sw-theme .sw-btn { left: 22px; background: #f59e0b; }
+        .controls { display: flex; gap: 15px; }
+        .sw-box { position: relative; width: 46px; height: 24px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 4px; }
+        .sw-btn { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 2; }
+        .sw-box i { font-size: 10px; opacity: 0.6; }
 
-        /* --- Hero --- */
-        section { padding: 80px 6%; max-width: 1200px; margin: 0 auto; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .badge { background: rgba(124, 58, 237, 0.15); border: 1px solid var(--primary); color: #a78bfa; padding: 6px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .lang-bn .sw-lang .sw-btn { left: 25px; }
+        .light-mode .sw-theme .sw-btn { left: 25px; background: #f59e0b; }
 
-        h1 { font-size: clamp(2.8rem, 10vw, 5.5rem); font-weight: 900; line-height: 1; letter-spacing: -2px; margin-bottom: 20px; }
-        .grad-text { background: linear-gradient(to right, #ff7e5f, #feb47b, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- Sections --- */
+        section { padding: 100px 6% 60px; max-width: 1200px; margin: 0 auto; }
+        .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .badge { background: rgba(124, 58, 237, 0.15); border: 1px solid var(--primary); color: #a78bfa; padding: 6px 18px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; }
+
+        h1 { font-size: clamp(2.5rem, 9vw, 5.5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; }
+        .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        p.sub { font-size: clamp(0.95rem, 3vw, 1.1rem); opacity: 0.6; max-width: 600px; line-height: 1.6; margin-bottom: 40px; }
+        /* --- Bento Cards --- */
+        .section-title { text-align: center; font-size: 2.2rem; font-weight: 800; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 28px; transition: 0.5s; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(124, 58, 237, 0.05); }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 25px; display: block; }
 
-        /* --- Tech Stack --- */
-        .tech-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; opacity: 0.4; font-size: 1.8rem; margin-top: 20px; }
+        /* --- Skill Bars --- */
+        .skill-box { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; }
+        .bar-outer { height: 8px; background: var(--border); border-radius: 10px; overflow: hidden; }
+        .bar-inner { height: 100%; background: var(--grad); border-radius: 10px; width: 0; transition: 2s ease-out; }
 
-        /* --- Bento Sections --- */
-        .section-label { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 40px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        
-        .card { background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border); padding: 35px; border-radius: 24px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--primary); background: rgba(15, 23, 42, 0.8); transform: translateY(-5px); }
-        
-        .card i { font-size: 2.2rem; color: var(--secondary); margin-bottom: 20px; display: block; }
-        .card h3 { font-size: 1.3rem; margin-bottom: 12px; }
-        .card p { font-size: 0.9rem; opacity: 0.6; line-height: 1.5; }
-
-        /* --- Live Projects --- */
-        .p-thumb { width: 100%; height: 180px; border-radius: 16px; margin-bottom: 20px; object-fit: cover; border: 1px solid var(--border); }
-        .live-tag { position: absolute; top: 15px; right: 15px; background: #22c55e; color: white; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; }
-
-        /* --- Buttons --- */
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 14px 30px; border-radius: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: 0.3s; font-size: 0.95rem; }
-        .btn-p { background: var(--primary); color: white; border: none; }
-        .btn-s { background: var(--glass); color: var(--text); border: 1px solid var(--border); }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3); }
+        /* --- FAQ Accordion --- */
+        .faq-item { background: var(--glass); border: 1px solid var(--border); border-radius: 15px; margin-bottom: 10px; padding: 20px; cursor: pointer; }
+        .faq-q { font-weight: 700; display: flex; justify-content: space-between; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; padding-top: 0; }
+        .faq-item.active .faq-a { max-height: 100px; opacity: 0.7; padding-top: 15px; }
 
         /* --- Floating UI --- */
-        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 52px; height: 52px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 26px; z-index: 1000; box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
-        .active-status { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.6); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px; z-index: 1000; }
+        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 25px rgba(37,211,102,0.4); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .active-user { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); z-index: 1000; }
         .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
+
+        /* --- Reveal Animation --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.17, 0.84, 0.44, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- Footer --- */
         footer { padding: 60px 5%; text-align: center; border-top: 1px solid var(--border); }
-        .verified { color: #3b82f6; font-size: 14px; margin-left: 5px; }
-        .copy { opacity: 0.5; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; }
+        .v-badge { color: #3b82f6; margin-left: 5px; }
 
         /* --- Language Support --- */
         .bn { display: none; }
@@ -89,150 +88,174 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 3rem; }
-            .card { padding: 25px; }
+            section { padding: 80px 6% 30px; }
         }
     </style>
 </head>
-<body id="body">
+<body id="b">
 
     <canvas id="matrix"></canvas>
 
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="toggle('lang')"><div class="sw-btn"></div></div>
-            <div class="sw-box sw-theme" onclick="toggle('theme')"><div class="sw-btn" id="th-btn"></div></div>
+            <div class="sw-box sw-lang" onclick="tg('lang')" title="Change Language">
+                <i class="fas fa-font"></i>
+                <i class="fas fa-bold"></i>
+                <div class="sw-btn"></div>
+            </div>
+            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+                <div class="sw-btn"></div>
+            </div>
         </div>
     </nav>
 
-    <div class="active-status">
+    <div class="active-user">
         <div class="dot"></div>
-        <span id="vc">164 Active Now</span>
+        <span id="vc">204 Agents Online</span>
     </div>
 
     <a href="https://wa.me/8801611215511" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <section class="hero">
-        <div class="badge en">Official Deployment: Boostzy.site</div>
-        <div class="badge bn">অফিসিয়াল ডেপ্লয়মেন্ট: Boostzy.site</div>
-        <h1 class="en">Innovate. Build.<br><span class="grad-text">Elevate.</span></h1>
-        <h1 class="bn">উদ্ভাবন। নির্মাণ।<br><span class="grad-text">উত্তরণ।</span></h1>
-        <p class="sub en">Full-Stack Engineer specialized in building high-performance web applications and digital growth strategies.</p>
-        <p class="sub bn">হাই-পারফরম্যান্স ওয়েব অ্যাপ্লিকেশন এবং ডিজিটাল গ্রোথ স্ট্র্যাটেজি তৈরিতে বিশেষজ্ঞ একজন ফুল-স্ট্যাক ইঞ্জিনিয়ার।</p>
-        
-        <div class="btn-group">
-            <a href="https://boostzy.site" class="btn btn-p"><i class="fas fa-rocket"></i> Visit Boostzy</a>
-            <a href="https://wa.me/8801611215511" class="btn btn-s">Hire Me</a>
-        </div>
+    <section class="hero reveal">
+        <div class="badge en">Elite Full-Stack Architect</div>
+        <div class="badge bn">এলিট ফুল-স্ট্যাক আর্কিটেক্ট</div>
+        <h1 class="en">Design. Code.<br><span class="grad-text">Dominate.</span></h1>
+        <h1 class="bn">ডিজাইন। কোড।<br><span class="grad-text">আধিপত্য।</span></h1>
+        <p class="en" style="opacity:0.6; max-width:600px; line-height:1.7;">Building high-performance SMM systems and secure digital infrastructures for global growth.</p>
+        <p class="bn" style="opacity:0.6; max-width:600px; line-height:1.7;">গ্লোবাল গ্রোথের জন্য হাই-পারফরম্যান্স এসএমএম সিস্টেম এবং সুরক্ষিত ডিজিটাল ইনফ্রাস্ট্রাকচার তৈরি করছি।</p>
+    </section>
 
-        <div class="tech-grid">
-            <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-docker"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i>
+    <section class="reveal">
+        <h2 class="section-title en">Core Expertise</h2>
+        <h2 class="section-title bn">মূল দক্ষতা</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="skill-box">
+                    <div class="skill-info"><span>Backend (PHP/Node)</span><span>95%</span></div>
+                    <div class="bar-outer"><div class="bar-inner" data-w="95%"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Frontend (React/Next)</span><span>88%</span></div>
+                    <div class="bar-outer"><div class="bar-inner" data-w="88%"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Cyber Security</span><span>92%</span></div>
+                    <div class="bar-outer"><div class="bar-inner" data-w="92%"></div></div>
+                </div>
+            </div>
+            <div class="card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+                <div>
+                    <i class="fas fa-award"></i>
+                    <h3 class="en">5+ Years Experience</h3>
+                    <h3 class="bn">৫+ বছরের অভিজ্ঞতা</h3>
+                    <p class="en">Delivering perfection in every line of code.</p>
+                    <p class="bn">প্রতিটি লাইন কোডে নিখুঁত কাজ নিশ্চিত করি।</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="services">
-        <h2 class="section-label en">Services</h2>
-        <h2 class="section-label bn">সার্ভিসসমূহ</h2>
+    <section class="reveal">
+        <h2 class="section-title en">Premium Services</h2>
+        <h2 class="section-title bn">প্রিমিয়াম সার্ভিসসমূহ</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-bolt"></i>
+                <i class="fas fa-rocket"></i>
                 <h3 class="en">SMM Automation</h3>
-                <h3 class="bn">এসএমএম অটোমেশন</h3>
-                <p class="en">Building robust panels and API integrations for seamless social growth.</p>
-                <p class="bn">নির্বিঘ্ন সোশ্যাল গ্রোথের জন্য শক্তিশালী প্যানেল এবং এপিআই ইন্টিগ্রেশন তৈরি করা।</p>
+                <p class="en">Advanced API-driven panels for instant social media scaling.</p>
+                <p class="bn">ইনস্ট্যান্ট সোশ্যাল মিডিয়া স্কেলিংয়ের জন্য উন্নত এপিআই প্যানেল।</p>
+            </div>
+            <div class="card" style="border: 1px solid var(--primary);">
+                <i class="fas fa-fingerprint"></i>
+                <h3 class="en">Secure Identity</h3>
+                <p class="en">Elite personal branding and portfolio architecture for pros.</p>
+                <p class="bn">পেশাদারদের জন্য এলিট পার্সোনাল ব্র্যান্ডিং এবং পোর্টফোলিও।</p>
             </div>
             <div class="card">
-                <i class="fas fa-shield-halved"></i>
-                <h3 class="en">Cyber Security</h3>
-                <h3 class="bn">সাইবার সিকিউরিটি</h3>
-                <p class="en">Implementing advanced security layers to protect your digital assets.</p>
-                <p class="bn">আপনার ডিজিটাল সম্পদ রক্ষায় উন্নত সিকিউরিটি লেয়ার প্রয়োগ করা।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-code"></i>
-                <h3 class="en">Custom Software</h3>
-                <h3 class="bn">কাস্টম সফটওয়্যার</h3>
-                <p class="en">Tailor-made software solutions designed specifically for your business.</p>
-                <p class="bn">আপনার ব্যবসার জন্য বিশেষভাবে ডিজাইন করা কাস্টম সফটওয়্যার সমাধান।</p>
+                <i class="fas fa-database"></i>
+                <h3 class="en">System Architecture</h3>
+                <p class="en">Building scalable databases and cloud-ready applications.</p>
+                <p class="bn">স্কেলেবল ডাটাবেস এবং ক্লাউড-রেডি অ্যাপ্লিকেশন তৈরি।</p>
             </div>
         </div>
     </section>
 
-    <section id="work">
-        <h2 class="section-label en">Masterpieces</h2>
-        <h2 class="section-label bn">সেরা কাজসমূহ</h2>
-        <div class="grid">
-            <div class="card" onclick="location.href='https://boostzy.site'">
-                <div class="live-tag">Live</div>
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600" class="p-thumb">
-                <h3 class="en">Boostzy.site</h3>
-                <h3 class="bn">Boostzy.site</h3>
-                <p class="en">A high-scale SMM ecosystem serving thousands of users daily.</p>
-                <p class="bn">প্রতিদিন হাজার হাজার ইউজারদের সেবা দেওয়া একটি হাই-স্কেল এসএমএম ইকোসিস্টেম।</p>
+    <section class="reveal">
+        <h2 class="section-title en">Common Questions</h2>
+        <h2 class="section-title bn">সাধারণ প্রশ্নসমূহ</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q"><span>How long does a project take?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-a">Depending on complexity, usually 5-14 business days.</div>
             </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" class="p-thumb">
-                <h3 class="en">Elite Identity</h3>
-                <h3 class="bn">এলিট আইডেন্টিটি</h3>
-                <p class="en">Personal brand architecture designed for peak performance.</p>
-                <p class="bn">সর্বোচ্চ পারফরম্যান্সের জন্য ডিজাইন করা ব্যক্তিগত ব্র্যান্ড আর্কিটেকচার।</p>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q"><span>Do you provide maintenance?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-a">Yes, I provide 24/7 technical support and monthly maintenance.</div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p class="copy">
-            © 2026 KOWSHIK <i class="fas fa-check-circle verified"></i> | ALL RIGHTS RESERVED
-        </p>
-        <p style="font-size: 0.65rem; opacity: 0.3; margin-top: 10px; letter-spacing: 2px;">BUILT WITH PRECISION BY KOWSHIK</p>
+        <p class="en" style="font-weight:700; opacity:0.6;">© 2026 KOWSHIK <i class="fas fa-check-circle v-badge"></i> | ALL RIGHTS RESERVED</p>
+        <p class="bn" style="font-weight:700; opacity:0.6;">© ২০২৬ কৌশিক <i class="fas fa-check-circle v-badge"></i> | সর্বস্বত্ব সংরক্ষিত</p>
     </footer>
 
     <script>
-        const body = document.getElementById('body');
+        const body = document.getElementById('b');
         
-        // Persistence
-        if(localStorage.getItem('theme') === 'light') body.classList.add('light-mode');
-        if(localStorage.getItem('lang') === 'bn') body.classList.add('lang-bn');
+        // Settings Load
+        if(localStorage.getItem('th') === 'li') body.classList.add('light-mode');
+        if(localStorage.getItem('ln') === 'bn') body.classList.add('lang-bn');
 
-        function toggle(type) {
-            if(type === 'theme') {
+        function tg(t) {
+            if(t === 'theme') {
                 body.classList.toggle('light-mode');
-                localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+                localStorage.setItem('th', body.classList.contains('light-mode') ? 'li' : 'dk');
             } else {
                 body.classList.toggle('lang-bn');
-                localStorage.setItem('lang', body.classList.contains('lang-bn') ? 'bn' : 'en');
+                localStorage.setItem('ln', body.classList.contains('lang-bn') ? 'bn' : 'en');
             }
         }
 
-        // Visitor Count
-        let v = 150 + Math.floor(Math.random() * 50);
+        // Visitor Simulation
+        let c = 180 + Math.floor(Math.random()*40);
         setInterval(() => {
-            v += Math.floor(Math.random() * 3) - 1;
-            document.getElementById('vc').innerText = v + " Active Now";
+            c += Math.floor(Math.random()*3) - 1;
+            document.getElementById('vc').innerText = c + " Agents Online";
         }, 3000);
 
-        // Matrix Rain
+        // Matrix Logic
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const alphabet = "KOWSHIKPRO01";
-        const drops = Array(Math.floor(canvas.width / 20)).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = body.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const drops = Array(Math.floor(canvas.width/20)).fill(1);
+        function draw() {
+            ctx.fillStyle = body.classList.contains('light-mode') ? "rgba(248,250,252,0.12)" : "rgba(2,6,23,0.12)";
+            ctx.fillRect(0,0,canvas.width,canvas.height);
             ctx.fillStyle = "#7c3aed";
             ctx.font = "15px monospace";
             drops.forEach((y, i) => {
-                const text = alphabet[Math.floor(Math.random() * alphabet.length)];
-                ctx.fillText(text, i * 20, y * 20);
-                if (y * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                ctx.fillText("01KOWSHIK"[Math.floor(Math.random()*9)], i*20, y*20);
+                if(y*20 > canvas.height && Math.random() > 0.98) drops[i] = 0;
                 drops[i]++;
             });
         }
-        setInterval(drawMatrix, 50);
+        setInterval(draw, 50);
+
+        // Reveal & Skill Animation
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    const bars = entry.target.querySelectorAll('.bar-inner');
+                    bars.forEach(bar => bar.style.width = bar.getAttribute('data-w'));
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
