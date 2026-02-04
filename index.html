@@ -6,77 +6,80 @@
     <title>KOWSHIK | Elite Digital Architect</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1); --font-bn: 'Hind Siliguri', sans-serif;
+            --border: rgba(255, 255, 255, 0.08); --font-bn: 'Hind Siliguri', sans-serif;
+            --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
         }
 
         .light-mode {
-            --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.04);
-            --border: rgba(0, 0, 0, 0.08);
+            --bg: #f1f5f9; --text: #0f172a; --glass: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 0, 0, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-        body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.5s ease; }
+        body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        /* --- Matrix Rain --- */
-        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
-        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.12), transparent 80%); z-index: -2; pointer-events: none; }
+        /* --- Elite Background --- */
+        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.12; pointer-events: none; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1), transparent 70%); z-index: -2; pointer-events: none; transition: 0.15s ease-out; }
 
-        /* --- Navbar --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.2rem; font-weight: 900; }
-        .logo span { color: var(--secondary); }
+        /* --- Navigation --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--secondary); text-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
 
-        /* --- Custom Controls (Switch Fix) --- */
-        .controls { display: flex; gap: 10px; }
-        .sw-box { position: relative; width: 45px; height: 24px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; }
-        .sw-btn { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 8px; transition: 0.4s; }
-        .lang-bn .sw-lang .sw-btn { left: 23px; background: var(--secondary); }
-        .light-mode .sw-theme .sw-btn { left: 23px; background: #f59e0b; }
-
-        /* --- Visitor Float (Live Fix) --- */
-        .visitor-float { position: fixed; bottom: 25px; left: 25px; background: var(--glass); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 8px; z-index: 999; backdrop-filter: blur(10px); }
-        .v-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; box-shadow: 0 0 5px #22c55e; } 50% { opacity: 0.4; } }
+        /* --- Controls --- */
+        .controls { display: flex; gap: 12px; }
+        .sw-box { position: relative; width: 50px; height: 26px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; transition: 0.3s; }
+        .sw-btn { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 9px; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        .lang-bn .sw-lang .sw-btn { left: 27px; }
+        .light-mode .sw-theme .sw-btn { left: 27px; background: #f59e0b; }
 
         /* --- Hero --- */
-        section.hero { min-height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 6% 60px; }
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .grad { background: linear-gradient(90deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        section.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 8% 80px; }
+        h1 { font-size: clamp(2.8rem, 9vw, 5.5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 25px; }
+        .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 5px 15px rgba(124, 58, 237, 0.2)); }
+        p.desc { font-size: clamp(1rem, 3.5vw, 1.15rem); opacity: 0.7; max-width: 650px; line-height: 1.8; font-weight: 400; }
 
-        /* --- Tech Slide --- */
-        .tech-slide { width: 100%; overflow: hidden; margin-top: 40px; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
-        .tech-icons { display: flex; gap: 40px; animation: slide 25s infinite linear; font-size: 2.2rem; opacity: 0.6; width: max-content; }
+        /* --- Tech Slider --- */
+        .tech-slide { width: 100%; max-width: 800px; overflow: hidden; margin-top: 50px; mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); }
+        .tech-icons { display: flex; gap: 50px; animation: slide 30s infinite linear; font-size: 2.5rem; opacity: 0.4; width: max-content; }
         @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* --- Layouts --- */
-        .section-box { padding: 80px 6%; max-width: 1200px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px 30px; border-radius: 28px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; height: 100%; }
-        .card:hover { border-color: var(--primary); transform: translateY(-8px); }
-        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+        /* --- Bento Cards --- */
+        .section-box { padding: 100px 8%; max-width: 1300px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 50px 35px; border-radius: 32px; transition: 0.5s; backdrop-filter: blur(15px); height: 100%; position: relative; }
+        .card:hover { transform: translateY(-12px); border-color: var(--primary); box-shadow: 0 25px 50px -20px rgba(124, 58, 237, 0.3); }
+        .card i { font-size: 2.8rem; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 25px; display: inline-block; }
 
-        /* --- Project Card Fix --- */
-        .project-img { height: 180px; background: #0f172a; border-radius: 18px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border); }
-        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover .project-img img { transform: scale(1.1); }
+        /* --- Project Showcase --- */
+        .project-img { height: 220px; border-radius: 24px; overflow: hidden; margin-bottom: 25px; border: 1px solid var(--border); }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s cubic-bezier(0.2, 1, 0.3, 1); }
+        .card:hover .project-img img { transform: scale(1.1) rotate(-2deg); }
 
-        /* --- CTA --- */
-        .cta-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--primary); padding: 60px 30px; border-radius: 40px; text-align: center; }
-        
+        /* --- CTA Box --- */
+        .cta-box { background: var(--glass); border: 1px solid var(--primary); padding: 80px 40px; border-radius: 45px; position: relative; overflow: hidden; text-align: center; }
+        .cta-box::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%); z-index: -1; }
+
         /* --- Buttons --- */
-        .btn { padding: 15px 30px; border-radius: 15px; font-weight: 800; text-decoration: none; color: white; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; margin-top: 20px; }
-        .btn:hover { transform: scale(1.05); }
+        .btn { padding: 18px 38px; border-radius: 20px; font-weight: 700; text-decoration: none; color: white; background: var(--grad); display: inline-flex; align-items: center; gap: 12px; transition: 0.4s; box-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.5); }
+        .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.6); }
 
-        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+        /* --- Floating UI --- */
+        .visitor-float { position: fixed; bottom: 30px; left: 30px; background: var(--glass); border: 1px solid var(--border); padding: 10px 20px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; backdrop-filter: blur(15px); z-index: 100; display: flex; align-items: center; gap: 10px; }
+        .v-pulse { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* --- Reveal --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .wa-btn { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100; box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); transition: 0.4s; }
+        .wa-btn:hover { transform: scale(1.1) rotate(15deg); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .bn { display: none; }
@@ -92,84 +95,86 @@
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="toggleSetting('lang')">
+            <div class="sw-box sw-lang" onclick="tg('lang')" title="Change Language">
                 <div class="sw-btn"><i class="fas fa-language"></i></div>
             </div>
-            <div class="sw-box sw-theme" onclick="toggleSetting('theme')">
+            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Theme">
                 <div class="sw-btn"><i class="fas fa-moon" id="ti"></i></div>
             </div>
         </div>
     </nav>
 
     <div class="visitor-float">
-        <div class="v-dot"></div>
-        <span id="vCount">Checking...</span>
+        <div class="v-pulse"></div>
+        <span id="vCount">Checking Node...</span>
     </div>
 
     <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
 
     <section class="hero reveal">
-        <h1 class="en grad">Code. Scale.<br>Dominate.</h1>
-        <h1 class="bn grad">কোড। স্কেল।<br>আধিপত্য।</h1>
-        <p class="en desc" style="max-width: 600px; opacity: 0.8;">Full-Stack Developer & SMM Strategist crafting elite digital ecosystems.</p>
-        <p class="bn desc" style="max-width: 600px; opacity: 0.8;">এলিট ডিজিটাল ইকোসিস্টেম নির্মাণকারী ফুল-স্ট্যাক ডেভেলপার এবং এসএমএম স্ট্র্যাটেজিস্ট।</p>
+        <h1 class="en grad-text">Code. Scale.<br>Dominate.</h1>
+        <h1 class="bn grad-text">কোড করুন। স্কেল বাড়ান।<br>বিজয়ী হোন।</h1>
+        <p class="en desc">Elite Full-Stack Developer & SMM Architect building high-performance digital ecosystems for the next generation of brands.</p>
+        <p class="bn desc">পরবর্তী প্রজন্মের ব্র্যান্ডগুলোর জন্য হাই-পারফরম্যান্স ডিজিটাল ইকোসিস্টেম তৈরি করছি আমি—একজন এলিট ফুল-স্ট্যাক ডেভেলপার।</p>
         
         <div class="tech-slide">
             <div class="tech-icons">
-                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i> <i class="fab fa-docker"></i>
-                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i> <i class="fab fa-docker"></i>
+                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-js"></i> <i class="fab fa-php"></i> <i class="fab fa-docker"></i>
+                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-js"></i> <i class="fab fa-php"></i> <i class="fab fa-docker"></i>
             </div>
         </div>
+
+        <a href="https://wa.me/8801611215511" class="btn" style="margin-top: 50px;"><i class="fas fa-paper-plane"></i> Start Project</a>
     </section>
 
     <div class="section-box reveal">
-        <h2 class="en" style="text-align:center; margin-bottom:40px;">Why Choose Me?</h2>
-        <h2 class="bn" style="text-align:center; margin-bottom:40px;">কেন আমাকে বেছে নেবেন?</h2>
+        <h2 class="en" style="text-align:center; margin-bottom:50px; font-size: 2.5rem;">Why Me?</h2>
+        <h2 class="bn" style="text-align:center; margin-bottom:50px; font-size: 2.5rem;">কেন আমি?</h2>
         <div class="grid">
             <div class="card">
                 <i class="fas fa-bolt"></i>
-                <h3 class="en">Lightning Fast</h3>
-                <p class="en">Optimized for extreme speed and performance.</p>
-                <h3 class="bn">বিদ্যুৎ গতি</h3>
-                <p class="bn">চরম গতি এবং পারফরম্যান্সের জন্য অপ্টিমাইজড।</p>
+                <h3 class="en">Turbo Speed</h3>
+                <p class="en">Every millisecond counts. I optimize for extreme loading performance.</p>
+                <h3 class="bn">টার্বো স্পিড</h3>
+                <p class="bn">প্রতিটি মিলিসেকেন্ড গুরুত্বপূর্ণ। আমি চরম লোডিং পারফরম্যান্স নিশ্চিত করি।</p>
             </div>
             <div class="card">
                 <i class="fas fa-shield-halved"></i>
-                <h3 class="en">Secure by Design</h3>
-                <p class="en">Advanced protection for your data and users.</p>
-                <h3 class="bn">নিরাপদ ডিজাইন</h3>
-                <p class="bn">আপনার তথ্য ও ইউজারদের জন্য উন্নত সুরক্ষা।</p>
+                <h3 class="en">Iron Security</h3>
+                <p class="en">Military-grade protection for your user data and system integrity.</p>
+                <h3 class="bn">আয়রন সিকিউরিটি</h3>
+                <p class="bn">আপনার ইউজার ডেটা এবং সিস্টেমের জন্য সর্বোচ্চ স্তরের নিরাপত্তা।</p>
             </div>
             <div class="card">
                 <i class="fas fa-chart-pie"></i>
-                <h3 class="en">Data Driven</h3>
-                <p class="en">SMM strategies backed by real-time analytics.</p>
-                <h3 class="bn">ডেটা ভিত্তিক</h3>
-                <p class="bn">রিয়েল-টাইম অ্যানালিটিক্স ভিত্তিক এসএমএম কৌশল।</p>
+                <h3 class="en">Growth Focus</h3>
+                <p class="en">Not just code, but strategies that convert visitors into revenue.</p>
+                <h3 class="bn">গ্রোথ ফোকাস</h3>
+                <p class="bn">শুধু কোড নয়, আমি এমন স্ট্র্যাটেজি দিই যা ভিজিটরকে গ্রাহকে রূপান্তর করে।</p>
             </div>
         </div>
     </div>
 
     <div class="section-box reveal">
-        <h2 class="en" style="text-align:center; margin-bottom:40px;">Selected Masterpieces</h2>
-        <h2 class="bn" style="text-align:center; margin-bottom:40px;">সেরা কাজসমূহ</h2>
+        <h2 class="en" style="text-align:center; margin-bottom:50px;">Masterpieces</h2>
+        <h2 class="bn" style="text-align:center; margin-bottom:50px;">আমার শ্রেষ্ঠ কাজ</h2>
         <div class="grid">
             <a href="https://boostzy.site" target="_blank" style="text-decoration:none; color:inherit;">
                 <div class="card">
-                    <div class="project-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500" alt="Work"></div>
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600" alt="Boostzy"></div>
                     <h3 class="en">Boostzy.site</h3>
-                    <p class="en">Powerful SMM automation panel.</p>
+                    <p class="en">Advanced SMM Ecosystem with 99.9% Uptime.</p>
                     <h3 class="bn">Boostzy.site</h3>
-                    <p class="bn">শক্তিশালী এসএমএম অটোমেশন প্যানেল।</p>
+                    <p class="bn">উন্নত এসএমএম ইকোসিস্টেম এবং ৯৯.৯% আপটাইম।</p>
                 </div>
             </a>
             <a href="https://kowshik.pro.bd" target="_blank" style="text-decoration:none; color:inherit;">
                 <div class="card">
-                    <div class="project-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500" alt="Work"></div>
-                    <h3 class="en">Elite Portfolio</h3>
-                    <p class="en">Premium design for personal branding.</p>
-                    <h3 class="bn">এলিট পোর্টফোলিও</h3>
-                    <p class="bn">ব্যক্তিগত ব্র্যান্ডিংয়ের জন্য প্রিমিয়াম ডিজাইন।</p>
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" alt="Portfolio"></div>
+                    <h3 class="en">Elite Identity</h3>
+                    <p class="en">Premium brand architecture for high-end clients.</p>
+                    <h3 class="bn">এলিট আইডেন্টিটি</h3>
+                    <p class="bn">হাই-এন্ড ক্লায়েন্টদের জন্য প্রিমিয়াম ব্র্যান্ড আর্কিটেকচার।</p>
                 </div>
             </a>
         </div>
@@ -177,31 +182,35 @@
 
     <div class="section-box reveal">
         <div class="cta-box">
-            <h2 class="en grad">Let's Build Your Empire</h2>
-            <h2 class="bn grad">আপনার সাম্রাজ্য গড়ে তুলুন</h2>
-            <a href="https://wa.me/8801611215511" class="btn"><i class="fab fa-whatsapp"></i> Contact Kowshik</a>
+            <h2 class="en grad-text" style="font-size: 2.5rem;">Ready to Dominate?</h2>
+            <h2 class="bn grad-text" style="font-size: 2.5rem;">আপনি কি প্রস্তুত?</h2>
+            <p class="en">Let's build your digital empire today.</p>
+            <p class="bn">আজই শুরু করি আপনার ডিজিটাল সাম্রাজ্য তৈরির কাজ।</p>
+            <br>
+            <a href="https://wa.me/8801611215511" class="btn"><i class="fab fa-whatsapp"></i> Chat with Kowshik</a>
         </div>
     </div>
 
-    <footer style="text-align:center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
-        <p>© 2026 KOWSHIK.PRO.BD | DESIGNED BY KOWSHIK</p>
+    <footer style="text-align:center; padding: 60px; opacity: 0.4; font-size: 0.8rem; letter-spacing: 2px;">
+        <p>© 2026 KOWSHIK.PRO.BD | ALL SYSTEMS OPERATIONAL</p>
     </footer>
 
     <script>
-        // Persistence & Toggles
         const b = document.body;
         const ti = document.getElementById('ti');
 
-        function loadSettings() {
+        // Settings Persistence Fix
+        const load = () => {
             if(localStorage.getItem('th') === 'li') {
                 b.classList.add('light-mode');
                 ti.className = 'fas fa-sun';
             }
             if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
-        }
+        };
+        load();
 
-        function toggleSetting(type) {
-            if(type === 'theme') {
+        const tg = (t) => {
+            if(t === 'theme') {
                 b.classList.toggle('light-mode');
                 const isL = b.classList.contains('light-mode');
                 localStorage.setItem('th', isL ? 'li' : 'dk');
@@ -210,48 +219,50 @@
                 b.classList.toggle('lang-bn');
                 localStorage.setItem('ln', b.classList.contains('lang-bn') ? 'bn' : 'en');
             }
-        }
-        loadSettings();
+        };
 
-        // Real Live Visitor Counter
-        let baseCount = Math.floor(Math.random() * 50) + 120;
-        function updateVisitors() {
-            baseCount += Math.floor(Math.random() * 5) - 2;
-            document.getElementById('vCount').innerText = baseCount + " Users Online";
-        }
-        setInterval(updateVisitors, 3000);
-        updateVisitors();
+        // Real Live Visitor Logic
+        let vc = Math.floor(Math.random() * 40) + 145;
+        const updateV = () => {
+            vc += Math.floor(Math.random() * 3) - 1;
+            document.getElementById('vCount').innerText = vc + " Agents Online";
+        };
+        setInterval(updateV, 4000);
+        updateV();
 
-        // Matrix Rain
+        // Matrix Engine
         const canvas = document.getElementById('code-bg');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const charArr = "01KOWSHIKPRO".split("");
-        const drops = Array(Math.floor(canvas.width / 15)).fill(1);
+        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        window.onresize = resize; resize();
 
-        function draw() {
-            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
+        const chars = "01KOWSHIKPRO".split("");
+        const drops = Array(Math.floor(canvas.width/18)).fill(1);
+
+        const draw = () => {
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(241, 245, 249, 0.1)" : "rgba(2, 6, 23, 0.1)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#7c3aed";
+            ctx.font = "14px monospace";
             drops.forEach((y, i) => {
-                const text = charArr[Math.floor(Math.random() * charArr.length)];
-                ctx.fillText(text, i * 15, y * 15);
-                if (y * 15 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                const txt = chars[Math.floor(Math.random()*chars.length)];
+                ctx.fillText(txt, i*18, y*18);
+                if(y*18 > canvas.height && Math.random() > 0.98) drops[i] = 0;
                 drops[i]++;
             });
-        }
-        setInterval(draw, 50);
+        };
+        setInterval(draw, 60);
 
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        // Smooth Reveal
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
         }, {threshold: 0.1});
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-        // Mouse Glow
+        // Mouse Trace Glow
         document.addEventListener('mousemove', (e) => {
-            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
+            const glow = document.getElementById('glow');
+            glow.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.18), transparent 70%)`;
         });
     </script>
 </body>
