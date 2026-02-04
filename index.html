@@ -23,62 +23,68 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: 0.5s; scroll-behavior: smooth; }
+        
+        /* Language Specific Font */
+        .lang-bn, .lang-bn * { font-family: 'Hind Siliguri', sans-serif !important; }
+
         #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.1; pointer-events: none; }
 
         /* --- Nav --- */
         nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
         .logo { font-size: 1.2rem; font-weight: 800; cursor: pointer; text-decoration: none; color: inherit; }
-        .logo span { color: var(--secondary); } /* .PRO different color */
-        .controls { display: flex; gap: 12px; }
-        .sw-box { position: relative; width: 50px; height: 26px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; font-size: 10px; }
-        .sw-btn { position: absolute; top: 2px; left: 3px; width: 20px; height: 20px; background: var(--grad); border-radius: 50%; transition: 0.4s; }
-        .lang-bn .sw-lang .sw-btn { left: 25px; }
-        .light-mode .sw-theme .sw-btn { left: 25px; background: #f59e0b; }
+        .logo span { color: var(--secondary); }
+        
+        .controls { display: flex; gap: 15px; }
+        .sw-box { position: relative; width: 55px; height: 28px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; color: var(--text); font-size: 12px; }
+        .sw-btn { position: absolute; top: 3px; left: 4px; width: 20px; height: 20px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
+        .lang-bn .sw-lang .sw-btn { left: 30px; }
+        .light-mode .sw-theme .sw-btn { left: 30px; background: #f59e0b; }
 
-        /* --- Layout --- */
-        section { padding: 80px 6% 40px; max-width: 1200px; margin: 0 auto; }
-        .hero { height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
+        /* --- Sections --- */
+        section { padding: 100px 6% 40px; max-width: 1200px; margin: 0 auto; }
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
         .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
 
-        /* --- Tools --- */
-        .tool-strip { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; opacity: 0.5; margin-top: 30px; }
-        .tool-strip i { font-size: 1.5rem; }
+        /* --- Tools Icon Strip --- */
+        .tool-strip { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 30px; opacity: 0.6; }
+        .tool-strip i { font-size: 1.8rem; transition: 0.3s; }
+        .tool-strip i:hover { color: var(--secondary); transform: scale(1.2); }
 
-        /* --- Grid & Cards --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 25px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; }
-        .card:hover { transform: translateY(-8px); border-color: var(--primary); }
-        .card i { font-size: 2rem; color: var(--secondary); margin-bottom: 15px; display: block; }
+        /* --- Bento Grid --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px; border-radius: 30px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
 
-        /* --- Images/Screenshots --- */
-        .img-box { width: 100%; border-radius: 15px; overflow: hidden; margin-bottom: 15px; border: 1px solid var(--border); }
-        .img-box img { width: 100%; display: block; filter: brightness(0.8); }
+        /* --- Images --- */
+        .img-preview { width: 100%; border-radius: 20px; margin-bottom: 20px; border: 1px solid var(--border); }
 
         /* --- Form --- */
-        input, textarea { width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); margin-bottom: 10px; outline: none; }
+        input, textarea { width: 100%; padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); margin-bottom: 15px; outline: none; }
         .submit-btn { width: 100%; padding: 12px; background: var(--grad); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; }
 
         /* --- FAQ --- */
-        .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 15px; padding: 15px; margin-bottom: 10px; cursor: pointer; }
-        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; font-size: 0.9rem; color: var(--footer-text); }
-        .faq-box.active .faq-a { max-height: 80px; opacity: 1; padding-top: 10px; }
+        .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 10px; cursor: pointer; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; color: var(--footer-text); }
+        .faq-box.active .faq-a { max-height: 100px; opacity: 1; padding-top: 15px; }
 
-        /* --- Floating --- */
-        .wa-btn { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 25px; z-index: 1000; }
-        .v-box { position: fixed; bottom: 20px; left: 20px; background: rgba(var(--bg), 0.8); border: 1px solid var(--border); padding: 6px 12px; border-radius: 50px; font-size: 0.65rem; font-weight: 800; display: flex; align-items: center; gap: 6px; z-index: 1000; backdrop-filter: blur(10px); }
-        .dot-p { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
+        /* --- Floating UI --- */
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+        .v-box { position: fixed; bottom: 25px; left: 25px; background: rgba(var(--bg), 0.8); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(10px); }
+        .dot-p { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- Footer --- */
-        footer { padding: 40px 5%; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
-        .credit { font-size: 0.65rem; color: var(--footer-text); margin-top: 10px; letter-spacing: 1px; }
+        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
+        .credit { font-size: 0.7rem; color: var(--footer-text); margin-top: 15px; letter-spacing: 1.5px; }
 
         .bn { display: none !important; }
         .lang-bn .en { display: none !important; }
         .lang-bn .bn { display: block !important; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.6s ease-out; }
+        
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -89,29 +95,27 @@
     <nav>
         <a href="javascript:location.reload()" class="logo">KOWSHIK<span>.PRO</span></a>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="tg('lang')"><i class="fas fa-language"></i><div class="sw-btn"></div></div>
-            <div class="sw-box sw-theme" onclick="tg('theme')"><i class="fas fa-moon"></i><div class="sw-btn"></div></div>
+            <div class="sw-box sw-lang" onclick="tg('lang')">
+                <i class="fas fa-language"></i><span style="font-weight:900;font-size:8px">BN</span>
+                <div class="sw-btn"></div>
+            </div>
+            <div class="sw-box sw-theme" onclick="tg('theme')">
+                <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+                <div class="sw-btn"></div>
+            </div>
         </div>
     </nav>
 
-    <div class="v-box"><div class="dot-p"></div><span id="vc">200+ Online</span></div>
+    <div class="v-box"><div class="dot-p"></div><span id="vc">210 Agents Online</span></div>
     <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <section class="hero reveal">
         <h1 class="en">Code. Scale.<br><span class="grad-text">Dominate.</span></h1>
         <h1 class="bn">কোড। স্কেল।<br><span class="grad-text">ডমিনেট।</span></h1>
+        <p class="en" style="opacity:0.6">Elite full-stack architecture for global brands.</p>
+        <p class="bn" style="opacity:0.6">গ্লোবাল ব্র্যান্ডের জন্য এলিট ফুল-স্ট্যাক আর্কিটেকচার।</p>
         <div class="tool-strip">
             <i class="fab fa-laravel"></i><i class="fab fa-react"></i><i class="fab fa-node-js"></i><i class="fab fa-php"></i><i class="fab fa-python"></i><i class="fab fa-docker"></i>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <div class="card boost-hero">
-            <i class="fas fa-rocket"></i>
-            <h2 style="font-size:1.8rem; margin-bottom:10px">Boostzy.site</h2>
-            <p class="en">A high-scale SMM ecosystem serving thousands of users daily.</p>
-            <p class="bn">একটি উচ্চ-স্তরের এসএমএম ইকোসিস্টেম যা প্রতিদিন হাজার হাজার ব্যবহারকারীকে সেবা দেয়।</p>
-            <a href="https://boostzy.site" style="color:var(--secondary); font-weight:800; text-decoration:none; display:block; margin-top:15px">Explore Live →</a>
         </div>
     </section>
 
@@ -119,9 +123,16 @@
         <h2 class="section-title en">Why Choose Me?</h2>
         <h2 class="section-title bn">কেন আমি?</h2>
         <div class="grid">
-            <div class="card"><i class="fas fa-bolt"></i><h3 class="en">Performance</h3><p class="en">Lightning fast systems with 0 lag.</p><h3 class="bn">পারফরম্যান্স</h3><p class="bn">জিরো ল্যাগ সহ সুপার ফাস্ট সিস্টেম।</p></div>
-            <div class="card"><i class="fas fa-shield-alt"></i><h3 class="en">Security</h3><p class="en">End-to-end encryption for data.</p><h3 class="bn">সিকিউরিটি</h3><p class="bn">ডেটার জন্য এন্ড-টু-এন্ড এনক্রিপশন।</p></div>
-            <div class="card"><i class="fas fa-chart-line"></i><h3 class="en">ROI</h3><p class="en">Built to generate business growth.</p><h3 class="bn">গ্রোথ</h3><p class="bn">ব্যবসার উন্নতির জন্য তৈরি প্ল্যাটফর্ম।</p></div>
+            <div class="card">
+                <i class="fas fa-bolt"></i>
+                <h3 class="en">Ultra Performance</h3><h3 class="bn">সেরা পারফরম্যান্স</h3>
+                <p class="en">Lightning systems with zero lag.</p><p class="bn">জিরো ল্যাগ সহ সুপার ফাস্ট সিস্টেম।</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3 class="en">Military Security</h3><h3 class="bn">নিখুঁত নিরাপত্তা</h3>
+                <p class="en">Encrypted to protect your data.</p><p class="bn">আপনার ডেটা সুরক্ষিত রাখতে এনক্রিপশন।</p>
+            </div>
         </div>
     </section>
 
@@ -130,16 +141,16 @@
         <h2 class="section-title bn">লাইভ প্রজেক্ট</h2>
         <div class="grid">
             <div class="card">
-                <div class="img-box"><img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" alt="Project"></div>
+                <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="img-preview" alt="Boostzy">
                 <h3>Boostzy.site</h3>
-                <p class="en">Modern SMM UI with powerful API.</p>
-                <p class="bn">শক্তিশালী এপিআই সহ আধুনিক ইউআই।</p>
+                <p class="en">Modern SMM solution handling massive transactions.</p>
+                <p class="bn">বিশাল ট্রানজ্যাকশন হ্যান্ডেল করার আধুনিক এসএমএম প্ল্যাটফর্ম।</p>
             </div>
             <div class="card">
-                <div class="img-box"><img src="https://i.ibb.co/6yXm1F3/identity.jpg" alt="Project"></div>
+                <img src="https://i.ibb.co/6yXm1F3/identity.jpg" class="img-preview" alt="Identity">
                 <h3>Elite Identity</h3>
-                <p class="en">Personal brand architecture.</p>
-                <p class="bn">পার্সোনাল ব্র্যান্ড আর্কিটেকচার।</p>
+                <p class="en">Premium brand architecture for high-end presence.</p>
+                <p class="bn">প্রিমিয়াম ব্র্যান্ড প্রেজেন্সের জন্য ইউনিক আর্কিটেকচার।</p>
             </div>
         </div>
     </section>
@@ -149,11 +160,11 @@
         <h2 class="section-title bn">ক্লায়েন্ট ফিডব্যাক</h2>
         <div class="grid">
             <div class="card">
-                <p>"Kowshik's skills are insane. Our efficiency grew by 40%."</p>
+                <p>"Kowshik's architectural skills are insane. Efficiency grew by 40%."</p>
                 <small>- Jason Reed, TechFlow</small>
             </div>
             <div class="card">
-                <p>"Best developer for SMM automation. Period."</p>
+                <p>"Best developer for SMM automation. Boostzy is the evidence."</p>
                 <small>- A. Rahman, SMM Lab</small>
             </div>
         </div>
@@ -161,18 +172,20 @@
 
     <section class="reveal">
         <h2 class="section-title en">Get In Touch</h2>
-        <h2 class="section-title bn">যোগাযোগ</h2>
+        <h2 class="section-title bn">যোগাযোগ করুন</h2>
         <div class="grid">
             <div class="card">
+                <i class="fas fa-paper-plane"></i>
+                <h3 class="en">Message Me</h3><h3 class="bn">মেসেজ দিন</h3>
                 <form action="https://formsubmit.co/info@kowshik.site" method="POST">
                     <input type="text" placeholder="Name" required>
                     <input type="email" placeholder="Email" required>
-                    <textarea rows="3" placeholder="Message"></textarea>
+                    <textarea rows="3" placeholder="Project Details"></textarea>
                     <button type="submit" class="submit-btn en">Send Message</button>
                     <button type="submit" class="submit-btn bn">মেসেজ পাঠান</button>
                 </form>
             </div>
-            <div class="card">
+            <div class="card" style="display:flex; flex-direction:column; justify-content:center; gap:20px">
                 <p><i class="fas fa-envelope"></i> info@kowshik.site</p>
                 <p><i class="fab fa-telegram"></i> @kowshik_pro</p>
             </div>
@@ -181,17 +194,25 @@
 
     <section class="reveal">
         <h2 class="section-title en">FAQ</h2>
-        <h2 class="section-title bn">প্রশ্নোত্তর</h2>
+        <h2 class="section-title bn">জিজ্ঞাসিত প্রশ্ন</h2>
         <div class="faq-box" onclick="this.classList.toggle('active')">
-            <b class="en">Timeline?</b><b class="bn">সময় কত লাগে?</b>
-            <div class="faq-a"><span class="en">7-10 days standard.</span><span class="bn">সাধারণত ৭-১০ দিন।</span></div>
+            <div style="display:flex;justify-content:space-between">
+                <b class="en">Timeline?</b><b class="bn">সময় কত লাগে?</b><i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-a">
+                <span class="en">Standard projects take 7-10 days.</span>
+                <span class="bn">সাধারণত ৭-১০ দিন সময় লাগে।</span>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p class="en">© 2026 KOWSHIK <i class="fas fa-check-circle" style="color:#3b82f6"></i></p>
-        <p class="bn">© ২০২৬ কৌশিক <i class="fas fa-check-circle" style="color:#3b82f6"></i></p>
-        <div class="credit">DESIGNED BY KOWSHIK<br><span style="color:var(--secondary)">// SYSTEM_ACTIVE</span></div>
+        <p class="en">© 2026 KOWSHIK <i class="fas fa-check-circle" style="color:#3b82f6"></i> | ALL RIGHTS RESERVED</p>
+        <p class="bn">© ২০২৬ কৌশিক <i class="fas fa-check-circle" style="color:#3b82f6"></i> | সর্বস্বত্ব সংরক্ষিত</p>
+        <div class="credit">
+            <span class="en">DESIGNED BY KOWSHIK</span><span class="bn">কৌশিক দ্বারা ডিজাইনকৃত</span><br>
+            <span style="color:var(--secondary)">// SYSTEM_ACTIVE</span>
+        </div>
     </footer>
 
     <script>
@@ -230,7 +251,7 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-        let count = 210;
+        let count = 215;
         setInterval(() => {
             count += Math.floor(Math.random()*3) - 1;
             document.getElementById('vc').innerText = count + " Agents Online";
