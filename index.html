@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KOWSHIK | Digital Architect</title>
+    <title>KOWSHIK | Elite Developer</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
@@ -14,7 +14,6 @@
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.08); --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
         }
-
         .light-mode {
             --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.04);
             --border: rgba(0, 0, 0, 0.1);
@@ -22,54 +21,55 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: 0.5s; scroll-behavior: smooth; }
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.1; pointer-events: none; }
 
-        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.12; pointer-events: none; }
-
-        /* --- Navbar --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.85); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        /* --- Nav --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
         .logo { font-size: 1.2rem; font-weight: 800; }
-        .logo span { color: var(--secondary); }
-
-        /* --- Stylish Switcher --- */
         .controls { display: flex; gap: 15px; }
-        .sw-box { position: relative; width: 50px; height: 26px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; color: var(--text); font-size: 10px; }
-        .sw-btn { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 2; box-shadow: 0 0 10px rgba(124,58,237,0.5); }
-        
-        .lang-bn .sw-lang .sw-btn { left: 27px; }
-        .light-mode .sw-theme .sw-btn { left: 27px; background: #f59e0b; }
+        .sw-box { position: relative; width: 55px; height: 28px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; color: var(--text); font-size: 12px; }
+        .sw-btn { position: absolute; top: 3px; left: 4px; width: 20px; height: 20px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
+        .lang-bn .sw-lang .sw-btn { left: 30px; }
+        .light-mode .sw-theme .sw-btn { left: 30px; background: #f59e0b; }
 
-        /* --- Sections --- */
-        section { padding: 100px 6% 60px; max-width: 1200px; margin: 0 auto; }
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .badge { background: rgba(124, 58, 237, 0.15); border: 1px solid var(--primary); color: #a78bfa; padding: 6px 18px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
-
-        h1 { font-size: clamp(2.5rem, 9vw, 5.5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; letter-spacing: -2px; }
+        /* --- Layout --- */
+        section { padding: 100px 6% 40px; max-width: 1200px; margin: 0 auto; }
+        .hero { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
         .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* --- Boostzy Showcase --- */
-        .boost-section { background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.1), transparent); border-radius: 40px; border: 1px solid var(--border); padding: 50px; margin-top: 40px; position: relative; overflow: hidden; }
-        .live-indicator { position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 800; color: #22c55e; background: rgba(34, 197, 94, 0.1); padding: 5px 12px; border-radius: 20px; }
-        .pulse-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
 
+        /* --- Bento Grid --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 28px; transition: 0.5s; backdrop-filter: blur(10px); }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px; border-radius: 30px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+
+        /* --- Boostzy Specific --- */
+        .boost-hero { background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent); border: 1.5px solid var(--primary); }
+        .live-tag { position: absolute; top: 20px; right: 20px; color: #22c55e; font-size: 10px; font-weight: 900; display: flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.1); padding: 5px 12px; border-radius: 20px; }
+        .dot-p { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- Skill Bars --- */
-        .skill-box { margin-bottom: 20px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 0.85rem; }
-        .bar-outer { height: 6px; background: var(--border); border-radius: 10px; overflow: hidden; }
-        .bar-inner { height: 100%; background: var(--grad); width: 0; transition: 2s cubic-bezier(0.1, 0, 0.3, 1); }
+        .skill-item { margin-bottom: 20px; }
+        .skill-head { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
+        .bar-bg { height: 6px; background: var(--border); border-radius: 10px; }
+        .bar-fill { height: 100%; background: var(--grad); width: 0; transition: 2s ease-out; border-radius: 10px; }
+
+        /* --- FAQ --- */
+        .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 10px; cursor: pointer; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; padding-top: 0; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+        .faq-box.active .faq-a { max-height: 100px; opacity: 1; padding-top: 15px; }
 
         /* --- Floating UI --- */
-        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
-        .active-user { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); z-index: 1000; backdrop-filter: blur(10px); }
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+        .v-box { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; z-index: 1000; }
 
-        /* --- Footer (Coding Font) --- */
+        /* --- Footer --- */
         footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
-        .v-badge { color: #3b82f6; margin-left: 5px; }
-        .credit { font-size: 0.75rem; opacity: 0.5; margin-top: 15px; letter-spacing: 1px; }
+        .v-check { color: #3b82f6; margin-left: 5px; }
+        .credit { font-size: 0.7rem; opacity: 0.4; margin-top: 15px; letter-spacing: 1.5px; }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -78,10 +78,7 @@
         .lang-bn .en { display: none; }
         .lang-bn .bn { display: block; font-family: 'Hind Siliguri', sans-serif; }
 
-        .btn { padding: 12px 25px; border-radius: 12px; background: var(--grad); color: white; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; transition: 0.3s; }
-        .btn:hover { transform: scale(1.05); }
-
-        @media (max-width: 600px) { h1 { font-size: 3rem; } .boost-section { padding: 30px 20px; } }
+        @media (max-width: 600px) { h1 { font-size: 3rem; } }
     </style>
 </head>
 <body id="b">
@@ -91,91 +88,69 @@
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="tg('lang')" title="Switch Language">
-                <i class="fas fa-language"></i>
-                <span style="font-weight: 800; font-size: 8px;">BN</span>
-                <div class="sw-btn"></div>
-            </div>
-            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Mode">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
-                <div class="sw-btn"></div>
-            </div>
+            <div class="sw-box sw-lang" onclick="tg('lang')"><i class="fas fa-language"></i><span style="font-weight:900;font-size:8px">BN</span><div class="sw-btn"></div></div>
+            <div class="sw-box sw-theme" onclick="tg('theme')"><i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="sw-btn"></div></div>
         </div>
     </nav>
 
-    <div class="active-user">
-        <div class="pulse-dot"></div>
-        <span id="vc">198 Agents Online</span>
-    </div>
-
-    <a href="https://wa.me/8801611215511" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div class="v-box"><div class="dot-p" style="background:#22c55e"></div><span id="vc">Checking...</span></div>
+    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <section class="hero reveal">
-        <div class="badge en">Full-Stack Digital Architect</div>
-        <div class="badge bn">ফুল-স্ট্যাক ডিজিটাল আর্কিটেক্ট</div>
-        <h1 class="en">Code. Deploy.<br><span class="grad-text">Conquer.</span></h1>
-        <h1 class="bn">কোড। ডেপ্লয়।<br><span class="grad-text">বিজয়।</span></h1>
-        <p class="en" style="opacity:0.6; max-width:600px;">Crafting ultra-modern digital solutions with precision and scale.</p>
-        <p class="bn" style="opacity:0.6; max-width:600px;">নিখুঁতভাবে আল্ট্রা-মডার্ন ডিজিটাল সলিউশন এবং স্কেলেবল সিস্টেম তৈরি করছি।</p>
+        <h1 class="en">Code. Build.<br><span class="grad-text">Innovate.</span></h1>
+        <h1 class="bn">কোড। নির্মাণ।<br><span class="grad-text">উদ্ভাবন।</span></h1>
+        <p class="en" style="opacity:0.6">Elite full-stack architecture for modern web systems.</p>
+        <p class="bn" style="opacity:0.6">আধুনিক ওয়েব সিস্টেমের জন্য এলিট ফুল-স্ট্যাক আর্কিটেকচার।</p>
     </section>
 
     <section class="reveal">
-        <div class="boost-section">
-            <div class="live-indicator"><div class="pulse-dot"></div> LIVE NOW</div>
-            <i class="fas fa-rocket" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
-            <h2 class="en" style="font-size: 2.2rem; margin-bottom: 15px;">Boostzy.site</h2>
-            <h2 class="bn" style="font-size: 2.2rem; margin-bottom: 15px;">Boostzy.site</h2>
-            <p class="en" style="max-width: 700px; opacity: 0.7;">My flagship SMM platform. A high-performance engine processing thousands of API requests and automated social growth daily.</p>
-            <p class="bn" style="max-width: 700px; opacity: 0.7;">আমার ফ্ল্যাগশিপ এসএমএম প্ল্যাটফর্ম। প্রতিদিন হাজার হাজার এপিআই রিকোয়েস্ট এবং অটোমেটেড সোশ্যাল গ্রোথ প্রসেস করা একটি হাই-পারফরম্যান্স ইঞ্জিন।</p>
-            <a href="https://boostzy.site" target="_blank" class="btn">
-                <span class="en">Visit Deployment</span>
-                <span class="bn">প্রজেক্ট দেখুন</span>
-                <i class="fas fa-external-link-alt"></i>
-            </a>
+        <div class="card boost-hero">
+            <div class="live-tag"><div class="dot-p"></div> LIVE</div>
+            <i class="fas fa-rocket"></i>
+            <h2 style="font-size:2rem; margin-bottom:15px">Boostzy.site</h2>
+            <p class="en">Flagship SMM Panel processing thousands of daily API requests with zero lag.</p>
+            <p class="bn">ফ্ল্যাগশিপ এসএমএম প্যানেল যা প্রতিদিন হাজার হাজার এপিআই রিকোয়েস্ট প্রসেস করে।</p>
+            <a href="https://boostzy.site" style="color:var(--secondary); font-weight:800; text-decoration:none; display:block; margin-top:20px">Visit Platform →</a>
         </div>
     </section>
 
     <section class="reveal">
-        <h2 style="text-align: center; margin-bottom: 40px;" class="en">Technical Stack</h2>
-        <h2 style="text-align: center; margin-bottom: 40px;" class="bn">টেকনিক্যাল স্কিল</h2>
+        <h2 class="section-title en">Why Me?</h2>
+        <h2 class="section-title bn">কেন আমি?</h2>
+        <div class="grid">
+            <div class="card"><i class="fas fa-bolt"></i><h3 class="en">Fast</h3><p class="en">Optimized for extreme speed.</p></div>
+            <div class="card"><i class="fas fa-shield-alt"></i><h3 class="en">Secure</h3><p class="en">Military grade encryption.</p></div>
+            <div class="card"><i class="fas fa-layer-group"></i><h3 class="en">Scalable</h3><p class="en">Built for massive growth.</p></div>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <h2 class="section-title en">Expertise</h2>
         <div class="grid">
             <div class="card">
-                <div class="skill-box">
-                    <div class="skill-info"><span>Backend Architecture</span><span>98%</span></div>
-                    <div class="bar-outer"><div class="bar-inner" data-w="98%"></div></div>
-                </div>
-                <div class="skill-box">
-                    <div class="skill-info"><span>Cloud & DevOps</span><span>90%</span></div>
-                    <div class="bar-outer"><div class="bar-inner" data-w="90%"></div></div>
-                </div>
-                <div class="skill-box">
-                    <div class="skill-info"><span>UI/UX Interface</span><span>92%</span></div>
-                    <div class="bar-outer"><div class="bar-inner" data-w="92%"></div></div>
-                </div>
+                <div class="skill-item"><div class="skill-head"><span>Laravel / Node</span><span>98%</span></div><div class="bar-bg"><div class="bar-fill" data-w="98%"></div></div></div>
+                <div class="skill-item"><div class="skill-head"><span>React / Next</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div></div>
+                <div class="skill-item"><div class="skill-head"><span>Cyber Security</span><span>95%</span></div><div class="bar-bg"><div class="bar-fill" data-w="95%"></div></div></div>
             </div>
-            <div class="card">
-                <i class="fas fa-shield-check" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
-                <h3 class="en">Secure by Design</h3>
-                <h3 class="bn">সিকিউরড বাই ডিজাইন</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem;">Military-grade security implementations for every deployment I manage.</p>
+            <div class="card" style="display:flex;align-items:center;justify-content:center;text-align:center">
+                <div><i class="fas fa-terminal"></i><h3>Available for Hire</h3></div>
             </div>
         </div>
+    </section>
+
+    <section class="reveal">
+        <h2 class="section-title en">FAQ</h2>
+        <div class="faq-box" onclick="this.classList.toggle('active')"><div style="display:flex;justify-content:space-between"><b>Project Timeline?</b><i class="fas fa-plus"></i></div><div class="faq-a">Standard projects take 7-10 days.</div></div>
+        <div class="faq-box" onclick="this.classList.toggle('active')"><div style="display:flex;justify-content:space-between"><b>Maintenance?</b><i class="fas fa-plus"></i></div><div class="faq-a">Yes, I provide full lifetime support.</div></div>
     </section>
 
     <footer>
-        <p class="en">© 2026 KOWSHIK <i class="fas fa-check-circle v-badge"></i></p>
-        <p class="bn">© ২০২৬ কৌশিক <i class="fas fa-check-circle v-badge"></i></p>
-        <div class="credit">
-            DESIGNED & HANDCRAFTED BY KOWSHIK<br>
-            <span style="color: var(--secondary);">// STATUS: SYSTEM_OPTIMIZED</span>
-        </div>
+        <p>© 2026 KOWSHIK <i class="fas fa-check-circle v-check"></i></p>
+        <div class="credit">DESIGNED BY KOWSHIK<br><span style="color:var(--secondary)">// SYSTEM_ACTIVE</span></div>
     </footer>
 
     <script>
         const b = document.getElementById('b');
-        
-        // Persistence
         if(localStorage.getItem('th') === 'li') b.classList.add('light-mode');
         if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
 
@@ -189,16 +164,14 @@
             }
         }
 
-        // Matrix
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         const drops = Array(Math.floor(canvas.width/20)).fill(1);
         function draw() {
-            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248,252,255,0.12)" : "rgba(2,6,23,0.12)";
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248,252,255,0.1)" : "rgba(2,6,23,0.1)";
             ctx.fillRect(0,0,canvas.width,canvas.height);
-            ctx.fillStyle = "#7c3aed";
-            ctx.font = "15px monospace";
+            ctx.fillStyle = "#7c3aed"; ctx.font = "15px monospace";
             drops.forEach((y, i) => {
                 ctx.fillText("01KOWSHIK"[Math.floor(Math.random()*9)], i*20, y*20);
                 if(y*20 > canvas.height && Math.random() > 0.98) drops[i] = 0;
@@ -207,19 +180,17 @@
         }
         setInterval(draw, 50);
 
-        // Observer
         const obs = new IntersectionObserver((es) => {
             es.forEach(e => {
                 if(e.isIntersecting) {
                     e.target.classList.add('active');
-                    e.target.querySelectorAll('.bar-inner').forEach(bar => bar.style.width = bar.getAttribute('data-w'));
+                    e.target.querySelectorAll('.bar-fill').forEach(bar => bar.style.width = bar.getAttribute('data-w'));
                 }
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-        // Counter
-        let count = 190 + Math.floor(Math.random()*30);
+        let count = 180 + Math.floor(Math.random()*40);
         setInterval(() => {
             count += Math.floor(Math.random()*3) - 1;
             document.getElementById('vc').innerText = count + " Agents Online";
