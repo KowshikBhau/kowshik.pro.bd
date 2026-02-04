@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KOWSHIK | Elite Architect</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Hind+Siliguri:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* --- CSS Variables & Theming --- */
         :root {
             --primary: #8b5cf6;
             --secondary: #06b6d4;
-            --bg: #030712;
-            --card-bg: rgba(17, 24, 39, 0.7);
-            --text: #f8fafc;
-            --border: rgba(255, 255, 255, 0.1);
-            --grad: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+            --bg-dark: #0f172a;
+            --bg-light: #f1f5f9;
+            --card-dark: rgba(30, 41, 59, 0.7);
+            --card-light: rgba(255, 255, 255, 0.8);
+            --text-dark: #f8fafc;
+            --text-light: #0f172a;
+            --border-dark: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(0, 0, 0, 0.1);
+            
+            /* Default to Dark */
+            --bg: var(--bg-dark);
+            --card: var(--card-dark);
+            --text: var(--text-dark);
+            --border: var(--border-dark);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        .light-mode {
-            --bg: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --text: #0f172a;
-            --border: rgba(0, 0, 0, 0.1);
+        /* Light Mode Override */
+        [data-theme="light"] {
+            --bg: var(--bg-light);
+            --card: var(--card-light);
+            --text: var(--text-light);
+            --border: var(--border-light);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -33,157 +47,163 @@
             color: var(--text);
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
-            transition: 0.3s ease;
+            transition: background 0.4s ease, color 0.4s ease; /* Smooth Switch */
         }
 
-        /* Bangla Font Override */
-        .lang-bn, .lang-bn * { font-family: 'Hind Siliguri', sans-serif !important; }
+        /* BANGLA FONT FIX */
+        body.lang-bn, body.lang-bn * { font-family: 'Hind Siliguri', sans-serif !important; }
 
-        /* Matrix Background */
-        canvas#matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        /* --- Utilities --- */
+        .en-content { display: block; }
+        .bn-content { display: none; }
+        body.lang-bn .en-content { display: none; }
+        body.lang-bn .bn-content { display: block; }
 
-        /* Navigation */
+        /* --- Matrix Canvas --- */
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; pointer-events: none; }
+
+        /* --- Navigation --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 15px 6%;
+            position: fixed; top: 0; width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(var(--bg), 0.7); backdrop-filter: blur(20px);
+            background: rgba(var(--bg), 0.1); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border); z-index: 1000;
         }
-        .logo { font-size: 1.4rem; font-weight: 800; color: inherit; text-decoration: none; font-family: 'JetBrains Mono', monospace; }
-        .logo span { color: var(--secondary); }
-
-        .controls { display: flex; gap: 12px; }
-        .btn-control {
-            width: 40px; height: 40px; border-radius: 50%;
-            border: 1px solid var(--border); background: var(--card-bg);
-            color: var(--text); display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s; font-size: 1.1rem;
-        }
-        .btn-control:active { transform: scale(0.9); }
-
-        /* Layout */
-        section { padding: 100px 6% 40px; max-width: 1200px; margin: 0 auto; }
         
+        .logo { 
+            font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; 
+            text-decoration: none; color: inherit; display: flex; align-items: center; gap: 5px;
+        }
+        .logo span { color: var(--primary); }
+
+        /* Premium Switch Toggles */
+        .controls { display: flex; gap: 15px; }
+        
+        .switch-btn {
+            background: var(--card); border: 1px solid var(--border);
+            padding: 8px 16px; border-radius: 30px; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; font-weight: 600;
+            font-size: 0.85rem; transition: 0.3s; color: var(--text);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .switch-btn:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .switch-btn i { color: var(--secondary); font-size: 1rem; }
+
+        /* --- Sections --- */
+        section { padding: 100px 5% 40px; max-width: 1200px; margin: 0 auto; }
+
         /* Hero */
         .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .status-badge {
-            background: rgba(6, 182, 212, 0.1); color: var(--secondary);
-            padding: 8px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
-            border: 1px solid rgba(6, 182, 212, 0.3); margin-bottom: 25px;
-            display: inline-flex; align-items: center; gap: 8px;
+        
+        .badge {
+            background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--primary); padding: 8px 16px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 25px; backdrop-filter: blur(5px);
         }
-        .dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; animation: blink 1.5s infinite; }
-        
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
-        .gradient-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        p.subtitle { max-width: 600px; opacity: 0.8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; }
 
-        /* Tech Stack */
-        .tech-stack { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; opacity: 0.6; }
-        .tech-stack i { font-size: 2rem; transition: 0.3s; }
-        .tech-stack i:hover { color: var(--primary); transform: translateY(-5px); opacity: 1; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
+        .grad-text { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* Grid System */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
+        .hero p { max-width: 600px; font-size: 1.1rem; opacity: 0.8; line-height: 1.6; margin-bottom: 40px; }
+
+        /* Tech Icons */
+        .tech-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; opacity: 0.7; }
+        .tech-row i { font-size: 1.8rem; transition: 0.3s; }
+        .tech-row i:hover { color: var(--primary); transform: scale(1.2); opacity: 1; }
+
+        /* --- Cards (Bento/Grid) --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         
         .card {
-            background: var(--card-bg); border: 1px solid var(--border);
-            padding: 35px; border-radius: 24px; transition: 0.4s;
-            position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            background: var(--card); border: 1px solid var(--border);
+            padding: 30px; border-radius: 20px; box-shadow: var(--shadow);
+            backdrop-filter: blur(10px); transition: 0.4s ease;
+            position: relative; overflow: hidden;
         }
         .card:hover { transform: translateY(-8px); border-color: var(--primary); }
-        .card-icon { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
         
-        /* Project Images */
-        .project-img { width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 20px; border: 1px solid var(--border); }
+        .icon-box {
+            width: 60px; height: 60px; background: rgba(139, 92, 246, 0.1);
+            border-radius: 15px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary); margin-bottom: 20px;
+        }
 
-        /* Form */
-        .input-group { margin-bottom: 15px; }
+        .card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .card p { opacity: 0.7; line-height: 1.5; font-size: 0.95rem; }
+
+        /* Project Images */
+        .project-thumb { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border); }
+
+        /* --- Contact Form --- */
         input, textarea {
-            width: 100%; padding: 14px; background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border); border-radius: 12px;
-            color: var(--text); outline: none; transition: 0.3s;
+            width: 100%; padding: 15px; margin-bottom: 15px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            border-radius: 12px; color: var(--text); outline: none; transition: 0.3s;
             font-family: inherit;
         }
-        input:focus, textarea:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
-        
-        .btn-primary {
-            width: 100%; padding: 15px; background: var(--grad);
-            border: none; border-radius: 12px; color: #fff;
-            font-weight: 700; cursor: pointer; font-size: 1rem;
-            transition: 0.3s;
-        }
-        .btn-primary:hover { opacity: 0.9; box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); }
+        input:focus, textarea:focus { border-color: var(--secondary); background: rgba(255,255,255,0.05); }
 
-        /* Floating UI */
-        .wa-float {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 60px; height: 60px; background: #25D366;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: white; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            z-index: 999; text-decoration: none; transition: 0.3s;
+        .btn-main {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none; border-radius: 12px; color: white; font-weight: 700;
+            font-size: 1rem; cursor: pointer; transition: 0.3s;
         }
-        .wa-float:hover { transform: scale(1.1); }
-        
-        .agent-float {
+        .btn-main:hover { opacity: 0.9; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); }
+
+        /* --- Floating UI --- */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: #25d366; border-radius: 50%; color: white; display: flex;
+            align-items: center; justify-content: center; font-size: 30px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 999;
+            text-decoration: none; transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        .agent-status {
             position: fixed; bottom: 30px; left: 30px;
-            background: var(--card-bg); border: 1px solid var(--border);
-            padding: 10px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
-            display: flex; align-items: center; gap: 10px; z-index: 999;
-            backdrop-filter: blur(10px);
+            background: var(--card); border: 1px solid var(--border);
+            padding: 10px 20px; border-radius: 50px; display: flex; align-items: center;
+            gap: 10px; font-size: 0.8rem; font-weight: 700; backdrop-filter: blur(10px);
+            z-index: 999; box-shadow: var(--shadow);
         }
+        .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* Footer */
-        footer { padding: 60px 5%; text-align: center; border-top: 1px solid var(--border); margin-top: 60px; }
-        .credit { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; opacity: 0.5; margin-top: 15px; }
-
-        /* Utilities */
-        .bn { display: none; }
-        .lang-bn .en { display: none; }
-        .lang-bn .bn { display: block; }
-        
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        footer { padding: 50px 5%; text-align: center; border-top: 1px solid var(--border); margin-top: 50px; opacity: 0.6; font-size: 0.9rem; }
     </style>
 </head>
-<body id="body">
-
-    <canvas id="matrix"></canvas>
+<body class="lang-en"> <canvas id="matrix"></canvas>
 
     <nav>
-        <a href="javascript:location.reload()" class="logo">KOWSHIK<span>.PRO</span></a>
+        <a href="#" class="logo"><i class="fa-solid fa-code"></i> KOWSHIK<span>.PRO</span></a>
+        
         <div class="controls">
-            <div class="btn-control" onclick="toggleLang()">
+            <div class="switch-btn" onclick="toggleLanguage()">
                 <i class="fa-solid fa-language"></i>
+                <span id="lang-text">BN</span>
             </div>
-            <div class="btn-control" onclick="toggleTheme()">
-                <i class="fa-solid fa-moon theme-icon"></i>
+            <div class="switch-btn" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
             </div>
         </div>
     </nav>
 
-    <div class="agent-float">
-        <div class="dot"></div> <span id="agent-count">212 Agents Online</span>
-    </div>
-    <a href="https://wa.me/8801611215511" class="wa-float" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
     <section class="hero">
-        <div class="status-badge">
-            <div class="dot"></div>
-            <span class="en">AVAILABLE FOR PROJECTS</span>
-            <span class="bn">প্রজেক্টের জন্য এভেইলেবল</span>
+        <div class="badge">
+            <span class="en-content">Available for Hire</span>
+            <span class="bn-content">প্রজেক্টের জন্য এভেইলেবল</span>
         </div>
-        
-        <h1 class="en">Code. Scale.<br><span class="gradient-text">Dominate.</span></h1>
-        <h1 class="bn">কোড। স্কেল।<br><span class="gradient-text">ডমিনেট।</span></h1>
-        
-        <p class="subtitle en">Elite Full-Stack Architect building high-performance digital ecosystems for global brands.</p>
-        <p class="subtitle bn">গ্লোবাল ব্র্যান্ডের জন্য উচ্চ-ক্ষমতাসম্পন্ন ডিজিটাল ইকোসিস্টেম তৈরি করছি।</p>
 
-        <div class="tech-stack">
-            <i class="fa-brands fa-laravel"></i>
+        <h1 class="en-content">Build. Scale.<br><span class="grad-text">Dominate.</span></h1>
+        <h1 class="bn-content">বিল্ড। স্কেল।<br><span class="grad-text">ডমিনেট।</span></h1>
+
+        <p class="en-content">Elite Full-Stack Architect building high-performance digital ecosystems for global brands.</p>
+        <p class="bn-content">গ্লোবাল ব্র্যান্ডের জন্য উচ্চ-ক্ষমতাসম্পন্ন ডিজিটাল ইকোসিস্টেম এবং আর্কিটেকচার তৈরি করছি।</p>
+
+        <div class="tech-row">
             <i class="fa-brands fa-react"></i>
             <i class="fa-brands fa-node-js"></i>
             <i class="fa-brands fa-python"></i>
@@ -193,78 +213,133 @@
     </section>
 
     <section>
-        <h2 class="en" style="text-align:center; font-size:2rem; margin-bottom:40px">Why Choose Me?</h2>
-        <h2 class="bn" style="text-align:center; font-size:2rem; margin-bottom:40px">কেন আমি?</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                <h3 class="en-content">Ultra Fast</h3><h3 class="bn-content">সুপার ফাস্ট</h3>
+                <p class="en-content">Lightning fast performance with 99.9% uptime guarantee.</p>
+                <p class="bn-content">৯৯.৯% আপটাইম গ্যারান্টি সহ বিদ্যুৎ গতির পারফরম্যান্স।</p>
+            </div>
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3 class="en-content">Secure Core</h3><h3 class="bn-content">নিরাপদ সিস্টেম</h3>
+                <p class="en-content">Military-grade encryption for total data protection.</p>
+                <p class="bn-content">আপনার ডেটা সুরক্ষিত রাখতে মিলিটারি-গ্রেড এনক্রিপশন।</p>
+            </div>
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                <h3 class="en-content">Scalable</h3><h3 class="bn-content">স্কেলেবল</h3>
+                <p class="en-content">Architecture designed to grow with your business.</p>
+                <p class="bn-content">আপনার ব্যবসার বৃদ্ধির সাথে তাল মিলিয়ে বড় হওয়ার আর্কিটেকচার।</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="en-content" style="text-align:center; margin-bottom:40px; font-size:2rem">Live Masterpieces</h2>
+        <h2 class="bn-content" style="text-align:center; margin-bottom:40px; font-size:2rem">লাইভ প্রজেক্ট</h2>
         
         <div class="grid">
             <div class="card">
-                <i class="fa-solid fa-bolt card-icon"></i>
-                <h3 class="en">Ultra Fast</h3><h3 class="bn">সুপার ফাস্ট</h3>
-                <p class="en">Optimized for 99.9% uptime and zero lag performance.</p>
-                <p class="bn">৯৯.৯% আপটাইম এবং জিরো ল্যাগ পারফরম্যান্সের জন্য অপ্টিমাইজড।</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-shield-halved card-icon"></i>
-                <h3 class="en">Secure Core</h3><h3 class="bn">নিরাপদ সিস্টেম</h3>
-                <p class="en">Military-grade encryption for total data protection.</p>
-                <p class="bn">সম্পূর্ণ ডেটা সুরক্ষার জন্য মিলিটারি-গ্রেড এনক্রিপশন।</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-chart-line card-icon"></i>
-                <h3 class="en">Scalable</h3><h3 class="bn">স্কেলেবল</h3>
-                <p class="en">Architecture designed to grow with your business.</p>
-                <p class="bn">আপনার ব্যবসার বৃদ্ধির সাথে তাল মিলিয়ে বড় হওয়ার আর্কিটেকচার।</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2 class="en" style="text-align:center; font-size:2rem; margin-bottom:40px">Masterpieces</h2>
-        <h2 class="bn" style="text-align:center; font-size:2rem; margin-bottom:40px">লাইভ প্রজেক্ট</h2>
-
-        <div class="grid">
-            <div class="card">
-                <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="project-img" alt="Boostzy">
+                <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="project-thumb" alt="Project 1">
                 <h3>Boostzy.site</h3>
-                <p class="en" style="opacity:0.7">Flagship SMM panel handling 10k+ daily requests.</p>
-                <p class="bn" style="opacity:0.7">ফ্ল্যাগশিপ SMM প্যানেল যা ১০ হাজারের বেশি রিকোয়েস্ট হ্যান্ডেল করে।</p>
-                <a href="https://boostzy.site" style="display:inline-block; margin-top:15px; color:var(--secondary); font-weight:700; text-decoration:none">Live Demo &rarr;</a>
+                <p class="en-content">High-traffic SMM panel handling 10k+ requests daily.</p>
+                <p class="bn-content">জনপ্রিয় SMM প্যানেল যা প্রতিদিন ১০ হাজারের বেশি রিকোয়েস্ট হ্যান্ডেল করে।</p>
+                <a href="https://boostzy.site" target="_blank" style="display:inline-block; margin-top:15px; color:var(--primary); font-weight:700; text-decoration:none">Visit Site &rarr;</a>
             </div>
             <div class="card">
-                <img src="https://i.ibb.co/6yXm1F3/identity.jpg" class="project-img" alt="Identity">
+                <img src="https://i.ibb.co/6yXm1F3/identity.jpg" class="project-thumb" alt="Project 2">
                 <h3>Elite Identity</h3>
-                <p class="en" style="opacity:0.7">Personal branding portfolio for high-ticket clients.</p>
-                <p class="bn" style="opacity:0.7">হাই-টিকেট ক্লায়েন্টদের জন্য পার্সোনাল ব্র্যান্ডিং পোর্টফোলিও।</p>
+                <p class="en-content">Personal portfolio architecture for professionals.</p>
+                <p class="bn-content">প্রফেশনালদের জন্য পার্সোনাল ব্র্যান্ডিং পোর্টফোলিও।</p>
             </div>
         </div>
     </section>
 
     <section>
-        <div class="grid" style="grid-template-columns: 1fr;">
-            <div class="card">
-                <h2 class="en" style="margin-bottom:20px">Start Project</h2>
-                <h2 class="bn" style="margin-bottom:20px">প্রজেক্ট শুরু করুন</h2>
-                
-                <form action="https://formsubmit.co/info@kowshik.site" method="POST">
-                    <input type="hidden" name="_next" value="https://kowshik.pro.bd">
-                    <input type="text" name="name" placeholder="Name / নাম" required style="margin-bottom:10px">
-                    <input type="email" name="email" placeholder="Email / ইমেইল" required style="margin-bottom:10px">
-                    <textarea name="message" rows="4" placeholder="Project Details / বিস্তারিত" required style="margin-bottom:10px"></textarea>
-                    <button type="submit" class="btn-primary">SEND MESSAGE</button>
-                </form>
-            </div>
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <h2 class="en-content" style="margin-bottom:20px">Start Your Project</h2>
+            <h2 class="bn-content" style="margin-bottom:20px">প্রজেক্ট শুরু করুন</h2>
+            
+            <form action="https://formsubmit.co/info@kowshik.site" method="POST">
+                <input type="text" name="name" placeholder="Name / নাম" required>
+                <input type="email" name="email" placeholder="Email / ইমেইল" required>
+                <textarea rows="4" name="message" placeholder="Project Details / বিস্তারিত" required></textarea>
+                <button type="submit" class="btn-main">
+                    <span class="en-content">SEND MESSAGE</span>
+                    <span class="bn-content">মেসেজ পাঠান</span>
+                </button>
+            </form>
         </div>
     </section>
+
+    <div class="agent-status">
+        <div class="dot"></div> <span id="online-count">205 Agents Online</span>
+    </div>
+    
+    <a href="https://wa.me/8801611215511" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <footer>
-        <h3 class="logo" style="margin-bottom:10px">KOWSHIK<span>.PRO</span></h3>
-        <p class="en">© 2026 All Rights Reserved.</p>
-        <p class="bn">© ২০২৬ সর্বস্বত্ব সংরক্ষিত।</p>
-        <div class="credit">// SYSTEM_ONLINE_V4.0</div>
+        <p>© 2026 KOWSHIK.PRO | All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Matrix Rain Effect
+        // --- 1. THEME TOGGLE LOGIC ---
+        const html = document.documentElement;
+        const themeIcon = document.getElementById('theme-icon');
+        
+        // Check LocalStorage
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            if(theme === 'light') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // --- 2. LANGUAGE TOGGLE LOGIC ---
+        const body = document.body;
+        const langText = document.getElementById('lang-text');
+        
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLanguage(savedLang);
+
+        function toggleLanguage() {
+            const isBn = body.classList.contains('lang-bn');
+            setLanguage(isBn ? 'en' : 'bn');
+        }
+
+        function setLanguage(lang) {
+            if(lang === 'bn') {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-bn');
+                langText.innerText = 'EN'; // Button shows option to switch TO
+            } else {
+                body.classList.remove('lang-bn');
+                body.classList.add('lang-en');
+                langText.innerText = 'BN';
+            }
+            localStorage.setItem('lang', lang);
+        }
+
+        // --- 3. MATRIX RAIN (Subtle) ---
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
 
@@ -275,23 +350,25 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        const chars = "01KOWSHIKPRO";
+        const chars = "01KOWSHIK"; 
         const fontSize = 14;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawMatrix() {
-            ctx.fillStyle = document.body.classList.contains('light-mode') ? 'rgba(248, 250, 252, 0.1)' : 'rgba(3, 7, 18, 0.1)';
+            // Fade effect based on theme
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            ctx.fillStyle = isDark ? 'rgba(15, 23, 42, 0.1)' : 'rgba(241, 245, 249, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = '#8b5cf6';
+            ctx.fillStyle = '#8b5cf6'; // Purple rain
             ctx.font = fontSize + "px monospace";
 
-            for (let i = 0; i < drops.length; i++) {
+            for(let i = 0; i < drops.length; i++) {
                 const text = chars.charAt(Math.floor(Math.random() * chars.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
                     drops[i] = 0;
                 }
                 drops[i]++;
@@ -299,34 +376,12 @@
         }
         setInterval(drawMatrix, 50);
 
-        // Theme & Language Logic
-        const body = document.getElementById('body');
-        
-        // Load saved settings
-        if(localStorage.getItem('theme') === 'light') body.classList.add('light-mode');
-        if(localStorage.getItem('lang') === 'bn') body.classList.add('lang-bn');
-
-        function toggleTheme() {
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            
-            // Icon toggle
-            const icon = document.querySelector('.theme-icon');
-            icon.className = isLight ? 'fa-solid fa-sun theme-icon' : 'fa-solid fa-moon theme-icon';
-        }
-
-        function toggleLang() {
-            body.classList.toggle('lang-bn');
-            localStorage.setItem('lang', body.classList.contains('lang-bn') ? 'bn' : 'en');
-        }
-
-        // Fake Agent Counter
-        let agents = 212;
+        // --- 4. Fake Online Counter ---
+        let count = 205;
         setInterval(() => {
-            agents += Math.floor(Math.random() * 3) - 1;
-            document.getElementById('agent-count').innerText = agents + " Agents Online";
-        }, 4000);
+            count += Math.floor(Math.random() * 5) - 2;
+            document.getElementById('online-count').innerText = count + " Agents Online";
+        }, 3000);
 
     </script>
 </body>
