@@ -5,87 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KOWSHIK | Elite Developer</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08); --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
-            --footer-text: rgba(248, 250, 252, 0.4);
+            --border: rgba(255, 255, 255, 0.1); --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
         }
         .light-mode {
-            --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.04);
+            --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.05);
             --border: rgba(0, 0, 0, 0.1);
-            --footer-text: rgba(15, 23, 42, 0.6);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: 0.5s; scroll-behavior: smooth; }
-        
-        /* Language Specific Font */
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; 
+            transition: background 0.5s; 
+            scroll-behavior: smooth; 
+        }
+
+        /* Language Mode Font Fix */
         .lang-bn, .lang-bn * { font-family: 'Hind Siliguri', sans-serif !important; }
 
-        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.1; pointer-events: none; }
+        /* Coding Rain Background */
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; pointer-events: none; }
 
-        /* --- Nav --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.2rem; font-weight: 800; cursor: pointer; text-decoration: none; color: inherit; }
+        /* Navigation */
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(var(--bg), 0.8); backdrop-filter: blur(15px); 
+            border-bottom: 1px solid var(--border); z-index: 1000; 
+        }
+        .logo { font-size: 1.3rem; font-weight: 900; cursor: pointer; text-decoration: none; color: inherit; letter-spacing: -1px; }
         .logo span { color: var(--secondary); }
         
         .controls { display: flex; gap: 15px; }
-        .sw-box { position: relative; width: 55px; height: 28px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; color: var(--text); font-size: 12px; }
-        .sw-btn { position: absolute; top: 3px; left: 4px; width: 20px; height: 20px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
+        .sw-box { 
+            position: relative; width: 55px; height: 28px; background: var(--glass); 
+            border: 1px solid var(--border); border-radius: 20px; cursor: pointer; 
+            display: flex; align-items: center; justify-content: space-between; padding: 0 8px; 
+            font-size: 12px; transition: 0.3s;
+        }
+        .sw-btn { 
+            position: absolute; top: 3px; left: 4px; width: 20px; height: 20px; 
+            background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
         .lang-bn .sw-lang .sw-btn { left: 30px; }
         .light-mode .sw-theme .sw-btn { left: 30px; background: #f59e0b; }
 
-        /* --- Sections --- */
-        section { padding: 100px 6% 40px; max-width: 1200px; margin: 0 auto; }
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        /* Hero Section */
+        section { padding: 120px 6% 60px; max-width: 1200px; margin: 0 auto; }
+        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .badge { background: var(--glass); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 10px; font-weight: 700; color: var(--secondary); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        h1 { font-size: clamp(2.5rem, 10vw, 5.5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; }
         .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
+        .hero p { max-width: 600px; opacity: 0.7; font-size: 1.1rem; line-height: 1.6; }
 
-        /* --- Tools Icon Strip --- */
-        .tool-strip { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 30px; opacity: 0.6; }
-        .tool-strip i { font-size: 1.8rem; transition: 0.3s; }
-        .tool-strip i:hover { color: var(--secondary); transform: scale(1.2); }
+        /* Tool Icons */
+        .tool-strip { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+        .tool-strip i { font-size: 2rem; opacity: 0.5; transition: 0.3s; }
+        .tool-strip i:hover { opacity: 1; color: var(--primary); transform: translateY(-5px); }
 
-        /* --- Bento Grid --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px; border-radius: 30px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+        /* Bento Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 50px; }
+        .card { 
+            background: var(--glass); border: 1px solid var(--border); padding: 40px; 
+            border-radius: 35px; transition: 0.4s; backdrop-filter: blur(10px); 
+            position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(124, 58, 237, 0.05); }
+        .card i { font-size: 2.8rem; color: var(--secondary); margin-bottom: 25px; display: block; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
 
-        /* --- Images --- */
-        .img-preview { width: 100%; border-radius: 20px; margin-bottom: 20px; border: 1px solid var(--border); }
+        /* Projects */
+        .project-img { width: 100%; height: 200px; background: #1e293b; border-radius: 20px; margin-bottom: 20px; object-fit: cover; border: 1px solid var(--border); }
 
-        /* --- Form --- */
-        input, textarea { width: 100%; padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); margin-bottom: 15px; outline: none; }
-        .submit-btn { width: 100%; padding: 12px; background: var(--grad); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; }
+        /* Contact Form */
+        form input, form textarea { 
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); 
+            border: 1px solid var(--border); border-radius: 12px; color: var(--text); 
+            margin-bottom: 15px; outline: none; transition: 0.3s;
+        }
+        form input:focus, form textarea:focus { border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        .submit-btn { width: 100%; padding: 15px; background: var(--grad); border: none; border-radius: 12px; color: white; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- FAQ --- */
-        .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 10px; cursor: pointer; }
-        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; color: var(--footer-text); }
-        .faq-box.active .faq-a { max-height: 100px; opacity: 1; padding-top: 15px; }
+        /* FAQ */
+        .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 25px; margin-bottom: 15px; cursor: pointer; }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s ease-in-out; opacity: 0; padding-top: 0; font-size: 0.95rem; color: var(--text); opacity: 0.7; }
+        .faq-box.active .faq-a { max-height: 150px; opacity: 1; padding-top: 20px; }
 
-        /* --- Floating UI --- */
-        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
-        .v-box { position: fixed; bottom: 25px; left: 25px; background: rgba(var(--bg), 0.8); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(10px); }
-        .dot-p { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* Floating Widgets */
+        .wa-btn { 
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
+            background: #25d366; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; color: white; font-size: 32px; z-index: 1000; 
+            box-shadow: 0 15px 30px rgba(37,211,102,0.4); transition: 0.3s;
+        }
+        .wa-btn:hover { transform: scale(1.1) rotate(10deg); }
+        .v-box { 
+            position: fixed; bottom: 30px; left: 30px; background: rgba(var(--bg), 0.8); 
+            border: 1px solid var(--border); padding: 10px 20px; border-radius: 50px; 
+            font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; 
+            gap: 10px; z-index: 1000; backdrop-filter: blur(10px); 
+        }
+        .dot-p { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* --- Footer --- */
-        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
-        .credit { font-size: 0.7rem; color: var(--footer-text); margin-top: 15px; letter-spacing: 1.5px; }
+        /* Footer */
+        footer { padding: 80px 6% 40px; text-align: center; border-top: 1px solid var(--border); }
+        .footer-logo { font-size: 1.5rem; font-weight: 900; margin-bottom: 20px; display: block; }
+        .copyright { opacity: 0.5; font-size: 0.8rem; letter-spacing: 2px; }
 
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Lang Toggles */
         .bn { display: none !important; }
         .lang-bn .en { display: none !important; }
         .lang-bn .bn { display: block !important; }
-        
-        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 6%; }
+            section { padding: 100px 6% 40px; }
+            h1 { font-size: 3.2rem; }
+        }
     </style>
 </head>
 <body id="b">
@@ -95,27 +146,30 @@
     <nav>
         <a href="javascript:location.reload()" class="logo">KOWSHIK<span>.PRO</span></a>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="tg('lang')">
-                <i class="fas fa-language"></i><span style="font-weight:900;font-size:8px">BN</span>
+            <div class="sw-box sw-lang" onclick="tg('lang')" title="Change Language">
+                <i class="fa-solid fa-language"></i>
                 <div class="sw-btn"></div>
             </div>
-            <div class="sw-box sw-theme" onclick="tg('theme')">
-                <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Dark/Light">
+                <i class="fa-solid fa-moon"></i>
                 <div class="sw-btn"></div>
             </div>
         </div>
     </nav>
 
-    <div class="v-box"><div class="dot-p"></div><span id="vc">210 Agents Online</span></div>
-    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div class="v-box"><div class="dot-p"></div><span id="vc">213 Agents Online</span></div>
+    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
     <section class="hero reveal">
+        <div class="badge en">Full-Stack Architect</div>
+        <div class="badge bn">ফুল-স্ট্যাক আর্কিটেক্ট</div>
         <h1 class="en">Code. Scale.<br><span class="grad-text">Dominate.</span></h1>
         <h1 class="bn">কোড। স্কেল।<br><span class="grad-text">ডমিনেট।</span></h1>
-        <p class="en" style="opacity:0.6">Elite full-stack architecture for global brands.</p>
-        <p class="bn" style="opacity:0.6">গ্লোবাল ব্র্যান্ডের জন্য এলিট ফুল-স্ট্যাক আর্কিটেকচার।</p>
+        <p class="en">Elite developer building high-performance digital systems and scalable ecosystems for global brands.</p>
+        <p class="bn">গ্লোবাল ব্র্যান্ডের জন্য উচ্চ-ক্ষমতাসম্পন্ন ডিজিটাল সিস্টেম এবং স্কেলেবল ইকোসিস্টেম তৈরি করছি।</p>
         <div class="tool-strip">
-            <i class="fab fa-laravel"></i><i class="fab fa-react"></i><i class="fab fa-node-js"></i><i class="fab fa-php"></i><i class="fab fa-python"></i><i class="fab fa-docker"></i>
+            <i class="fa-brands fa-laravel"></i><i class="fa-brands fa-react"></i><i class="fa-brands fa-node-js"></i>
+            <i class="fa-brands fa-php"></i><i class="fa-brands fa-python"></i><i class="fa-brands fa-docker"></i>
         </div>
     </section>
 
@@ -124,48 +178,35 @@
         <h2 class="section-title bn">কেন আমি?</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-bolt"></i>
+                <i class="fa-solid fa-bolt-lightning"></i>
                 <h3 class="en">Ultra Performance</h3><h3 class="bn">সেরা পারফরম্যান্স</h3>
-                <p class="en">Lightning systems with zero lag.</p><p class="bn">জিরো ল্যাগ সহ সুপার ফাস্ট সিস্টেম।</p>
+                <p class="en">Lightning fast systems with 99.9% uptime and zero lag.</p>
+                <p class="bn">৯৯.৯% আপটাইম এবং জিরো ল্যাগ সহ সুপার ফাস্ট সিস্টেম।</p>
             </div>
             <div class="card">
-                <i class="fas fa-shield-alt"></i>
+                <i class="fa-solid fa-shield-halved"></i>
                 <h3 class="en">Military Security</h3><h3 class="bn">নিখুঁত নিরাপত্তা</h3>
-                <p class="en">Encrypted to protect your data.</p><p class="bn">আপনার ডেটা সুরক্ষিত রাখতে এনক্রিপশন।</p>
+                <p class="en">End-to-end encryption to protect your sensitive data and users.</p>
+                <p class="bn">আপনার ডেটা এবং ব্যবহারকারীদের সুরক্ষিত রাখতে এন্ড-টু-এন্ড এনক্রিপশন।</p>
             </div>
         </div>
     </section>
 
     <section class="reveal">
-        <h2 class="section-title en">Live Masterpieces</h2>
+        <h2 class="section-title en">Masterpieces</h2>
         <h2 class="section-title bn">লাইভ প্রজেক্ট</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="img-preview" alt="Boostzy">
+                <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="project-img" alt="Boostzy">
                 <h3>Boostzy.site</h3>
-                <p class="en">Modern SMM solution handling massive transactions.</p>
-                <p class="bn">বিশাল ট্রানজ্যাকশন হ্যান্ডেল করার আধুনিক এসএমএম প্ল্যাটফর্ম।</p>
+                <p class="en">A high-scale SMM solution processing thousands of daily requests.</p>
+                <p class="bn">প্রতিদিন হাজার হাজার রিকোয়েস্ট প্রসেস করা একটি উচ্চ-স্তরের এসএমএম প্ল্যাটফর্ম।</p>
             </div>
             <div class="card">
-                <img src="https://i.ibb.co/6yXm1F3/identity.jpg" class="img-preview" alt="Identity">
+                <img src="https://i.ibb.co/6yXm1F3/identity.jpg" class="project-img" alt="Identity">
                 <h3>Elite Identity</h3>
-                <p class="en">Premium brand architecture for high-end presence.</p>
-                <p class="bn">প্রিমিয়াম ব্র্যান্ড প্রেজেন্সের জন্য ইউনিক আর্কিটেকচার।</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <h2 class="section-title en">Client Feedback</h2>
-        <h2 class="section-title bn">ক্লায়েন্ট ফিডব্যাক</h2>
-        <div class="grid">
-            <div class="card">
-                <p>"Kowshik's architectural skills are insane. Efficiency grew by 40%."</p>
-                <small>- Jason Reed, TechFlow</small>
-            </div>
-            <div class="card">
-                <p>"Best developer for SMM automation. Boostzy is the evidence."</p>
-                <small>- A. Rahman, SMM Lab</small>
+                <p class="en">Premium brand architecture designed for peak digital presence.</p>
+                <p class="bn">ডিজিটাল উপস্থিতির জন্য তৈরি একটি প্রিমিয়াম ব্র্যান্ড আর্কিটেকচার।</p>
             </div>
         </div>
     </section>
@@ -175,19 +216,24 @@
         <h2 class="section-title bn">যোগাযোগ করুন</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-paper-plane"></i>
-                <h3 class="en">Message Me</h3><h3 class="bn">মেসেজ দিন</h3>
+                <h3 class="en">Send Message</h3><h3 class="bn">মেসেজ পাঠান</h3>
                 <form action="https://formsubmit.co/info@kowshik.site" method="POST">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea rows="3" placeholder="Project Details"></textarea>
-                    <button type="submit" class="submit-btn en">Send Message</button>
-                    <button type="submit" class="submit-btn bn">মেসেজ পাঠান</button>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <textarea name="message" rows="4" placeholder="Project Details" required></textarea>
+                    <button type="submit" class="submit-btn en">Initiate Project</button>
+                    <button type="submit" class="submit-btn bn">প্রজেক্ট শুরু করুন</button>
                 </form>
             </div>
-            <div class="card" style="display:flex; flex-direction:column; justify-content:center; gap:20px">
-                <p><i class="fas fa-envelope"></i> info@kowshik.site</p>
-                <p><i class="fab fa-telegram"></i> @kowshik_pro</p>
+            <div class="card" style="display:flex; flex-direction:column; justify-content:center; gap:25px">
+                <div style="display:flex; align-items:center; gap:20px">
+                    <i class="fa-solid fa-envelope" style="font-size:1.8rem; margin:0"></i>
+                    <span>info@kowshik.site</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:20px">
+                    <i class="fa-brands fa-telegram" style="font-size:1.8rem; margin:0"></i>
+                    <span>@kowshik_pro</span>
+                </div>
             </div>
         </div>
     </section>
@@ -196,27 +242,32 @@
         <h2 class="section-title en">FAQ</h2>
         <h2 class="section-title bn">জিজ্ঞাসিত প্রশ্ন</h2>
         <div class="faq-box" onclick="this.classList.toggle('active')">
-            <div style="display:flex;justify-content:space-between">
-                <b class="en">Timeline?</b><b class="bn">সময় কত লাগে?</b><i class="fas fa-plus"></i>
+            <div class="faq-q">
+                <span class="en">What is your typical project timeline?</span>
+                <span class="bn">প্রজেক্ট করতে সাধারণত কত সময় লাগে?</span>
+                <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="faq-a">
-                <span class="en">Standard projects take 7-10 days.</span>
-                <span class="bn">সাধারণত ৭-১০ দিন সময় লাগে।</span>
+                <span class="en">Standard high-performance projects usually take 7 to 10 days.</span>
+                <span class="bn">সাধারণত হাই-পারফরম্যান্স প্রজেক্টের জন্য ৭ থেকে ১০ দিন সময় লাগে।</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <p class="en">© 2026 KOWSHIK <i class="fas fa-check-circle" style="color:#3b82f6"></i> | ALL RIGHTS RESERVED</p>
-        <p class="bn">© ২০২৬ কৌশিক <i class="fas fa-check-circle" style="color:#3b82f6"></i> | সর্বস্বত্ব সংরক্ষিত</p>
-        <div class="credit">
-            <span class="en">DESIGNED BY KOWSHIK</span><span class="bn">কৌশিক দ্বারা ডিজাইনকৃত</span><br>
+        <div class="footer-logo">KOWSHIK<span>.PRO</span></div>
+        <p class="en">© 2026 KOWSHIK <i class="fa-solid fa-circle-check" style="color:#3b82f6"></i> | ALL RIGHTS RESERVED</p>
+        <p class="bn">© ২০২৬ কৌশিক <i class="fa-solid fa-circle-check" style="color:#3b82f6"></i> | সর্বস্বত্ব সংরক্ষিত</p>
+        <div class="copyright" style="margin-top:20px">
+            BUILT WITH PRECISION BY KOWSHIK<br>
             <span style="color:var(--secondary)">// SYSTEM_ACTIVE</span>
         </div>
     </footer>
 
     <script>
-        const b = document.getElementById('b');
+        const b = document.body;
+        
+        // Settings Sync
         if(localStorage.getItem('th') === 'li') b.classList.add('light-mode');
         if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
 
@@ -230,30 +281,40 @@
             }
         }
 
+        // Matrix Raining Effect
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const drops = Array(Math.floor(canvas.width/20)).fill(1);
-        function draw() {
-            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248,252,255,0.1)" : "rgba(2,6,23,0.1)";
-            ctx.fillRect(0,0,canvas.width,canvas.height);
-            ctx.fillStyle = "#7c3aed"; ctx.font = "15px monospace";
-            drops.forEach((y, i) => {
-                ctx.fillText("01KOWSHIK"[Math.floor(Math.random()*9)], i*20, y*20);
-                if(y*20 > canvas.height && Math.random() > 0.98) drops[i] = 0;
+        const alphabet = "01KOWSHIKPRO";
+        const fontSize = 16;
+        const columns = canvas.width/fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#7c3aed";
+            ctx.font = fontSize + "px monospace";
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
-            });
+            }
         }
-        setInterval(draw, 50);
+        setInterval(drawMatrix, 50);
 
-        const obs = new IntersectionObserver((es) => {
-            es.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        let count = 215;
+        // Online Count Simulator
+        let count = 213;
         setInterval(() => {
-            count += Math.floor(Math.random()*3) - 1;
+            count += Math.floor(Math.random() * 3) - 1;
             document.getElementById('vc').innerText = count + " Agents Online";
         }, 3000);
     </script>
