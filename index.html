@@ -1,173 +1,51 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kowshik — Premium Colorful Portfolio</title>
-  <meta name="description" content="Kowshik | Premium Digital Creator & Designer" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <style>
-    body { font-family: 'Hind Siliguri', system-ui, -apple-system; }
-
-    /* Premium gradient background */
-    .hero-bg {
-      background: radial-gradient(circle at top left, #6366f1, transparent 40%),
-                  radial-gradient(circle at bottom right, #ec4899, transparent 45%),
-                  linear-gradient(180deg, #ffffff, #f9fafb);
-    }
-
-    /* Glass card */
-    .glass {
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      background: rgba(255,255,255,0.65);
-      border: 1px solid rgba(255,255,255,0.5);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-    }
-
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(90deg, #6366f1, #ec4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all .9s cubic-bezier(.2,.7,.3,1);
-    }
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Floating shapes */
-    .shape {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(40px);
-      opacity: .6;
-      animation: float 12s infinite alternate ease-in-out;
-    }
-    @keyframes float {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-60px); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kowshik | Professional Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-white text-gray-900 overflow-x-hidden">
+<body>
 
-<!-- HERO -->
-<section class="relative hero-bg min-h-screen flex items-center">
-  <div class="shape w-72 h-72 bg-indigo-400 top-20 left-10"></div>
-  <div class="shape w-96 h-96 bg-pink-400 bottom-10 right-10"></div>
+    <nav class="navbar">
+        <div class="logo">KOWSHIK<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <div class="relative max-w-6xl mx-auto px-6">
-    <h1 class="text-5xl md:text-6xl font-light leading-tight reveal">
-      Building <span class="gradient-text font-medium">premium</span><br>
-      digital experiences.
-    </h1>
-    <p class="mt-6 text-lg text-gray-600 max-w-2xl reveal">
-      আমি Kowshik — রঙিন, আধুনিক এবং কনভার্সন-ফোকাসড ডিজিটাল প্রোডাক্ট ডিজাইন করি।
-    </p>
-    <div class="mt-10 flex gap-6 reveal">
-      <a href="#work" class="px-8 py-4 rounded-full bg-indigo-500 text-white hover:bg-indigo-600">View Work</a>
-      <a href="#contact" class="px-8 py-4 rounded-full border border-gray-300 hover:border-black">Contact</a>
-    </div>
-  </div>
-</section>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="gradient-text">Kowshik</span></h1>
+            <p>Building digital experiences that matter. Web Developer & Designer.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
 
-<!-- SERVICES -->
-<section class="py-28 bg-gray-50">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-4xl font-light mb-16 reveal">Services</h2>
-    <div class="grid md:grid-cols-3 gap-10">
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="card-glow"></div>
+                <h3>Project One</h3>
+                <p>A premium web solution built with modern tech.</p>
+            </div>
+            <div class="project-card">
+                <div class="card-glow"></div>
+                <h3>Project Two</h3>
+                <p>Innovative UI/UX design for global clients.</p>
+            </div>
+        </div>
+    </section>
 
-      <div class="glass p-8 rounded-3xl reveal">
-        <i class="fa-solid fa-laptop-code text-3xl text-indigo-500 mb-4"></i>
-        <h3 class="text-xl font-medium mb-2">Web Design</h3>
-        <p class="text-gray-600">Modern, fast & premium websites.</p>
-      </div>
-
-      <div class="glass p-8 rounded-3xl reveal">
-        <i class="fa-solid fa-palette text-3xl text-pink-500 mb-4"></i>
-        <h3 class="text-xl font-medium mb-2">Branding</h3>
-        <p class="text-gray-600">Visual identity with trust & clarity.</p>
-      </div>
-
-      <div class="glass p-8 rounded-3xl reveal">
-        <i class="fa-solid fa-chart-line text-3xl text-indigo-500 mb-4"></i>
-        <h3 class="text-xl font-medium mb-2">Growth</h3>
-        <p class="text-gray-600">Strategy that converts visitors.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section id="work" class="py-28">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-4xl font-light mb-16 reveal">Selected Work</h2>
-    <div class="grid md:grid-cols-3 gap-10">
-      <div class="reveal">
-        <div class="h-56 rounded-3xl bg-gradient-to-br from-indigo-200 to-indigo-100"></div>
-        <h3 class="mt-4 font-medium">Boostzy</h3>
-        <p class="text-sm text-gray-500">SMM Platform</p>
-      </div>
-      <div class="reveal">
-        <div class="h-56 rounded-3xl bg-gradient-to-br from-pink-200 to-pink-100"></div>
-        <h3 class="mt-4 font-medium">ErrorX</h3>
-        <p class="text-sm text-gray-500">Digital Eshop</p>
-      </div>
-      <div class="reveal">
-        <div class="h-56 rounded-3xl bg-gradient-to-br from-indigo-200 to-pink-100"></div>
-        <h3 class="mt-4 font-medium">Portfolio</h3>
-        <p class="text-sm text-gray-500">Personal Brand</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-28 bg-gray-50">
-  <div class="max-w-3xl mx-auto px-6 reveal">
-    <h2 class="text-4xl font-light mb-8">Let’s work together</h2>
-    <p class="text-lg text-gray-600 mb-10">সিরিয়াস এবং প্রিমিয়াম প্রজেক্টের জন্য যোগাযোগ করো।</p>
-    <a href="mailto:contact@kowshik.pro.bd" class="inline-block px-10 py-4 rounded-full bg-black text-white hover:bg-gray-800">contact@kowshik.pro.bd</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="py-10 text-center text-sm text-gray-400">
-  © <span id="year"></span> Kowshik • kowshik.pro.bd
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const items = document.querySelectorAll('.reveal');
-  const onScroll = () => {
-    items.forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
-        el.classList.add('show');
-      }
-    });
-  };
-  window.addEventListener('scroll', onScroll);
-  onScroll();
-</script>
+    <footer>
+        <p>&copy; 2026 Kowshik. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
