@@ -23,62 +23,58 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
         body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.4s ease; }
 
-        /* --- Dynamic Coding Background --- */
-        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
-        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1), transparent 80%); z-index: -2; }
+        /* --- Coding Matrix Background --- */
+        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.12; pointer-events: none; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08), transparent 80%); z-index: -2; }
 
-        /* --- Navbar --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.75); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: -1px; }
+        /* --- Perfect Responsive Navbar --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.75); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .logo { font-size: 1.2rem; font-weight: 900; }
         .logo span { color: var(--secondary); text-shadow: 0 0 10px var(--secondary); }
 
-        /* --- Premium Swipe Toggles --- */
-        .controls { display: flex; gap: 15px; }
-        .sw-box { position: relative; width: 60px; height: 32px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; }
-        .sw-btn { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; transition: 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045); }
-        .lang-bn .sw-lang .sw-btn { left: 31px; background: var(--secondary); }
-        .light-mode .sw-theme .sw-btn { left: 31px; background: #f59e0b; }
+        /* --- Visitor Counter --- */
+        .visitor-badge { background: var(--glass); border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- Reveal Animation --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* --- Swipe Toggles --- */
+        .controls { display: flex; gap: 10px; }
+        .sw-box { position: relative; width: 54px; height: 28px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; }
+        .sw-btn { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; transition: 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045); }
+        .lang-bn .sw-lang .sw-btn { left: 28px; background: var(--secondary); }
+        .light-mode .sw-theme .sw-btn { left: 28px; background: #f59e0b; }
 
-        /* --- Hero Section --- */
-        section { padding: 120px 6% 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        h1 { font-size: clamp(2.5rem, 10vw, 6rem); font-weight: 900; line-height: 1; margin-bottom: 25px; }
+        /* --- Hero & Text Size Fix --- */
+        section { padding: 100px 6% 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        h1 { font-size: clamp(2.2rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
         .grad { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p { font-size: 1.1rem; opacity: 0.7; max-width: 650px; line-height: 1.6; }
+        p { font-size: clamp(0.9rem, 3vw, 1.1rem); opacity: 0.7; max-width: 600px; line-height: 1.5; }
 
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
-        .btn { padding: 18px 35px; border-radius: 20px; font-weight: 800; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2); }
-        .btn:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.4); }
+        .btn-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 30px; width: 100%; }
+        .btn { padding: 15px 25px; border-radius: 18px; font-weight: 800; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: 0.3s; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(124, 58, 237, 0.3); }
 
-        /* --- Counter --- */
-        .counter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; width: 100%; margin: 60px 0; }
-        .counter-item h2 { font-size: 3.5rem; font-weight: 900; color: var(--secondary); }
+        /* --- SMM Display Fix --- */
+        .mega-card { width: 100%; max-width: 800px; padding: 40px 20px; border-radius: 30px; background: var(--glass); border: 1.5px solid var(--secondary); margin-top: 40px; }
+        .mega-link { font-size: clamp(1.2rem, 5vw, 2rem); font-weight: 900; color: #fff; text-shadow: 0 0 15px var(--secondary); text-decoration: none; display: block; margin-top: 15px; }
 
-        /* --- Mega Card --- */
-        .mega-card { width: 100%; max-width: 900px; padding: 60px 30px; border-radius: 40px; background: var(--glass); border: 2px solid var(--secondary); backdrop-filter: blur(10px); margin-top: 40px; position: relative; }
-        .mega-link { font-size: clamp(1.2rem, 5vw, 2.2rem); font-weight: 900; color: #fff; text-decoration: none; display: block; margin-top: 25px; letter-spacing: 2px; }
-
-        /* --- Services Grid --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; width: 100%; margin-top: 50px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 45px 30px; border-radius: 35px; transition: 0.4s; text-align: left; }
-        .card:hover { border-color: var(--primary); transform: translateY(-10px); background: rgba(124, 58, 237, 0.08); }
-        .card i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
-
-        /* --- Floating WhatsApp --- */
-        .wa-btn { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 32px; z-index: 1000; box-shadow: 0 15px 35px rgba(0,0,0,0.3); transition: 0.3s; }
-        .wa-btn:hover { transform: scale(1.1) rotate(10deg); }
+        /* --- Grid & Cards --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; margin-top: 40px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px 20px; border-radius: 28px; text-align: left; }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px; }
+        .card h3 { font-size: 1.3rem; margin-bottom: 10px; }
 
         /* --- Language Support --- */
         .bn { display: none; }
         .lang-bn .en { display: none; }
         .lang-bn .bn { display: block; font-family: var(--font-bn); }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid var(--border); opacity: 0.6; font-weight: 600; }
+        footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); opacity: 0.5; font-size: 0.8rem; font-weight: 600; }
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
-        @media (max-width: 768px) { h1 { font-size: 3.2rem; } .btn { width: 100%; justify-content: center; } }
+        /* Scroll Animation */
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body id="b">
@@ -88,6 +84,10 @@
 
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
+        <div class="visitor-badge">
+            <div class="dot"></div>
+            <span id="vCount">Loading...</span>
+        </div>
         <div class="controls">
             <div class="sw-box sw-lang" onclick="tg('lang')">
                 <div class="sw-btn"><i class="fas fa-language"></i></div>
@@ -104,84 +104,65 @@
         <h1 class="en grad reveal active">Code. Scale. <br>Dominate.</h1>
         <h1 class="bn grad reveal active">কোড করুন। গ্রোথ বাড়ান। <br>বিজয়ী হোন।</h1>
         
-        <p class="en reveal active">Full-Stack Developer & SMM Strategist building high-performance digital ecosystems for the next generation of business.</p>
-        <p class="bn reveal active">একজন প্রফেশনাল ফুল-স্ট্যাক ডেভেলপার এবং এসএমএম বিশেষজ্ঞ হিসেবে আমি আপনার ব্যবসার ডিজিটাল ভবিষ্যৎ গড়ে তুলছি।</p>
+        <p class="en reveal active">Full-Stack Developer & SMM Strategist building elite digital systems for global brands.</p>
+        <p class="bn reveal active">প্রফেশনাল ডেভেলপার এবং এসএমএম বিশেষজ্ঞ। আমি আপনার ব্র্যান্ডের ডিজিটাল সফলতার রূপকার।</p>
 
         <div class="btn-group reveal active">
             <a href="https://boostzy.site" class="btn">
                 <i class="fas fa-terminal"></i>
-                <span class="en">Launch Boostzy.site</span>
-                <span class="bn">বুস্টজি সাইট দেখুন</span>
+                <span class="en">Boostzy.site</span>
+                <span class="bn">বুস্টজি সাইট</span>
             </a>
             <a href="https://wa.me/8801611215511" class="btn" style="background: #25d366;">
                 <i class="fab fa-whatsapp"></i>
-                <span class="en">Direct WhatsApp</span>
-                <span class="bn">সরাসরি হোয়াটসঅ্যাপ</span>
+                <span class="en">Contact Me</span>
+                <span class="bn">যোগাযোগ করুন</span>
             </a>
         </div>
 
-        <div class="counter-grid reveal">
-            <div class="counter-item">
-                <h2 class="num" data-val="500">0</h2>
-                <p class="en">Projects</p><p class="bn">প্রজেক্ট</p>
-            </div>
-            <div class="counter-item">
-                <h2 class="num" data-val="15">0</h2>
-                <p>K+ Orders</p>
-            </div>
-            <div class="counter-item">
-                <h2 class="num" data-val="98">0</h2>
-                <p>% Success</p>
-            </div>
-        </div>
-
         <div class="mega-card reveal">
-            <h2 class="en grad">#1 SMM Solutions</h2>
-            <h2 class="bn grad">এক নম্বর এসএমএম সমাধান</h2>
-            <p class="en">Bangladesh's fastest SMM panel with premium API support.</p>
-            <p class="bn">প্রিমিয়াম এপিআই সাপোর্টসহ বাংলাদেশের দ্রুততম এসএমএম প্যানেল।</p>
+            <h2 class="en grad">Premium SMM Services</h2>
+            <h2 class="bn grad">প্রিমিয়াম এসএমএম সার্ভিস</h2>
+            <p class="en">Join 15k+ users on Bangladesh's most reliable SMM platform.</p>
+            <p class="bn">বাংলাদেশের সবচেয়ে নির্ভরযোগ্য এসএমএম প্ল্যাটফর্মে আজই যুক্ত হন।</p>
             <a href="https://boostzy.site" class="mega-link">WWW.BOOSTZY.SITE</a>
         </div>
-    </section>
 
-    <section id="services">
-        <h2 class="en grad reveal" style="font-size: 3rem;">Mastering the Web</h2>
-        <h2 class="bn grad reveal" style="font-size: 3rem;">ডিজিটাল কারিগরি</h2>
         <div class="grid">
             <div class="card reveal">
-                <i class="fas fa-laptop-code"></i>
-                <h3 class="en">Modern App Dev</h3>
-                <p class="en">Scalable web apps built with React, Node, and Python.</p>
-                <h3 class="bn">আধুনিক অ্যাপ ডেভেলপমেন্ট</h3>
-                <p class="bn">লেটেস্ট টেকনোলজি ব্যবহার করে ফিউচার-প্রুফ ওয়েব অ্যাপ্লিকেশন।</p>
+                <i class="fas fa-code"></i>
+                <h3 class="en">Elite Development</h3>
+                <h3 class="bn">টপ-লেভেল ডেভেলপমেন্ট</h3>
+                <p class="en">Ultra-fast web apps built for performance.</p>
+                <p class="bn">পারফরম্যান্স ফোকাসড সুপার ফাস্ট ওয়েব অ্যাপ্লিকেশন।</p>
             </div>
             <div class="card reveal">
                 <i class="fas fa-chart-line"></i>
-                <h3 class="en">Growth Marketing</h3>
-                <p class="en">Strategic SMM campaigns that go viral instantly.</p>
-                <h3 class="bn">গ্রোথ মার্কেটিং</h3>
-                <p class="bn">আপনার সোশ্যাল মিডিয়া উপস্থিতিকে নিয়ে যান অনন্য উচ্চতায়।</p>
+                <h3 class="en">Viral Growth</h3>
+                <h3 class="bn">ভাইরাল গ্রোথ</h3>
+                <p class="en">Expert social media marketing solutions.</p>
+                <p class="bn">সোশ্যাল মিডিয়ায় আপনার ব্র্যান্ডের সর্বোচ্চ গ্রোথ।</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 KOWSHIK.PRO.BD | POWERED BY BOOSTZY DIGITAL SOLUTIONS</p>
+        <p>&copy; 2026 KOWSHIK.PRO.BD | POWERED BY BOOSTZY SERVICES</p>
     </footer>
 
     <script>
-        // Matrix Rain Effect
+        // Matrix Rain
         const canvas = document.getElementById('code-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const code = "0101<>{}[]/;KOWSHIKPRO";
+        const code = "0101KOWSHIKPRO<>";
         const charArr = code.split("");
-        const fontSize = 16;
+        const fontSize = 15;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
-        function drawMatrix() {
+        function draw() {
             ctx.fillStyle = "rgba(2, 6, 23, 0.05)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#7c3aed";
@@ -193,20 +174,17 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 50);
+        setInterval(draw, 60);
 
-        // Scroll Reveal Logic
-        function reveal() {
-            const reveals = document.querySelectorAll(".reveal");
-            reveals.forEach(r => {
-                const windowHeight = window.innerHeight;
-                const elementTop = r.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) r.classList.add("active");
-            });
-        }
-        window.addEventListener("scroll", reveal);
+        // Visitor Counter (Simulated for Live Feel)
+        let count = Math.floor(Math.random() * 50) + 120;
+        document.getElementById('vCount').innerText = count + " Active Now";
+        setInterval(() => {
+            count += Math.floor(Math.random() * 3) - 1;
+            document.getElementById('vCount').innerText = count + " Active Now";
+        }, 5000);
 
-        // Language & Theme Toggle (Refresh Persistent)
+        // Toggle Logic
         const b = document.body;
         const ti = document.getElementById('ti');
         if(localStorage.getItem('th') === 'li') b.classList.add('light-mode');
@@ -224,25 +202,18 @@
             }
         }
 
-        // Counter Animation
-        const nums = document.querySelectorAll(".num");
-        nums.forEach((n) => {
-            let startVal = 0;
-            let endVal = parseInt(n.getAttribute("data-val"));
-            let counter = setInterval(function () {
-                startVal += Math.ceil(endVal / 40);
-                if (startVal >= endVal) {
-                    n.textContent = endVal;
-                    clearInterval(counter);
-                } else {
-                    n.textContent = startVal;
-                }
-            }, 50);
-        });
+        // Scroll Reveal
+        function reveal() {
+            const rev = document.querySelectorAll(".reveal");
+            rev.forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 50) r.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal);
 
-        // Mouse Glow
+        // Mouse Move Glow
         document.addEventListener('mousemove', (e) => {
-            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
+            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px, rgba(124, 58, 237, 0.12), transparent 80%)`;
         });
     </script>
 </body>
