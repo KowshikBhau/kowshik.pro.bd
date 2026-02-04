@@ -21,21 +21,16 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-        body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.4s ease; }
+        body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.5s ease; }
 
-        /* --- Coding Matrix Background --- */
+        /* --- Matrix & Glow --- */
         #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
-        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1), transparent 80%); z-index: -2; transition: 0.1s; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1), transparent 80%); z-index: -2; pointer-events: none; }
 
         /* --- Navbar --- */
         nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: -0.5px; }
+        .logo { font-size: 1.2rem; font-weight: 900; }
         .logo span { color: var(--secondary); }
-
-        /* --- Floating Visitor Badge --- */
-        .visitor-float { position: fixed; bottom: 25px; left: 25px; background: var(--glass); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 8px; z-index: 999; backdrop-filter: blur(10px); }
-        .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- Toggles --- */
         .controls { display: flex; gap: 10px; }
@@ -45,55 +40,33 @@
         .light-mode .sw-theme .sw-btn { left: 23px; background: #f59e0b; }
 
         /* --- Hero --- */
-        section.hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 6% 60px; }
-        h1 { font-size: clamp(2.3rem, 8vw, 4.8rem); font-weight: 900; line-height: 1.05; margin-bottom: 20px; letter-spacing: -1px; }
-        .grad { background: linear-gradient(90deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p.desc { font-size: clamp(0.95rem, 3vw, 1.1rem); opacity: 0.7; max-width: 600px; line-height: 1.7; }
+        section.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 6%; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .grad { background: linear-gradient(90deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: hue 5s infinite linear; }
+        @keyframes hue { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); } }
 
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 35px; }
-        .btn { padding: 15px 28px; border-radius: 14px; font-weight: 800; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; transition: 0.3s; box-shadow: 0 10px 20px -10px var(--primary); }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 25px -10px var(--primary); }
+        /* --- Tech Stack Section --- */
+        .tech-slide { display: flex; gap: 30px; overflow: hidden; padding: 20px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .tech-icons { display: flex; gap: 40px; animation: slide 20s infinite linear; font-size: 2.5rem; opacity: 0.6; }
+        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* --- Section Styling --- */
-        .section-box { padding: 80px 6%; width: 100%; max-width: 1200px; margin: 0 auto; }
-        .title-sm { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; margin-bottom: 40px; text-align: center; }
+        /* --- Bento Grid --- */
+        .section-box { padding: 80px 6%; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         
-        /* --- Perfect Grid --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; width: 100%; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px 30px; border-radius: 28px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px -20px var(--primary); }
         
-        /* --- Premium Cards --- */
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px 30px; border-radius: 28px; transition: 0.4s; position: relative; overflow: hidden; height: 100%; backdrop-filter: blur(5px); }
-        .card:hover { border-color: var(--primary); background: rgba(124, 58, 237, 0.05); transform: translateY(-5px); }
-        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
-        .card h3 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; }
-        .card p { font-size: 0.95rem; opacity: 0.6; line-height: 1.6; }
-
-        /* --- Portfolio Images --- */
-        .project-card { position: relative; height: 200px; border-radius: 20px; background: #0f172a; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border); }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: grayscale(20%); }
-        .card:hover .project-card img { transform: scale(1.1); filter: grayscale(0%); }
-
-        /* --- CTA --- */
-        .cta-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.15)); border: 1px solid var(--primary); padding: 60px 30px; border-radius: 40px; text-align: center; margin-top: 40px; backdrop-filter: blur(10px); }
-        
-        footer { padding: 50px; text-align: center; border-top: 1px solid var(--border); opacity: 0.5; font-size: 0.8rem; letter-spacing: 1px; }
-        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); transition: 0.3s; }
-        .wa-btn:hover { transform: scale(1.1) rotate(10deg); }
-
-        /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        /* --- Reveal Animation --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; z-index: 1000; transition: 0.3s; }
+        .visitor-float { position: fixed; bottom: 25px; left: 25px; background: var(--glass); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; z-index: 999; backdrop-filter: blur(10px); }
 
         .bn { display: none; }
         .lang-bn .en { display: none; }
         .lang-bn .bn { display: block; font-family: var(--font-bn); }
-
-        /* --- Tablet & Mobile adjustments --- */
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .section-box { padding: 60px 5%; }
-            .visitor-float { bottom: auto; top: 85px; left: 50%; transform: translateX(-50%); }
-        }
     </style>
 </head>
 <body id="b">
@@ -104,178 +77,130 @@
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="tg('lang')" title="Change Language">
+            <div class="sw-box sw-lang" onclick="toggleLang()">
                 <div class="sw-btn"><i class="fas fa-language"></i></div>
             </div>
-            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Theme">
+            <div class="sw-box sw-theme" onclick="toggleTheme()">
                 <div class="sw-btn"><i class="fas fa-moon" id="ti"></i></div>
             </div>
         </div>
     </nav>
 
     <div class="visitor-float">
-        <div class="dot"></div>
-        <span id="vCount">Checking System...</span>
+        <span id="vCount">🚀 System Online</span>
     </div>
 
-    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
 
-    <section class="hero">
-        <h1 class="en grad reveal active">Code. Scale.<br>Dominate.</h1>
-        <h1 class="bn grad reveal active">কোড করুন। গ্রোথ বাড়ান।<br>বিজয় নিশ্চিত করুন।</h1>
+    <section class="hero reveal">
+        <h1 class="en grad">Innovate. Build.<br>Elevate.</h1>
+        <h1 class="bn grad">উদ্ভাবন। নির্মাণ।<br>উন্নয়ন।</h1>
+        <p class="en" style="max-width: 600px; opacity: 0.7;">Full-Stack Engineer specialized in building high-performance web applications and digital growth strategies.</p>
+        <p class="bn" style="max-width: 600px; opacity: 0.7;">হাই-পারফরম্যান্স ওয়েব অ্যাপ্লিকেশন এবং ডিজিটাল গ্রোথ স্ট্র্যাটেজি তৈরিতে বিশেষজ্ঞ একজন ফুল-স্ট্যাক ইঞ্জিনিয়ার।</p>
         
-        <p class="en desc reveal active">Full-Stack Developer & SMM Strategist crafting elite digital ecosystems for high-growth brands.</p>
-        <p class="bn desc reveal active">আমি একজন ফুল-স্ট্যাক ডেভেলপার, আপনার ব্যবসার জন্য তৈরি করছি হাই-পারফরম্যান্স ডিজিটাল প্ল্যাটফর্ম।</p>
-
-        <div class="btn-group reveal active">
-            <a href="https://boostzy.site" class="btn"><i class="fas fa-bolt"></i> Explore Boostzy</a>
-            <a href="https://wa.me/8801611215511" class="btn" style="background: transparent; border: 1px solid var(--border);"><i class="fab fa-whatsapp"></i> Get in Touch</a>
+        <div class="tech-slide" style="width: 100%; margin-top: 40px;">
+            <div class="tech-icons">
+                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-js"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-laravel"></i> <i class="fab fa-docker"></i>
+                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-js"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-laravel"></i> <i class="fab fa-docker"></i>
+            </div>
         </div>
     </section>
 
     <div class="section-box reveal">
-        <h2 class="en title-sm">Core Expertise</h2>
-        <h2 class="bn title-sm">আমার দক্ষতা</h2>
+        <h2 class="en" style="text-align:center; margin-bottom:40px; font-size: 2.5rem;">Services</h2>
+        <h2 class="bn" style="text-align:center; margin-bottom:40px; font-size: 2.5rem;">আমার সেবা</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-terminal"></i>
-                <h3 class="en">Elite Development</h3>
-                <h3 class="bn">উন্নত ডেভেলপমেন্ট</h3>
-                <p class="en">Clean, scalable, and secure code tailored for heavy traffic and zero downtime.</p>
-                <p class="bn">নিরাপদ এবং স্কেলেবল কোড যা বড় ট্রাফিক সামলাতে সক্ষম।</p>
+                <i class="fas fa-rocket"></i>
+                <h3 class="en">SMM Automation</h3>
+                <h3 class="bn">এসএমএম অটোমেশন</h3>
+                <p class="en">Building robust panels and API integrations for seamless social growth.</p>
+                <p class="bn">স্মুথ সোশ্যাল গ্রোথের জন্য শক্তিশালী প্যানেল এবং এপিআই ইন্টিগ্রেশন।</p>
             </div>
             <div class="card">
-                <i class="fas fa-chart-line"></i>
-                <h3 class="en">SMM Growth</h3>
-                <h3 class="bn">এসএমএম স্ট্র্যাটেজি</h3>
-                <p class="en">Data-driven marketing strategies that turn users into loyal customers.</p>
-                <p class="bn">ডেটা ভিত্তিক মার্কেটিং যা আপনার ব্র্যান্ডের গ্রোথ নিশ্চিত করে।</p>
+                <i class="fas fa-shield-virus"></i>
+                <h3 class="en">Cyber Security</h3>
+                <h3 class="bn">সাইবার নিরাপত্তা</h3>
+                <p class="en">Implementing advanced security layers to protect your digital assets.</p>
+                <p class="bn">ডিজিটাল সম্পদ রক্ষায় উন্নত নিরাপত্তা ব্যবস্থা নিশ্চিত করা।</p>
             </div>
             <div class="card">
-                <i class="fas fa-layer-group"></i>
-                <h3 class="en">UI/UX Design</h3>
-                <h3 class="bn">ডিজাইন সলিউশন</h3>
-                <p class="en">Crafting premium, user-centric interfaces that offer a seamless experience.</p>
-                <p class="bn">আধুনিক ও সহজ ইউজার ইন্টারফেস যা গ্রাহক অভিজ্ঞতা উন্নত করে।</p>
+                <i class="fas fa-cloud-code"></i>
+                <h3 class="en">Custom Software</h3>
+                <h3 class="bn">কাস্টম সফটওয়্যার</h3>
+                <p class="en">Tailor-made software solutions designed specifically for your business.</p>
+                <p class="bn">আপনার ব্যবসার প্রয়োজন অনুযায়ী বিশেষভাবে তৈরি সফটওয়্যার।</p>
             </div>
         </div>
     </div>
 
-    <div class="section-box reveal">
-        <h2 class="en title-sm">Selected Work</h2>
-        <h2 class="bn title-sm">নির্বাচিত প্রজেক্ট</h2>
-        <div class="grid">
-            <a href="https://boostzy.site" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800" alt="Boostzy">
-                    </div>
-                    <h3 class="en">Boostzy Ecosystem</h3>
-                    <p class="en">The leading SMM management platform in Bangladesh.</p>
-                    <h3 class="bn">Boostzy ইকোসিস্টেম</h3>
-                    <p class="bn">বাংলাদেশের অন্যতম শীর্ষ এসএমএম ম্যানেজমেন্ট প্ল্যাটফর্ম।</p>
-                </div>
-            </a>
-
-            <a href="https://kowshik.pro.bd" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800" alt="Portfolio">
-                    </div>
-                    <h3 class="en">Elite Portfolio</h3>
-                    <p class="en">Showcasing high-end digital solutions for global clients.</p>
-                    <h3 class="bn">এলিট পোর্টফোলিও</h3>
-                    <p class="bn">গ্লোবাল ক্লায়েন্টদের জন্য প্রিমিয়াম ডিজিটাল সলিউশন প্রদর্শনী।</p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="section-box reveal">
-        <div class="cta-box">
-            <h2 class="en grad" style="font-size: 2rem; margin-bottom: 10px;">Ready to Start?</h2>
-            <h2 class="bn grad" style="font-size: 2rem; margin-bottom: 10px;">আপনি কি প্রস্তুত?</h2>
-            <p class="en">Let's build something extraordinary together.</p>
-            <p class="bn">চলুন একসাথে অসাধারণ কিছু তৈরি করি।</p>
-            <br>
-            <a href="https://wa.me/8801611215511" class="btn" style="margin: 0 auto; width: fit-content;">Hire Me Now</a>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 KOWSHIK.PRO.BD | DESIGNED BY KOWSHIK</p>
+    <footer style="text-align:center; padding: 50px; opacity: 0.5;">
+        <p>© 2026 KOWSHIK.PRO.BD | All Rights Reserved</p>
     </footer>
 
     <script>
-        // Enhanced Matrix Rain
-        const canvas = document.getElementById('code-bg');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const code = "0101KOWSHIKPRO";
-        const charArr = code.split("");
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function draw() {
-            ctx.fillStyle = document.body.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#7c3aed";
-            ctx.font = fontSize + "px monospace";
-            for (let i = 0; i < drops.length; i++) {
-                const text = charArr[Math.floor(Math.random() * charArr.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(draw, 50);
-
-        // Visitor Counter (Live Feel)
-        let count = Math.floor(Math.random() * 50) + 140;
-        const vText = document.getElementById('vCount');
-        function updateCount() {
-            count += Math.floor(Math.random() * 3) - 1;
-            vText.innerText = count + " Users Online";
-        }
-        setInterval(updateCount, 4000);
-        updateCount();
-
-        // Settings
+        // --- Persistence Logic (LocalStorage) ---
         const b = document.body;
         const ti = document.getElementById('ti');
-        
-        function tg(t) {
-            if(t === 'theme') {
-                b.classList.toggle('light-mode');
-                const isL = b.classList.contains('light-mode');
-                ti.className = isL ? 'fas fa-sun' : 'fas fa-moon';
-            } else {
-                b.classList.toggle('lang-bn');
+
+        // Load Saved Settings
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'light') {
+                b.classList.add('light-mode');
+                ti.className = 'fas fa-sun';
             }
+            if (localStorage.getItem('lang') === 'bn') {
+                b.classList.add('lang-bn');
+            }
+            reveal(); // Trigger initial reveal
+        });
+
+        function toggleTheme() {
+            b.classList.toggle('light-mode');
+            const isLight = b.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            ti.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // Scroll Reveal
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(r => {
-                if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add("active");
+        function toggleLang() {
+            b.classList.toggle('lang-bn');
+            localStorage.setItem('lang', b.classList.contains('lang-bn') ? 'bn' : 'en');
+        }
+
+        // --- Matrix Background ---
+        const canvas = document.getElementById('code-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const charArr = "01KOWSHIK".split("");
+        const drops = Array(Math.floor(canvas.width / 15)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#7c3aed";
+            drops.forEach((y, i) => {
+                const text = charArr[Math.floor(Math.random() * charArr.length)];
+                ctx.fillText(text, i * 15, y * 15);
+                if (y * 15 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
             });
         }
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("load", reveal);
+        setInterval(drawMatrix, 50);
 
-        // Glow Trace (Mouse move)
+        // --- Scroll Reveal ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Mouse Glow ---
         document.addEventListener('mousemove', (e) => {
-            const glow = document.getElementById('glow');
-            glow.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
+            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
         });
     </script>
 </body>
-            </html>
+</html>
