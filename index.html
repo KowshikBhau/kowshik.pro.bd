@@ -3,165 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kowshik | Elite Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Kowshik | Premium Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0f172a; --text: #f8fafc; --primary: #38bdf8;
+            --card: rgba(30, 41, 59, 0.7); --border: rgba(255,255,255,0.1);
+        }
+        .light-mode {
+            --bg: #f1f5f9; --text: #1e293b; --primary: #0284c7;
+            --card: rgba(255, 255, 255, 0.8); --border: rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(15, 23, 42, 0.1); backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        .nav-controls { display: flex; gap: 15px; }
+        .control-btn {
+            background: var(--card); border: 1px solid var(--border);
+            color: var(--text); padding: 10px 15px; border-radius: 12px;
+            cursor: pointer; font-weight: 600; font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 0 10%; position: relative;
+        }
+        .hero h1 { font-size: 5rem; font-weight: 800; line-height: 1; margin-bottom: 20px; }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.2rem; max-width: 600px; color: var(--secondary); opacity: 0.8; }
+
+        /* Floating Animation */
+        .blob {
+            position: absolute; width: 300px; height: 300px;
+            background: var(--primary); filter: blur(100px); opacity: 0.15;
+            z-index: -1; animation: float 10s infinite alternate;
+        }
+
+        @keyframes float {
+            from { transform: translate(-20%, -20%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Lang Toggles */
+        .lang-bn { display: none; }
+        .bn-mode .lang-en { display: none; }
+        .bn-mode .lang-bn { display: block; }
+
+        /* Sections */
+        section { padding: 100px 10%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .card {
+            background: var(--card); border: 1px solid var(--border);
+            padding: 40px; border-radius: 24px; position: relative;
+            overflow: hidden;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+        .btn {
+            margin-top: 30px; padding: 15px 40px; border-radius: 50px;
+            background: var(--primary); color: white; text-decoration: none;
+            font-weight: 700; display: inline-block;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+        }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 3rem; } }
+    </style>
 </head>
-<body class="dark-mode">
+<body>
 
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo">Kowshik<span class="dot">.</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="control-btn" aria-label="Toggle dark/light mode">
-                    <i class="fas fa-sun light-icon"></i>
-                    <i class="fas fa-moon dark-icon"></i>
-                </button>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
+    <div class="blob"></div>
+
+    <nav>
+        <div class="logo">KOWSHIK<span>.</span></div>
+        <div class="nav-controls">
+            <button class="control-btn" onclick="toggleLang()" id="lbtn">BN</button>
+            <button class="control-btn" onclick="toggleTheme()"><i id="ticon" class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 class="lang-en">Crafting <span class="gradient-text">Excellence</span></h1>
+        <h1 class="lang-bn">গড়ছি <span class="gradient-text">নিখুঁত</span> ডিজাইন</h1>
+        <p class="lang-en">Professional Web Developer specialized in building premium digital experiences.</p>
+        <p class="lang-bn">আমি একজন প্রফেশনাল ওয়েব ডেভেলপার, কাজ করি প্রিমিয়াম ডিজিটাল এক্সপেরিয়েন্স নিয়ে।</p>
+        <a href="#contact" class="btn lang-en">Let's Talk</a>
+        <a href="#contact" class="btn lang-bn">কথা বলা যাক</a>
+    </section>
+
+    <section id="services">
+        <h2 class="lang-en">What I Do</h2>
+        <h2 class="lang-bn">আমার কাজ</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-code fa-2x" style="color:var(--primary)"></i>
+                <h3 style="margin-top:20px" class="lang-en">Web Development</h3>
+                <h3 style="margin-top:20px" class="lang-bn">ওয়েব ডেভেলপমেন্ট</h3>
+                <p class="lang-en">Building high-speed modern websites.</p>
+                <p class="lang-bn">আধুনিক ও দ্রুতগতির ওয়েবসাইট তৈরি করা।</p>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home" class="hero section-padding reveal-fade-in">
-            <div class="hero-content reveal-left">
-                <h1>Hi, I'm <span class="gradient-text">Kowshik</span></h1>
-                <p>Crafting stunning web experiences with precision and passion. A dedicated Full-Stack Developer & UI/UX enthusiast.</p>
-                <div class="hero-actions">
-                    <a href="#portfolio" class="btn primary-btn animate-hover-scale">View My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn secondary-btn animate-hover-scale">Get In Touch <i class="fas fa-paper-plane"></i></a>
-                </div>
+            <div class="card">
+                <i class="fas fa-paint-brush fa-2x" style="color:var(--primary)"></i>
+                <h3 style="margin-top:20px" class="lang-en">UI/UX Design</h3>
+                <h3 style="margin-top:20px" class="lang-bn">UI/UX ডিজাইন</h3>
+                <p class="lang-en">Clean and minimal user interfaces.</p>
+                <p class="lang-bn">পরিশিকার এবং মিনিমাল ইউজার ইন্টারফেস।</p>
             </div>
-            <div class="hero-image reveal-right">
-                <img src="https://via.placeholder.com/400x400?text=Kowshik+Profile" alt="Kowshik Profile Picture">
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about" class="about section-padding reveal-fade-in">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-container">
-                <div class="about-image reveal-left">
-                    <img src="https://via.placeholder.com/350x450?text=Kowshik" alt="Kowshik">
-                </div>
-                <div class="about-content reveal-right">
-                    <p>Hello! I'm Kowshik, a passionate web developer with X years of experience, based in Dhaka, Bangladesh. My journey in web development started with a fascination for building intuitive and visually appealing digital products.</p>
-                    <p>I specialize in creating responsive and dynamic web applications using modern technologies like React, Node.js, and various database solutions. I'm always eager to learn new things and take on challenging projects that push my boundaries.</p>
-                    <a href="#contact" class="btn primary-btn animate-hover-scale">Hire Me <i class="fas fa-briefcase"></i></a>
-                </div>
-            </div>
-        </section>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('ticon');
+            body.classList.toggle('light-mode');
+            
+            if(body.classList.contains('light-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
 
-        <section id="skills" class="skills section-padding reveal-fade-in">
-            <h2 class="section-title">My Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-card reveal-up">
-                    <div class="icon-wrapper"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Frontend Development</h3>
-                    <p>HTML5, CSS3, JavaScript, React, Next.js, Vue.js</p>
-                </div>
-                <div class="skill-card reveal-up">
-                    <div class="icon-wrapper"><i class="fas fa-server"></i></div>
-                    <h3>Backend Development</h3>
-                    <p>Node.js, Express, Python, Django, MongoDB, SQL</p>
-                </div>
-                <div class="skill-card reveal-up">
-                    <div class="icon-wrapper"><i class="fas fa-palette"></i></div>
-                    <h3>UI/UX Design</h3>
-                    <p>Figma, Adobe XD, Prototyping, User Research</p>
-                </div>
-                <div class="skill-card reveal-up">
-                    <div class="icon-wrapper"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>Responsive Design</h3>
-                    <p>Ensuring perfect functionality across all devices.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="portfolio section-padding reveal-fade-in">
-            <h2 class="section-title">My Recent Work</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item reveal-zoom">
-                    <img src="https://via.placeholder.com/600x400?text=Project+Alpha" alt="Project Alpha">
-                    <div class="item-overlay">
-                        <h3>E-commerce Redesign</h3>
-                        <p>A modern, user-friendly e-commerce platform.</p>
-                        <a href="#" class="view-project-btn"><i class="fas fa-external-link-alt"></i> View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item reveal-zoom">
-                    <img src="https://via.placeholder.com/600x400?text=Project+Beta" alt="Project Beta">
-                    <div class="item-overlay">
-                        <h3>Interactive Dashboard</h3>
-                        <p>Data visualization and analytics for a SaaS company.</p>
-                        <a href="#" class="view-project-btn"><i class="fas fa-external-link-alt"></i> View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item reveal-zoom">
-                    <img src="https://via.placeholder.com/600x400?text=Project+Gamma" alt="Project Gamma">
-                    <div class="item-overlay">
-                        <h3>Mobile App UI</h3>
-                        <p>Sleek and intuitive UI for a new social media app.</p>
-                        <a href="#" class="view-project-btn"><i class="fas fa-external-link-alt"></i> View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item reveal-zoom">
-                    <img src="https://via.placeholder.com/600x400?text=Project+Delta" alt="Project Delta">
-                    <div class="item-overlay">
-                        <h3>Personal Blog Site</h3>
-                        <p>A fast, responsive blog built with a custom CMS.</p>
-                        <a href="#" class="view-project-btn"><i class="fas fa-external-link-alt"></i> View Project</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact section-padding reveal-fade-in">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-description">Have a project idea or just want to say hello? I'd love to hear from you!</p>
-            <div class="contact-container">
-                <form class="contact-form reveal-left">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="6" required></textarea>
-                    <button type="submit" class="btn primary-btn animate-hover-scale">Send Message <i class="fas fa-paper-plane"></i></button>
-                </form>
-                <div class="contact-info reveal-right">
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>your.email@example.com</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+880 1XXXXXXXXX</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Dhaka, Bangladesh</span>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2024 Kowshik. All rights reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+        function toggleLang() {
+            document.body.classList.toggle('bn-mode');
+            const btn = document.getElementById('lbtn');
+            btn.innerText = document.body.classList.contains('bn-mode') ? "EN" : "BN";
+        }
+    </script>
 </body>
-                    </html>
+    </html>
