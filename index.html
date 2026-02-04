@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KOWSHIK | Elite Digital Architect</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,199 +12,163 @@
         :root {
             --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08); --font-bn: 'Hind Siliguri', sans-serif;
+            --border: rgba(255, 255, 255, 0.1); --font-bn: 'Hind Siliguri', sans-serif;
         }
 
         .light-mode {
             --bg: #f1f5f9; --text: #0f172a; --glass: rgba(0, 0, 0, 0.03);
-            --border: rgba(0, 0, 0, 0.1);
+            --border: rgba(0, 0, 0, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+        /* --- Global Reset & Overflow Fix --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        /* --- Animated Background --- */
-        .bg-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1), transparent 80%);
-            z-index: -1; pointer-events: none;
-        }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08), transparent 80%); z-index: -1; }
 
-        /* --- Modern Navbar --- */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 6%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(var(--bg), 0.6); backdrop-filter: blur(25px);
-            border-bottom: 1px solid var(--border); z-index: 1000;
-        }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        /* --- Premium Navbar --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .logo { font-size: 1.3rem; font-weight: 900; }
+        .logo span { color: var(--secondary); }
 
-        /* --- Marattok Swipe Toggles --- */
-        .toggle-container { display: flex; gap: 15px; }
-        .switch {
-            position: relative; width: 65px; height: 34px;
-            background: var(--glass); border: 1px solid var(--border);
-            border-radius: 20px; cursor: pointer; display: flex; align-items: center; padding: 5px;
-        }
-        .switch i { font-size: 14px; width: 24px; height: 24px; background: var(--primary); 
-                    color: white; border-radius: 50%; display: flex; align-items: center; 
-                    justify-content: center; position: absolute; left: 5px; transition: 0.4s; }
+        /* --- Premium Swipe Toggles --- */
+        .controls { display: flex; gap: 12px; }
+        .sw-box { position: relative; width: 55px; height: 30px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; }
+        .sw-btn { position: absolute; top: 2px; left: 2px; width: 24px; height: 24px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
         
-        /* Language & Theme Swipe Logic */
-        .lang-bn .sw-lang i { left: 34px; content: "BN"; }
-        .light-mode .sw-theme i { left: 34px; background: var(--secondary); }
+        /* Toggle Active States */
+        .lang-bn .sw-lang .sw-btn { left: 27px; background: var(--secondary); }
+        .light-mode .sw-theme .sw-btn { left: 27px; background: #f59e0b; }
 
-        /* --- Hero Section --- */
-        section { padding: 120px 8% 60px; }
-        .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        h1 { font-size: clamp(2.5rem, 10vw, 6rem); font-weight: 900; line-height: 1; margin-bottom: 25px; }
-        .grad-text { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
-        .btn-p { padding: 18px 40px; border-radius: 50px; font-weight: 800; text-decoration: none; color: white; 
-                 background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; gap: 10px; border: none; }
-        .btn-p:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 40px rgba(124, 58, 237, 0.3); }
+        /* --- Hero & Sections --- */
+        section { padding: 100px 5% 40px; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        h1 { font-size: clamp(2.3rem, 9vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .grad { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { font-size: 1rem; opacity: 0.7; max-width: 500px; line-height: 1.6; }
 
-        /* --- Services/Skill Cards --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 50px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 30px; position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--primary); background: rgba(124, 58, 237, 0.05); transform: translateY(-10px); }
-        .card i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+        .btn-wrap { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 30px; width: 100%; }
+        .btn { padding: 16px 28px; border-radius: 16px; font-weight: 700; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; gap: 8px; border: none; font-size: 0.9rem; transition: 0.3s; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); }
 
-        /* --- Project Gallery --- */
-        .proj-img { width: 100%; height: 200px; background: #1e293b; border-radius: 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-weight: 800; opacity: 0.5; border: 2px dashed var(--border); }
+        /* --- Feature Cards (No Overflow) --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; margin-top: 40px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px 25px; border-radius: 24px; }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px; display: block; }
 
-        /* --- SMM Showcase --- */
-        .smm-mega { width: 100%; background: linear-gradient(145deg, rgba(6, 182, 212, 0.1), transparent); border: 1px solid var(--secondary); padding: 60px 30px; border-radius: 40px; text-align: center; margin-top: 50px; }
+        /* --- SMM High Intensity Card --- */
+        .smm-card { margin-top: 40px; width: 100%; max-width: 600px; padding: 45px 20px; border-radius: 30px; background: linear-gradient(145deg, rgba(6, 182, 212, 0.1), transparent); border: 1.5px solid var(--secondary); }
+        .smm-card h2 { font-size: 2rem; margin-bottom: 10px; }
+        .smm-card a { font-size: 1.4rem; color: var(--secondary); font-weight: 800; text-decoration: none; display: block; margin-top: 20px; }
 
-        /* --- WhatsApp Floating --- */
-        .wa-float { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 35px; z-index: 1000; box-shadow: 0 15px 30px rgba(0,0,0,0.3); animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        /* --- Floating WhatsApp --- */
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 30px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-        /* Language Toggle Classes */
+        /* Language Switching */
         .bn { display: none; }
         .lang-bn .en { display: none; }
         .lang-bn .bn { display: block; font-family: var(--font-bn); }
 
-        footer { text-align: center; padding: 60px; border-top: 1px solid var(--border); opacity: 0.5; }
+        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid var(--border); }
 
-        @media (max-width: 768px) { h1 { font-size: 3.5rem; } section { padding: 100px 5%; } }
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            .btn { width: 100%; justify-content: center; }
+        }
     </style>
 </head>
-<body id="mainBody">
+<body id="b">
 
-    <div class="bg-glow"></div>
+    <div class="bg-glow" id="glow"></div>
     
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
-        <div class="toggle-container">
-            <div class="switch sw-lang" onclick="toggleLang()">
-                <i class="fas fa-language"></i>
+        <div class="controls">
+            <div class="sw-box sw-lang" onclick="toggle('lang')">
+                <div class="sw-btn"><i class="fas fa-language"></i></div>
             </div>
-            <div class="switch sw-theme" onclick="toggleTheme()">
-                <i class="fas fa-moon" id="tIcon"></i>
+            <div class="sw-box sw-theme" onclick="toggle('theme')">
+                <div class="sw-btn"><i class="fas fa-moon" id="ti"></i></div>
             </div>
         </div>
     </nav>
 
-    <a href="https://wa.me/8801611215511" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <section class="hero">
-        <h1 class="en grad-text">Engineering <br>Digital Empires</h1>
-        <h1 class="bn grad-text">ডিজিটাল সাম্রাজ্যের <br>কারিগর</h1>
+    <section>
+        <h1 class="en grad">Elite Digital Architecture</h1>
+        <h1 class="bn grad">ডিজিটাল যুগের আধুনিক রূপান্তর</h1>
         
-        <p class="en">Elite Web Architect & SMM specialist focused on high-performance business growth.</p>
-        <p class="bn">প্রফেশনাল ওয়েব আর্কিটেক্ট এবং এসএমএম বিশেষজ্ঞ। আপনার ব্র্যান্ডের সর্বোচ্চ গ্রোথ নিশ্চিত করাই আমার লক্ষ্য।</p>
+        <p class="en">Building high-performance SMM platforms and premium web architectures for global scaling.</p>
+        <p class="bn">উন্নত মানের এসএমএম সমাধান এবং প্রিমিয়াম ওয়েব আর্কিটেকচার তৈরি করছি আপনার ব্যবসার গ্রোথের জন্য।</p>
 
-        <div class="btn-group">
-            <a href="https://boostzy.site" class="btn-p">
-                <i class="fas fa-fire"></i>
-                <span class="en">Open Boostzy.site</span>
-                <span class="bn">বুস্টজি ওপেন করুন</span>
+        <div class="btn-wrap">
+            <a href="https://boostzy.site" class="btn">
+                <i class="fas fa-bolt"></i>
+                <span class="en">Launch Boostzy.site</span>
+                <span class="bn">বুস্টজি সাইট দেখুন</span>
             </a>
-            <a href="tel:01611215511" class="btn-p" style="background: var(--glass); border: 1px solid var(--border);">
-                <i class="fas fa-phone"></i> 01611215511
+            <a href="https://wa.me/8801611215511" class="btn" style="background: #25d366;">
+                <i class="fab fa-whatsapp"></i>
+                <span class="en">WhatsApp Support</span>
+                <span class="bn">হোয়াটসঅ্যাপ সাপোর্ট</span>
             </a>
         </div>
-    </section>
 
-    <section id="work">
-        <h2 class="en" style="font-size: 3rem; text-align: center;">My Expertise</h2>
-        <h2 class="bn" style="font-size: 3rem; text-align: center;">আমার দক্ষতা</h2>
-        
+        <div class="smm-card">
+            <h2 class="en">Want Unlimited Social Growth?</h2>
+            <h2 class="bn">আনলিমিটেড সোশ্যাল গ্রোথ চান?</h2>
+            <p class="en">Cheapest & Fastest SMM services in Bangladesh.</p>
+            <p class="bn">বাংলাদেশের সবচেয়ে নির্ভরযোগ্য এবং সাশ্রয়ী এসএমএম প্যানেল।</p>
+            <a href="https://boostzy.site">WWW.BOOSTZY.SITE</a>
+        </div>
+
         <div class="grid">
             <div class="card">
-                <i class="fas fa-laptop-code"></i>
-                <h3 class="en">Web Architecture</h3>
-                <h3 class="bn">ওয়েব আর্কিটেকচার</h3>
-                <p class="en">Developing ultra-fast, responsive, and secure web applications.</p>
-                <p class="bn">সুপার ফাস্ট এবং সিকিউর ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট।</p>
+                <i class="fas fa-code"></i>
+                <h3 class="en">Web Design</h3>
+                <h3 class="bn">ওয়েব ডিজাইন</h3>
+                <p class="en">Premium UI/UX for all screens.</p>
+                <p class="bn">আধুনিক এবং মারাত্তোক ইউজার ইন্টারফেস।</p>
             </div>
             <div class="card">
                 <i class="fas fa-rocket"></i>
-                <h3 class="en">SMM Domination</h3>
-                <h3 class="bn">এসএমএম মার্কেটিং</h3>
-                <p class="en">Specialized in growing Facebook, YouTube, and Instagram presence.</p>
-                <p class="bn">সোশ্যাল মিডিয়া প্ল্যাটফর্মে আপনার উপস্থিতি কয়েক গুণ বাড়িয়ে দিন।</p>
+                <h3 class="en">Fast Delivery</h3>
+                <h3 class="bn">দ্রুত ডেলিভারি</h3>
+                <p class="en">SMM orders processed instantly.</p>
+                <p class="bn">যেকোনো অর্ডার হবে এক নিমেষেই সম্পন্ন।</p>
             </div>
-            <div class="card">
-                <i class="fas fa-shield-alt"></i>
-                <h3 class="en">Cyber Security</h3>
-                <h3 class="bn">সাইবার সিকিউরিটি</h3>
-                <p class="en">Protecting your digital assets with advanced security protocols.</p>
-                <p class="bn">উন্নত সিকিউরিটি প্রোটোকল দিয়ে আপনার ডিজিটাল সম্পদ রক্ষা করুন।</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2 class="en" style="text-align: center; margin-bottom: 40px;">Featured Work</h2>
-        <h2 class="bn" style="text-align: center; margin-bottom: 40px;">সেরা প্রজেক্টসমূহ</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="proj-img">BOOSTZY PANEL</div>
-                <h3>Boostzy SMM</h3>
-                <p>The #1 SMM panel in Bangladesh.</p>
-            </div>
-            <div class="card">
-                <div class="proj-img">ECOMMERCE PRO</div>
-                <h3>Marketplace</h3>
-                <p>Advanced multi-vendor shopping solution.</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="smm-mega">
-            <h2 class="en grad-text" style="font-size: 3.5rem;">Ready to Boost?</h2>
-            <h2 class="bn grad-text" style="font-size: 3.5rem;">গ্রোথ বাড়াতে প্রস্তুত?</h2>
-            <p class="en">Join 10k+ users on our premium SMM platform.</p>
-            <p class="bn">আমাদের প্রিমিয়াম এসএমএম প্ল্যাটফর্মে ১০ হাজারেরও বেশি ইউজার রয়েছে।</p>
-            <br>
-            <a href="https://boostzy.site" style="font-size: 2rem; font-weight: 900; color: var(--secondary); text-decoration: none;">WWW.BOOSTZY.SITE</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 KOWSHIK.PRO.BD | POWERED BY BOOSTZY SERVICES</p>
+        &copy; 2026 KOWSHIK.PRO.BD | POWERED BY BOOSTZY
     </footer>
 
     <script>
-        function toggleLang() {
-            document.body.classList.toggle('lang-bn');
+        // Save and Load Settings (Refresh Fix)
+        const body = document.body;
+        const ti = document.getElementById('ti');
+
+        // Load saved state
+        if(localStorage.getItem('theme') === 'light') body.classList.add('light-mode');
+        if(localStorage.getItem('lang') === 'bn') body.classList.add('lang-bn');
+
+        function toggle(type) {
+            if(type === 'theme') {
+                body.classList.toggle('light-mode');
+                const isLight = body.classList.contains('light-mode');
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                ti.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+            } else {
+                body.classList.toggle('lang-bn');
+                localStorage.setItem('lang', body.classList.contains('lang-bn') ? 'bn' : 'en');
+            }
         }
 
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const icon = document.getElementById('tIcon');
-            icon.classList.toggle('fa-moon');
-            icon.classList.toggle('fa-sun');
-        }
-
-        // Mouse Move Glow Effect
+        // Mouse move light effect
         document.addEventListener('mousemove', (e) => {
-            const glow = document.querySelector('.bg-glow');
-            glow.style.background = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
+            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px, rgba(124, 58, 237, 0.12), transparent 80%)`;
         });
     </script>
 </body>
