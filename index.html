@@ -13,10 +13,12 @@
             --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.08); --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
+            --footer-text: rgba(248, 250, 252, 0.4); /* Default Dark Mode Footer Text */
         }
         .light-mode {
             --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.04);
             --border: rgba(0, 0, 0, 0.1);
+            --footer-text: rgba(15, 23, 42, 0.6); /* Light Mode Footer Text Fix */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -32,57 +34,51 @@
         .lang-bn .sw-lang .sw-btn { left: 30px; }
         .light-mode .sw-theme .sw-btn { left: 30px; background: #f59e0b; }
 
-        /* --- Layout --- */
+        /* --- Sections --- */
         section { padding: 100px 6% 40px; max-width: 1200px; margin: 0 auto; }
         .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
         .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
 
-        /* --- Bento Grid --- */
+        /* --- Grid & Cards --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .card { background: var(--glass); border: 1px solid var(--border); padding: 35px; border-radius: 30px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
 
-        /* --- Boostzy Specific --- */
+        /* --- Boostzy Hero --- */
         .boost-hero { background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent); border: 1.5px solid var(--primary); }
         .live-tag { position: absolute; top: 20px; right: 20px; color: #22c55e; font-size: 10px; font-weight: 900; display: flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.1); padding: 5px 12px; border-radius: 20px; }
         .dot-p { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- Skill Bars --- */
-        .skill-item { margin-bottom: 20px; }
-        .skill-head { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
-        .bar-bg { height: 6px; background: var(--border); border-radius: 10px; }
-        .bar-fill { height: 100%; background: var(--grad); width: 0; transition: 2s ease-out; border-radius: 10px; }
-
         /* --- Contact Form --- */
-        input, textarea { width: 100%; padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: white; margin-bottom: 15px; outline: none; font-family: inherit; }
+        input, textarea { width: 100%; padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); margin-bottom: 15px; outline: none; font-family: inherit; }
         .submit-btn { width: 100%; padding: 12px; background: var(--grad); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; transition: 0.3s; }
 
         /* --- FAQ --- */
         .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 10px; cursor: pointer; }
-        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; padding-top: 0; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; padding-top: 0; font-size: 0.9rem; color: var(--footer-text); }
         .faq-box.active .faq-a { max-height: 100px; opacity: 1; padding-top: 15px; }
 
         /* --- Floating UI --- */
         .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
-        .v-box { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; z-index: 1000; }
+        .v-box { position: fixed; bottom: 25px; left: 25px; background: rgba(var(--bg), 0.8); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(10px); }
 
-        /* --- Footer --- */
-        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
+        /* --- Footer (Updated Fixes) --- */
+        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; color: var(--text); }
         .v-check { color: #3b82f6; margin-left: 5px; }
-        .credit { font-size: 0.7rem; opacity: 0.4; margin-top: 15px; letter-spacing: 1.5px; }
-
-        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .credit { font-size: 0.7rem; color: var(--footer-text); margin-top: 15px; letter-spacing: 1.5px; }
 
         /* Language Toggle Fixes */
-        .bn { display: none; }
+        .bn { display: none !important; }
         .lang-bn .en { display: none !important; }
         .lang-bn .bn { display: block !important; font-family: 'Hind Siliguri', sans-serif; }
-        .lang-bn .section-title.bn, .lang-bn .card h3.bn, .lang-bn .card p.bn { display: block !important; }
+        
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 600px) { h1 { font-size: 3rem; } }
     </style>
@@ -121,49 +117,6 @@
     </section>
 
     <section class="reveal">
-        <h2 class="section-title en">Why Me?</h2>
-        <h2 class="section-title bn">কেন আমি?</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-bolt"></i>
-                <h3 class="en">Ultra Performance</h3>
-                <h3 class="bn">আল্ট্রা পারফরম্যান্স</h3>
-                <p class="en">Lightning fast systems with 99.9% uptime.</p>
-                <p class="bn">৯৯.৯% আপটাইম সহ সুপার ফাস্ট সিস্টেম।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-shield-alt"></i>
-                <h3 class="en">Military Security</h3>
-                <h3 class="bn">মিলিটারি সিকিউরিটি</h3>
-                <p class="en">End-to-end encryption to protect your data.</p>
-                <p class="bn">আপনার ডেটা সুরক্ষিত রাখতে এন্ড-টু-এন্ড এনক্রিপশন।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-layer-group"></i>
-                <h3 class="en">Growth Driven</h3>
-                <h3 class="bn">গ্রোথ ড্রিভেন</h3>
-                <p class="en">Platforms designed to scale and generate ROI.</p>
-                <p class="bn">আপনার ব্যবসার উন্নতির জন্য স্কেলেবল প্ল্যাটফর্ম।</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <h2 class="section-title en">Expertise</h2>
-        <h2 class="section-title bn">দক্ষতা</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="skill-item"><div class="skill-head"><span>Laravel / Node</span><span>98%</span></div><div class="bar-bg"><div class="bar-fill" data-w="98%"></div></div></div>
-                <div class="skill-item"><div class="skill-head"><span>React / Next</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div></div>
-                <div class="skill-item"><div class="skill-head"><span>Cyber Security</span><span>95%</span></div><div class="bar-bg"><div class="bar-fill" data-w="95%"></div></div></div>
-            </div>
-            <div class="card" style="display:flex;align-items:center;justify-content:center;text-align:center">
-                <div><i class="fas fa-terminal"></i><h3 class="en">Elite Coder</h3><h3 class="bn">এলিট কোডার</h3><p style="opacity:0.6">Available for Projects</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
         <h2 class="section-title en">Get In Touch</h2>
         <h2 class="section-title bn">যোগাযোগ করুন</h2>
         <div class="grid">
@@ -171,17 +124,12 @@
                 <i class="fas fa-paper-plane"></i>
                 <h3 class="en">Message Me</h3>
                 <h3 class="bn">মেসেজ দিন</h3>
-                
                 <form action="https://formsubmit.co/info@kowshik.site" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" rows="3" placeholder="Project Details" required></textarea>
-                    
-                    <input type="hidden" name="_next" value="https://kowshik.pro.bd">
-                    <input type="hidden" name="_template" value="table">
-                    
-                    <button type="submit" class="submit-btn en">Send Message</button>
-                    <button type="submit" class="submit-btn bn">মেসেজ পাঠান</button>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" rows="3" placeholder="Details" required></textarea>
+                    <button type="submit" class="submit-btn en">Send</button>
+                    <button type="submit" class="submit-btn bn">পাঠান</button>
                 </form>
             </div>
             <div class="card" style="display:flex; flex-direction:column; justify-content:center; gap:20px">
@@ -214,12 +162,21 @@
     </section>
 
     <footer>
-        <p>© 2026 KOWSHIK <i class="fas fa-check-circle v-check"></i></p>
-        <div class="credit">DESIGNED BY KOWSHIK<br><span style="color:var(--secondary)">// SYSTEM_ACTIVE</span></div>
+        <p class="en">© 2026 KOWSHIK <i class="fas fa-check-circle v-check"></i> | ALL RIGHTS RESERVED</p>
+        <p class="bn">© ২০২৬ কৌশিক <i class="fas fa-check-circle v-check"></i> | সর্বস্বত্ব সংরক্ষিত</p>
+        
+        <div class="credit">
+            <span class="en">DESIGNED BY KOWSHIK</span>
+            <span class="bn">কৌশিক দ্বারা ডিজাইনকৃত</span>
+            <br>
+            <span style="color:var(--secondary)">// SYSTEM_ACTIVE</span>
+        </div>
     </footer>
 
     <script>
         const b = document.getElementById('b');
+        
+        // Initial Theme & Lang Check
         if(localStorage.getItem('th') === 'li') b.classList.add('light-mode');
         if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
 
@@ -233,6 +190,7 @@
             }
         }
 
+        // Background Animation
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -249,21 +207,18 @@
         }
         setInterval(draw, 50);
 
+        // Scroll Reveal
         const obs = new IntersectionObserver((es) => {
-            es.forEach(e => {
-                if(e.isIntersecting) {
-                    e.target.classList.add('active');
-                    e.target.querySelectorAll('.bar-fill').forEach(bar => bar.style.width = bar.getAttribute('data-w'));
-                }
-            });
+            es.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-        let count = 200 + Math.floor(Math.random()*30);
+        // Online Count
+        let count = 210 + Math.floor(Math.random()*20);
         setInterval(() => {
             count += Math.floor(Math.random()*3) - 1;
             document.getElementById('vc').innerText = count + " Agents Online";
         }, 3000);
     </script>
 </body>
-                </html>
+</html>
