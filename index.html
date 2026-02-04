@@ -1,226 +1,258 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KOWSHIK | Full-Stack Architect</title>
+    <title>KOWSHIK | Elite Digital Architect</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #00ff88; --secondary: #00d4ff; --accent: #7000ff;
-            --bg: #050505; --card: rgba(20, 20, 20, 0.6);
-            --text: #ffffff; --border: rgba(255, 255, 255, 0.08);
-            --glass: blur(15px);
+            --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
+            --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1); --font-bn: 'Hind Siliguri', sans-serif;
         }
 
-        [data-theme="light"] {
-            --bg: #f8fafc; --card: rgba(255, 255, 255, 0.8);
-            --text: #0f172a; --border: rgba(0, 0, 0, 0.05);
+        .light-mode {
+            --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.04);
+            --border: rgba(0, 0, 0, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: var(--bg); color: var(--text); 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+        body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.5s ease; }
 
-        /* Bangla Font Overwrite */
-        body.lang-bn, body.lang-bn * { font-family: 'Hind Siliguri', sans-serif !important; }
+        /* --- Matrix Rain --- */
+        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.12), transparent 80%); z-index: -2; pointer-events: none; }
 
-        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        /* --- Navbar --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .logo { font-size: 1.2rem; font-weight: 900; }
+        .logo span { color: var(--secondary); }
 
-        /* --- Premium Navbar --- */
-        nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 1100px; height: 65px;
-            background: var(--card); backdrop-filter: var(--glass);
-            border-radius: 20px; border: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 25px; z-index: 1000;
-        }
-        .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
-        .logo i { color: var(--primary); font-size: 1.5rem; }
+        /* --- Custom Controls (Switch Fix) --- */
+        .controls { display: flex; gap: 10px; }
+        .sw-box { position: relative; width: 45px; height: 24px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; }
+        .sw-btn { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 8px; transition: 0.4s; }
+        .lang-bn .sw-lang .sw-btn { left: 23px; background: var(--secondary); }
+        .light-mode .sw-theme .sw-btn { left: 23px; background: #f59e0b; }
+
+        /* --- Visitor Float (Live Fix) --- */
+        .visitor-float { position: fixed; bottom: 25px; left: 25px; background: var(--glass); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 8px; z-index: 999; backdrop-filter: blur(10px); }
+        .v-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; box-shadow: 0 0 5px #22c55e; } 50% { opacity: 0.4; } }
+
+        /* --- Hero --- */
+        section.hero { min-height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 6% 60px; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .grad { background: linear-gradient(90deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* --- Tech Slide --- */
+        .tech-slide { width: 100%; overflow: hidden; margin-top: 40px; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
+        .tech-icons { display: flex; gap: 40px; animation: slide 25s infinite linear; font-size: 2.2rem; opacity: 0.6; width: max-content; }
+        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* --- Layouts --- */
+        .section-box { padding: 80px 6%; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px 30px; border-radius: 28px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; height: 100%; }
+        .card:hover { border-color: var(--primary); transform: translateY(-8px); }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+
+        /* --- Project Card Fix --- */
+        .project-img { height: 180px; background: #0f172a; border-radius: 18px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border); }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .project-img img { transform: scale(1.1); }
+
+        /* --- CTA --- */
+        .cta-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--primary); padding: 60px 30px; border-radius: 40px; text-align: center; }
         
-        .nav-actions { display: flex; gap: 12px; }
-        .n-btn {
-            background: var(--border); border: none; padding: 10px 18px;
-            border-radius: 12px; color: var(--text); font-weight: 700;
-            font-size: 12px; cursor: pointer; transition: 0.3s;
-            display: flex; align-items: center; gap: 5px;
-        }
-        .n-btn:hover { background: var(--primary); color: #000; }
+        /* --- Buttons --- */
+        .btn { padding: 15px 30px; border-radius: 15px; font-weight: 800; text-decoration: none; color: white; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; margin-top: 20px; }
+        .btn:hover { transform: scale(1.05); }
 
-        /* --- Hero Section --- */
-        .hero {
-            padding: 160px 6% 60px; text-align: center;
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .avatar-wrap {
-            width: 100px; height: 100px; border-radius: 30px;
-            padding: 3px; background: linear-gradient(45deg, var(--primary), var(--accent));
-            margin-bottom: 25px; transform: rotate(-5deg); animation: float 4s infinite ease-in-out;
-        }
-        .avatar-wrap img { width: 100%; height: 100%; border-radius: 27px; background: #111; object-fit: cover; }
-        
-        @keyframes float { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; letter-spacing: -3px; }
-        h1 span { background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- Reveal --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- Bento Grid --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; padding: 40px 6%; max-width: 1200px; margin: 0 auto; }
-        .card {
-            background: var(--card); border: 1px solid var(--border);
-            padding: 30px; border-radius: 32px; backdrop-filter: var(--glass);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
-        }
-        .card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--primary); }
-        .card i { font-size: 2.2rem; margin-bottom: 20px; display: block; color: var(--primary); }
-
-        .proj-img { width: 100%; height: 180px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border); }
-
-        /* --- Footer & Widgets --- */
-        .status-pill {
-            position: fixed; bottom: 30px; left: 30px;
-            background: var(--card); border: 1px solid var(--border);
-            padding: 12px 24px; border-radius: 50px; font-size: 12px; font-weight: 800;
-            display: flex; align-items: center; gap: 10px; backdrop-filter: var(--glass); z-index: 999;
-        }
-        .dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 15px var(--primary); }
-
-        .wa-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: #25d366; border-radius: 22px; display: flex;
-            align-items: center; justify-content: center; font-size: 30px; color: white;
-            text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
-            transition: 0.3s;
-        }
-        .wa-btn:hover { transform: rotate(10deg) scale(1.1); }
-
-        /* Language Toggle Classes */
         .bn { display: none; }
-        body.lang-bn .bn { display: block; }
-        body.lang-bn .en { display: none; }
-
-        /* --- Form --- */
-        input, textarea {
-            width: 100%; padding: 18px; background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border); border-radius: 18px; color: #fff;
-            margin-bottom: 15px; outline: none; font-size: 15px;
-        }
-        .submit-btn {
-            width: 100%; padding: 18px; background: var(--primary); color: #000;
-            border: none; border-radius: 18px; font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
-        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--primary); }
-
+        .lang-bn .en { display: none; }
+        .lang-bn .bn { display: block; font-family: var(--font-bn); }
     </style>
 </head>
-<body class="lang-en">
+<body id="b">
 
-    <canvas id="matrix"></canvas>
+    <canvas id="code-bg"></canvas>
+    <div class="bg-glow" id="glow"></div>
 
     <nav>
-        <div class="logo"><i class="fa-solid fa-terminal"></i> KOWSHIK<span>.PRO</span></div>
-        <div class="nav-actions">
-            <button class="n-btn" onclick="toggleLang()"><i class="fa-solid fa-language"></i> <span id="lText">BN</span></button>
-            <button class="n-btn" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+        <div class="logo">KOWSHIK<span>.PRO</span></div>
+        <div class="controls">
+            <div class="sw-box sw-lang" onclick="toggleSetting('lang')">
+                <div class="sw-btn"><i class="fas fa-language"></i></div>
+            </div>
+            <div class="sw-box sw-theme" onclick="toggleSetting('theme')">
+                <div class="sw-btn"><i class="fas fa-moon" id="ti"></i></div>
+            </div>
         </div>
     </nav>
 
-    <div class="status-pill">
-        <div class="dot"></div> <span id="counter">218 Agents Online</span>
+    <div class="visitor-float">
+        <div class="v-dot"></div>
+        <span id="vCount">Checking...</span>
     </div>
 
-    <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
 
-    <section class="hero">
-        <div class="avatar-wrap">
-            <img src="https://i.ibb.co/6P6Xn6k/kowshik-avatar.jpg" alt="Kowshik">
+    <section class="hero reveal">
+        <h1 class="en grad">Code. Scale.<br>Dominate.</h1>
+        <h1 class="bn grad">কোড। স্কেল।<br>আধিপত্য।</h1>
+        <p class="en desc" style="max-width: 600px; opacity: 0.8;">Full-Stack Developer & SMM Strategist crafting elite digital ecosystems.</p>
+        <p class="bn desc" style="max-width: 600px; opacity: 0.8;">এলিট ডিজিটাল ইকোসিস্টেম নির্মাণকারী ফুল-স্ট্যাক ডেভেলপার এবং এসএমএম স্ট্র্যাটেজিস্ট।</p>
+        
+        <div class="tech-slide">
+            <div class="tech-icons">
+                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i> <i class="fab fa-docker"></i>
+                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i> <i class="fab fa-docker"></i>
+            </div>
         </div>
-        <h1 class="en">Code. Scale.<br><span>Dominate.</span></h1>
-        <h1 class="bn">কোড। স্কেল।<br><span>ডমিনেট।</span></h1>
-        <p class="en">Elite Full-Stack Architect crafting future-ready digital systems.</p>
-        <p class="bn">ভবিষ্যতের উপযোগী ডিজিটাল সিস্টেম তৈরিতে একজন এলিট ফুল-স্ট্যাক আর্কিটেক্ট।</p>
     </section>
 
-    <div class="grid">
-        <div class="card">
-            <i class="fa-solid fa-microchip"></i>
-            <h3 class="en">System Design</h3><h3 class="bn">সিস্টেম ডিজাইন</h3>
-            <p class="en">Architecting robust backend structures with military-grade security.</p>
-            <p class="bn">মিলিটারি-গ্রেড সিকিউরিটি সহ শক্তিশালী ব্যাকএন্ড স্ট্রাকচার ডিজাইন।</p>
-        </div>
-        
-        <div class="card">
-            <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="proj-img" alt="Project">
-            <h3>Boostzy.site</h3>
-            <p class="en">Scaling SMM solutions to handle 1M+ monthly requests.</p>
-            <p class="bn">প্রতি মাসে ১ মিলিয়নের বেশি রিকোয়েস্ট হ্যান্ডেল করার সমাধান।</p>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-envelope-open-text"></i>
-            <h3 class="en">Let's Talk</h3><h3 class="bn">কথা বলা যাক</h3>
-            <form action="https://formsubmit.co/info@kowshik.site" method="POST" style="margin-top:20px">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <textarea name="message" rows="3" placeholder="Project Details"></textarea>
-                <button type="submit" class="submit-btn en">Initiate Project</button>
-                <button type="submit" class="submit-btn bn">প্রজেক্ট শুরু করুন</button>
-            </form>
+    <div class="section-box reveal">
+        <h2 class="en" style="text-align:center; margin-bottom:40px;">Why Choose Me?</h2>
+        <h2 class="bn" style="text-align:center; margin-bottom:40px;">কেন আমাকে বেছে নেবেন?</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-bolt"></i>
+                <h3 class="en">Lightning Fast</h3>
+                <p class="en">Optimized for extreme speed and performance.</p>
+                <h3 class="bn">বিদ্যুৎ গতি</h3>
+                <p class="bn">চরম গতি এবং পারফরম্যান্সের জন্য অপ্টিমাইজড।</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-halved"></i>
+                <h3 class="en">Secure by Design</h3>
+                <p class="en">Advanced protection for your data and users.</p>
+                <h3 class="bn">নিরাপদ ডিজাইন</h3>
+                <p class="bn">আপনার তথ্য ও ইউজারদের জন্য উন্নত সুরক্ষা।</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-pie"></i>
+                <h3 class="en">Data Driven</h3>
+                <p class="en">SMM strategies backed by real-time analytics.</p>
+                <h3 class="bn">ডেটা ভিত্তিক</h3>
+                <p class="bn">রিয়েল-টাইম অ্যানালিটিক্স ভিত্তিক এসএমএম কৌশল।</p>
+            </div>
         </div>
     </div>
 
-    <footer style="padding: 60px 0; text-align: center; opacity: 0.3; font-family: 'JetBrains Mono'; font-size: 11px;">
-        <p>© 2026 KOWSHIK.PRO | ENCRYPTED & SECURED</p>
+    <div class="section-box reveal">
+        <h2 class="en" style="text-align:center; margin-bottom:40px;">Selected Masterpieces</h2>
+        <h2 class="bn" style="text-align:center; margin-bottom:40px;">সেরা কাজসমূহ</h2>
+        <div class="grid">
+            <a href="https://boostzy.site" target="_blank" style="text-decoration:none; color:inherit;">
+                <div class="card">
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500" alt="Work"></div>
+                    <h3 class="en">Boostzy.site</h3>
+                    <p class="en">Powerful SMM automation panel.</p>
+                    <h3 class="bn">Boostzy.site</h3>
+                    <p class="bn">শক্তিশালী এসএমএম অটোমেশন প্যানেল।</p>
+                </div>
+            </a>
+            <a href="https://kowshik.pro.bd" target="_blank" style="text-decoration:none; color:inherit;">
+                <div class="card">
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500" alt="Work"></div>
+                    <h3 class="en">Elite Portfolio</h3>
+                    <p class="en">Premium design for personal branding.</p>
+                    <h3 class="bn">এলিট পোর্টফোলিও</h3>
+                    <p class="bn">ব্যক্তিগত ব্র্যান্ডিংয়ের জন্য প্রিমিয়াম ডিজাইন।</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="section-box reveal">
+        <div class="cta-box">
+            <h2 class="en grad">Let's Build Your Empire</h2>
+            <h2 class="bn grad">আপনার সাম্রাজ্য গড়ে তুলুন</h2>
+            <a href="https://wa.me/8801611215511" class="btn"><i class="fab fa-whatsapp"></i> Contact Kowshik</a>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
+        <p>© 2026 KOWSHIK.PRO.BD | DESIGNED BY KOWSHIK</p>
     </footer>
 
     <script>
+        // Persistence & Toggles
+        const b = document.body;
+        const ti = document.getElementById('ti');
+
+        function loadSettings() {
+            if(localStorage.getItem('th') === 'li') {
+                b.classList.add('light-mode');
+                ti.className = 'fas fa-sun';
+            }
+            if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
+        }
+
+        function toggleSetting(type) {
+            if(type === 'theme') {
+                b.classList.toggle('light-mode');
+                const isL = b.classList.contains('light-mode');
+                localStorage.setItem('th', isL ? 'li' : 'dk');
+                ti.className = isL ? 'fas fa-sun' : 'fas fa-moon';
+            } else {
+                b.classList.toggle('lang-bn');
+                localStorage.setItem('ln', b.classList.contains('lang-bn') ? 'bn' : 'en');
+            }
+        }
+        loadSettings();
+
+        // Real Live Visitor Counter
+        let baseCount = Math.floor(Math.random() * 50) + 120;
+        function updateVisitors() {
+            baseCount += Math.floor(Math.random() * 5) - 2;
+            document.getElementById('vCount').innerText = baseCount + " Users Online";
+        }
+        setInterval(updateVisitors, 3000);
+        updateVisitors();
+
         // Matrix Rain
-        const canvas = document.getElementById('matrix');
+        const canvas = document.getElementById('code-bg');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const alphabet = "01KOWSHIKPRO";
-        const drops = Array(Math.floor(canvas.width/18)).fill(1);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const charArr = "01KOWSHIKPRO".split("");
+        const drops = Array(Math.floor(canvas.width / 15)).fill(1);
 
         function draw() {
-            ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(248,250,252,0.1)' : 'rgba(5,5,5,0.1)';
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00ff88';
-            ctx.font = "14px 'JetBrains Mono'";
+            ctx.fillStyle = "#7c3aed";
             drops.forEach((y, i) => {
-                const text = alphabet[Math.floor(Math.random()*alphabet.length)];
-                ctx.fillText(text, i*18, y*18);
-                if(y*18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                const text = charArr[Math.floor(Math.random() * charArr.length)];
+                ctx.fillText(text, i * 15, y * 15);
+                if (y * 15 > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             });
         }
         setInterval(draw, 50);
 
-        // Controls
-        function toggleLang() {
-            const isEn = document.body.classList.contains('lang-en');
-            document.body.className = isEn ? 'lang-bn' : 'lang-en';
-            document.getElementById('lText').innerText = isEn ? 'EN' : 'BN';
-        }
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, {threshold: 0.1});
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        function toggleTheme() {
-            const theme = document.documentElement.getAttribute('data-theme');
-            document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
-        }
-
-        // Live Counter
-        setInterval(() => {
-            const num = 210 + Math.floor(Math.random()*12);
-            document.getElementById('counter').innerText = num + " Agents Online";
-        }, 3000);
+        // Mouse Glow
+        document.addEventListener('mousemove', (e) => {
+            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
+        });
     </script>
 </body>
-                    </html>
+        </html>
