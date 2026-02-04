@@ -6,7 +6,7 @@
     <title>KOWSHIK | Digital Architect</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -23,73 +23,65 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: 0.5s; scroll-behavior: smooth; }
 
-        /* --- Custom Matrix --- */
         #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.12; pointer-events: none; }
 
-        /* --- Advanced Navbar --- */
+        /* --- Navbar --- */
         nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.85); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -1px; }
+        .logo { font-size: 1.2rem; font-weight: 800; }
         .logo span { color: var(--secondary); }
 
+        /* --- Stylish Switcher --- */
         .controls { display: flex; gap: 15px; }
-        .sw-box { position: relative; width: 46px; height: 24px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 4px; }
-        .sw-btn { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 2; }
-        .sw-box i { font-size: 10px; opacity: 0.6; }
-
-        .lang-bn .sw-lang .sw-btn { left: 25px; }
-        .light-mode .sw-theme .sw-btn { left: 25px; background: #f59e0b; }
+        .sw-box { position: relative; width: 50px; height: 26px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; color: var(--text); font-size: 10px; }
+        .sw-btn { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 2; box-shadow: 0 0 10px rgba(124,58,237,0.5); }
+        
+        .lang-bn .sw-lang .sw-btn { left: 27px; }
+        .light-mode .sw-theme .sw-btn { left: 27px; background: #f59e0b; }
 
         /* --- Sections --- */
         section { padding: 100px 6% 60px; max-width: 1200px; margin: 0 auto; }
-        .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .badge { background: rgba(124, 58, 237, 0.15); border: 1px solid var(--primary); color: #a78bfa; padding: 6px 18px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; }
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .badge { background: rgba(124, 58, 237, 0.15); border: 1px solid var(--primary); color: #a78bfa; padding: 6px 18px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
 
-        h1 { font-size: clamp(2.5rem, 9vw, 5.5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; }
+        h1 { font-size: clamp(2.5rem, 9vw, 5.5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; letter-spacing: -2px; }
         .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* --- Bento Cards --- */
-        .section-title { text-align: center; font-size: 2.2rem; font-weight: 800; margin-bottom: 50px; }
+        /* --- Boostzy Showcase --- */
+        .boost-section { background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.1), transparent); border-radius: 40px; border: 1px solid var(--border); padding: 50px; margin-top: 40px; position: relative; overflow: hidden; }
+        .live-indicator { position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 800; color: #22c55e; background: rgba(34, 197, 94, 0.1); padding: 5px 12px; border-radius: 20px; }
+        .pulse-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 28px; transition: 0.5s; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(124, 58, 237, 0.05); }
-        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 25px; display: block; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 28px; transition: 0.5s; backdrop-filter: blur(10px); }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
 
         /* --- Skill Bars --- */
         .skill-box { margin-bottom: 20px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; }
-        .bar-outer { height: 8px; background: var(--border); border-radius: 10px; overflow: hidden; }
-        .bar-inner { height: 100%; background: var(--grad); border-radius: 10px; width: 0; transition: 2s ease-out; }
-
-        /* --- FAQ Accordion --- */
-        .faq-item { background: var(--glass); border: 1px solid var(--border); border-radius: 15px; margin-bottom: 10px; padding: 20px; cursor: pointer; }
-        .faq-q { font-weight: 700; display: flex; justify-content: space-between; }
-        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; padding-top: 0; }
-        .faq-item.active .faq-a { max-height: 100px; opacity: 0.7; padding-top: 15px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 0.85rem; }
+        .bar-outer { height: 6px; background: var(--border); border-radius: 10px; overflow: hidden; }
+        .bar-inner { height: 100%; background: var(--grad); width: 0; transition: 2s cubic-bezier(0.1, 0, 0.3, 1); }
 
         /* --- Floating UI --- */
-        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 25px rgba(37,211,102,0.4); animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .wa-float { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
+        .active-user { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); z-index: 1000; backdrop-filter: blur(10px); }
 
-        .active-user { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); z-index: 1000; }
-        .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
+        /* --- Footer (Coding Font) --- */
+        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
+        .v-badge { color: #3b82f6; margin-left: 5px; }
+        .credit { font-size: 0.75rem; opacity: 0.5; margin-top: 15px; letter-spacing: 1px; }
 
-        /* --- Reveal Animation --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.17, 0.84, 0.44, 1); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- Footer --- */
-        footer { padding: 60px 5%; text-align: center; border-top: 1px solid var(--border); }
-        .v-badge { color: #3b82f6; margin-left: 5px; }
-
-        /* --- Language Support --- */
         .bn { display: none; }
         .lang-bn .en { display: none; }
         .lang-bn .bn { display: block; font-family: 'Hind Siliguri', sans-serif; }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 3rem; }
-            section { padding: 80px 6% 30px; }
-        }
+        .btn { padding: 12px 25px; border-radius: 12px; background: var(--grad); color: white; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { transform: scale(1.05); }
+
+        @media (max-width: 600px) { h1 { font-size: 3rem; } .boost-section { padding: 30px 20px; } }
     </style>
 </head>
 <body id="b">
@@ -99,12 +91,12 @@
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="tg('lang')" title="Change Language">
-                <i class="fas fa-font"></i>
-                <i class="fas fa-bold"></i>
+            <div class="sw-box sw-lang" onclick="tg('lang')" title="Switch Language">
+                <i class="fas fa-language"></i>
+                <span style="font-weight: 800; font-size: 8px;">BN</span>
                 <div class="sw-btn"></div>
             </div>
-            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Theme">
+            <div class="sw-box sw-theme" onclick="tg('theme')" title="Toggle Mode">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
                 <div class="sw-btn"></div>
@@ -113,127 +105,97 @@
     </nav>
 
     <div class="active-user">
-        <div class="dot"></div>
-        <span id="vc">204 Agents Online</span>
+        <div class="pulse-dot"></div>
+        <span id="vc">198 Agents Online</span>
     </div>
 
     <a href="https://wa.me/8801611215511" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <section class="hero reveal">
-        <div class="badge en">Elite Full-Stack Architect</div>
-        <div class="badge bn">এলিট ফুল-স্ট্যাক আর্কিটেক্ট</div>
-        <h1 class="en">Design. Code.<br><span class="grad-text">Dominate.</span></h1>
-        <h1 class="bn">ডিজাইন। কোড।<br><span class="grad-text">আধিপত্য।</span></h1>
-        <p class="en" style="opacity:0.6; max-width:600px; line-height:1.7;">Building high-performance SMM systems and secure digital infrastructures for global growth.</p>
-        <p class="bn" style="opacity:0.6; max-width:600px; line-height:1.7;">গ্লোবাল গ্রোথের জন্য হাই-পারফরম্যান্স এসএমএম সিস্টেম এবং সুরক্ষিত ডিজিটাল ইনফ্রাস্ট্রাকচার তৈরি করছি।</p>
+        <div class="badge en">Full-Stack Digital Architect</div>
+        <div class="badge bn">ফুল-স্ট্যাক ডিজিটাল আর্কিটেক্ট</div>
+        <h1 class="en">Code. Deploy.<br><span class="grad-text">Conquer.</span></h1>
+        <h1 class="bn">কোড। ডেপ্লয়।<br><span class="grad-text">বিজয়।</span></h1>
+        <p class="en" style="opacity:0.6; max-width:600px;">Crafting ultra-modern digital solutions with precision and scale.</p>
+        <p class="bn" style="opacity:0.6; max-width:600px;">নিখুঁতভাবে আল্ট্রা-মডার্ন ডিজিটাল সলিউশন এবং স্কেলেবল সিস্টেম তৈরি করছি।</p>
     </section>
 
     <section class="reveal">
-        <h2 class="section-title en">Core Expertise</h2>
-        <h2 class="section-title bn">মূল দক্ষতা</h2>
+        <div class="boost-section">
+            <div class="live-indicator"><div class="pulse-dot"></div> LIVE NOW</div>
+            <i class="fas fa-rocket" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
+            <h2 class="en" style="font-size: 2.2rem; margin-bottom: 15px;">Boostzy.site</h2>
+            <h2 class="bn" style="font-size: 2.2rem; margin-bottom: 15px;">Boostzy.site</h2>
+            <p class="en" style="max-width: 700px; opacity: 0.7;">My flagship SMM platform. A high-performance engine processing thousands of API requests and automated social growth daily.</p>
+            <p class="bn" style="max-width: 700px; opacity: 0.7;">আমার ফ্ল্যাগশিপ এসএমএম প্ল্যাটফর্ম। প্রতিদিন হাজার হাজার এপিআই রিকোয়েস্ট এবং অটোমেটেড সোশ্যাল গ্রোথ প্রসেস করা একটি হাই-পারফরম্যান্স ইঞ্জিন।</p>
+            <a href="https://boostzy.site" target="_blank" class="btn">
+                <span class="en">Visit Deployment</span>
+                <span class="bn">প্রজেক্ট দেখুন</span>
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <h2 style="text-align: center; margin-bottom: 40px;" class="en">Technical Stack</h2>
+        <h2 style="text-align: center; margin-bottom: 40px;" class="bn">টেকনিক্যাল স্কিল</h2>
         <div class="grid">
             <div class="card">
                 <div class="skill-box">
-                    <div class="skill-info"><span>Backend (PHP/Node)</span><span>95%</span></div>
-                    <div class="bar-outer"><div class="bar-inner" data-w="95%"></div></div>
+                    <div class="skill-info"><span>Backend Architecture</span><span>98%</span></div>
+                    <div class="bar-outer"><div class="bar-inner" data-w="98%"></div></div>
                 </div>
                 <div class="skill-box">
-                    <div class="skill-info"><span>Frontend (React/Next)</span><span>88%</span></div>
-                    <div class="bar-outer"><div class="bar-inner" data-w="88%"></div></div>
+                    <div class="skill-info"><span>Cloud & DevOps</span><span>90%</span></div>
+                    <div class="bar-outer"><div class="bar-inner" data-w="90%"></div></div>
                 </div>
                 <div class="skill-box">
-                    <div class="skill-info"><span>Cyber Security</span><span>92%</span></div>
+                    <div class="skill-info"><span>UI/UX Interface</span><span>92%</span></div>
                     <div class="bar-outer"><div class="bar-inner" data-w="92%"></div></div>
                 </div>
             </div>
-            <div class="card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
-                <div>
-                    <i class="fas fa-award"></i>
-                    <h3 class="en">5+ Years Experience</h3>
-                    <h3 class="bn">৫+ বছরের অভিজ্ঞতা</h3>
-                    <p class="en">Delivering perfection in every line of code.</p>
-                    <p class="bn">প্রতিটি লাইন কোডে নিখুঁত কাজ নিশ্চিত করি।</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <h2 class="section-title en">Premium Services</h2>
-        <h2 class="section-title bn">প্রিমিয়াম সার্ভিসসমূহ</h2>
-        <div class="grid">
             <div class="card">
-                <i class="fas fa-rocket"></i>
-                <h3 class="en">SMM Automation</h3>
-                <p class="en">Advanced API-driven panels for instant social media scaling.</p>
-                <p class="bn">ইনস্ট্যান্ট সোশ্যাল মিডিয়া স্কেলিংয়ের জন্য উন্নত এপিআই প্যানেল।</p>
-            </div>
-            <div class="card" style="border: 1px solid var(--primary);">
-                <i class="fas fa-fingerprint"></i>
-                <h3 class="en">Secure Identity</h3>
-                <p class="en">Elite personal branding and portfolio architecture for pros.</p>
-                <p class="bn">পেশাদারদের জন্য এলিট পার্সোনাল ব্র্যান্ডিং এবং পোর্টফোলিও।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-database"></i>
-                <h3 class="en">System Architecture</h3>
-                <p class="en">Building scalable databases and cloud-ready applications.</p>
-                <p class="bn">স্কেলেবল ডাটাবেস এবং ক্লাউড-রেডি অ্যাপ্লিকেশন তৈরি।</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <h2 class="section-title en">Common Questions</h2>
-        <h2 class="section-title bn">সাধারণ প্রশ্নসমূহ</h2>
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q"><span>How long does a project take?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-a">Depending on complexity, usually 5-14 business days.</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q"><span>Do you provide maintenance?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-a">Yes, I provide 24/7 technical support and monthly maintenance.</div>
+                <i class="fas fa-shield-check" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
+                <h3 class="en">Secure by Design</h3>
+                <h3 class="bn">সিকিউরড বাই ডিজাইন</h3>
+                <p style="opacity: 0.6; font-size: 0.9rem;">Military-grade security implementations for every deployment I manage.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p class="en" style="font-weight:700; opacity:0.6;">© 2026 KOWSHIK <i class="fas fa-check-circle v-badge"></i> | ALL RIGHTS RESERVED</p>
-        <p class="bn" style="font-weight:700; opacity:0.6;">© ২০২৬ কৌশিক <i class="fas fa-check-circle v-badge"></i> | সর্বস্বত্ব সংরক্ষিত</p>
+        <p class="en">© 2026 KOWSHIK <i class="fas fa-check-circle v-badge"></i></p>
+        <p class="bn">© ২০২৬ কৌশিক <i class="fas fa-check-circle v-badge"></i></p>
+        <div class="credit">
+            DESIGNED & HANDCRAFTED BY KOWSHIK<br>
+            <span style="color: var(--secondary);">// STATUS: SYSTEM_OPTIMIZED</span>
+        </div>
     </footer>
 
     <script>
-        const body = document.getElementById('b');
+        const b = document.getElementById('b');
         
-        // Settings Load
-        if(localStorage.getItem('th') === 'li') body.classList.add('light-mode');
-        if(localStorage.getItem('ln') === 'bn') body.classList.add('lang-bn');
+        // Persistence
+        if(localStorage.getItem('th') === 'li') b.classList.add('light-mode');
+        if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
 
         function tg(t) {
             if(t === 'theme') {
-                body.classList.toggle('light-mode');
-                localStorage.setItem('th', body.classList.contains('light-mode') ? 'li' : 'dk');
+                b.classList.toggle('light-mode');
+                localStorage.setItem('th', b.classList.contains('light-mode') ? 'li' : 'dk');
             } else {
-                body.classList.toggle('lang-bn');
-                localStorage.setItem('ln', body.classList.contains('lang-bn') ? 'bn' : 'en');
+                b.classList.toggle('lang-bn');
+                localStorage.setItem('ln', b.classList.contains('lang-bn') ? 'bn' : 'en');
             }
         }
 
-        // Visitor Simulation
-        let c = 180 + Math.floor(Math.random()*40);
-        setInterval(() => {
-            c += Math.floor(Math.random()*3) - 1;
-            document.getElementById('vc').innerText = c + " Agents Online";
-        }, 3000);
-
-        // Matrix Logic
+        // Matrix
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         const drops = Array(Math.floor(canvas.width/20)).fill(1);
         function draw() {
-            ctx.fillStyle = body.classList.contains('light-mode') ? "rgba(248,250,252,0.12)" : "rgba(2,6,23,0.12)";
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248,252,255,0.12)" : "rgba(2,6,23,0.12)";
             ctx.fillRect(0,0,canvas.width,canvas.height);
             ctx.fillStyle = "#7c3aed";
             ctx.font = "15px monospace";
@@ -245,17 +207,23 @@
         }
         setInterval(draw, 50);
 
-        // Reveal & Skill Animation
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    const bars = entry.target.querySelectorAll('.bar-inner');
-                    bars.forEach(bar => bar.style.width = bar.getAttribute('data-w'));
+        // Observer
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => {
+                if(e.isIntersecting) {
+                    e.target.classList.add('active');
+                    e.target.querySelectorAll('.bar-inner').forEach(bar => bar.style.width = bar.getAttribute('data-w'));
                 }
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // Counter
+        let count = 190 + Math.floor(Math.random()*30);
+        setInterval(() => {
+            count += Math.floor(Math.random()*3) - 1;
+            document.getElementById('vc').innerText = count + " Agents Online";
+        }, 3000);
     </script>
 </body>
 </html>
