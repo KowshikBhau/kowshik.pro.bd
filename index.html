@@ -1,177 +1,185 @@
 <!DOCTYPE html>
-<html lang="bn" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KOWSHIK | Elite Architect</title>
+    <title>KOWSHIK | Full-Stack Architect</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #000000;
-            --card: #1c1c1e;
-            --text: #ffffff;
-            --accent: #0a84ff;
-            --secondary: #32d74b;
-            --glass: rgba(28, 28, 30, 0.7);
-            --border: rgba(255, 255, 255, 0.1);
+            --primary: #00ff88; --secondary: #00d4ff; --accent: #7000ff;
+            --bg: #050505; --card: rgba(20, 20, 20, 0.6);
+            --text: #ffffff; --border: rgba(255, 255, 255, 0.08);
+            --glass: blur(15px);
         }
 
         [data-theme="light"] {
-            --bg: #f2f2f7;
-            --card: #ffffff;
-            --text: #000000;
-            --accent: #007aff;
-            --glass: rgba(255, 255, 255, 0.7);
-            --border: rgba(0, 0, 0, 0.05);
+            --bg: #f8fafc; --card: rgba(255, 255, 255, 0.8);
+            --text: #0f172a; --border: rgba(0, 0, 0, 0.05);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif; }
-        
-        body { background: var(--bg); color: var(--text); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); color: var(--text); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
 
-        /* Matrix Background */
-        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.1; pointer-events: none; }
+        /* Bangla Font Overwrite */
+        body.lang-bn, body.lang-bn * { font-family: 'Hind Siliguri', sans-serif !important; }
 
-        /* iOS Style Nav */
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+
+        /* --- Premium Navbar --- */
         nav {
-            position: fixed; top: 0; width: 100%; height: 65px;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1100px; height: 65px;
+            background: var(--card); backdrop-filter: var(--glass);
+            border-radius: 20px; border: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 6%; background: var(--glass); backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 0.5px solid var(--border); z-index: 1000;
+            padding: 0 25px; z-index: 1000;
         }
-        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
-        .logo span { color: var(--accent); }
-
-        .nav-btns { display: flex; gap: 10px; }
-        .ios-btn {
-            background: var(--border); border: none; padding: 8px 15px;
-            border-radius: 20px; color: var(--text); font-weight: 600;
-            font-size: 13px; cursor: pointer; transition: 0.2s;
+        .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--primary); font-size: 1.5rem; }
+        
+        .nav-actions { display: flex; gap: 12px; }
+        .n-btn {
+            background: var(--border); border: none; padding: 10px 18px;
+            border-radius: 12px; color: var(--text); font-weight: 700;
+            font-size: 12px; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; gap: 5px;
         }
+        .n-btn:hover { background: var(--primary); color: #000; }
 
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
-            padding: 140px 6% 60px; text-align: center;
+            padding: 160px 6% 60px; text-align: center;
             display: flex; flex-direction: column; align-items: center;
         }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 20px; }
-        .hero p { font-size: 1.1rem; opacity: 0.6; max-width: 500px; line-height: 1.5; }
-
-        /* iPhone Style Bento Cards */
-        .section-title { padding: 0 6%; font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; padding: 0 6% 40px; }
+        .avatar-wrap {
+            width: 100px; height: 100px; border-radius: 30px;
+            padding: 3px; background: linear-gradient(45deg, var(--primary), var(--accent));
+            margin-bottom: 25px; transform: rotate(-5deg); animation: float 4s infinite ease-in-out;
+        }
+        .avatar-wrap img { width: 100%; height: 100%; border-radius: 27px; background: #111; object-fit: cover; }
         
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; letter-spacing: -3px; }
+        h1 span { background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* --- Bento Grid --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; padding: 40px 6%; max-width: 1200px; margin: 0 auto; }
         .card {
-            background: var(--card); padding: 25px; border-radius: 28px;
-            border: 0.5px solid var(--border); transition: 0.3s;
+            background: var(--card); border: 1px solid var(--border);
+            padding: 30px; border-radius: 32px; backdrop-filter: var(--glass);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
         }
-        .card:active { transform: scale(0.97); }
-        .icon-circle {
-            width: 50px; height: 50px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; margin-bottom: 20px; color: white;
-        }
+        .card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--primary); }
+        .card i { font-size: 2.2rem; margin-bottom: 20px; display: block; color: var(--primary); }
 
-        /* Floating Widgets */
+        .proj-img { width: 100%; height: 180px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border); }
+
+        /* --- Footer & Widgets --- */
         .status-pill {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: var(--glass); backdrop-filter: blur(15px);
-            padding: 10px 20px; border-radius: 30px; border: 0.5px solid var(--border);
-            display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; z-index: 999;
+            position: fixed; bottom: 30px; left: 30px;
+            background: var(--card); border: 1px solid var(--border);
+            padding: 12px 24px; border-radius: 50px; font-size: 12px; font-weight: 800;
+            display: flex; align-items: center; gap: 10px; backdrop-filter: var(--glass); z-index: 999;
         }
-        .dot { width: 8px; height: 8px; background: #32d74b; border-radius: 50%; box-shadow: 0 0 10px #32d74b; }
+        .dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 15px var(--primary); }
 
-        .wa-float {
-            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
-            background: #25d366; border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: white; font-size: 28px; text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 1000;
+        .wa-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: #25d366; border-radius: 22px; display: flex;
+            align-items: center; justify-content: center; font-size: 30px; color: white;
+            text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
+            transition: 0.3s;
         }
+        .wa-btn:hover { transform: rotate(10deg) scale(1.1); }
 
-        /* Language content */
+        /* Language Toggle Classes */
         .bn { display: none; }
         body.lang-bn .bn { display: block; }
         body.lang-bn .en { display: none; }
-        body.lang-bn .hero h1 { font-weight: 700; letter-spacing: 0; }
 
-        /* Form */
+        /* --- Form --- */
         input, textarea {
-            width: 100%; padding: 16px; background: var(--border); border: none;
-            border-radius: 15px; color: var(--text); margin-bottom: 12px; outline: none;
+            width: 100%; padding: 18px; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border); border-radius: 18px; color: #fff;
+            margin-bottom: 15px; outline: none; font-size: 15px;
         }
         .submit-btn {
-            width: 100%; padding: 16px; background: var(--accent); color: white;
-            border: none; border-radius: 15px; font-weight: 700; cursor: pointer;
+            width: 100%; padding: 18px; background: var(--primary); color: #000;
+            border: none; border-radius: 18px; font-weight: 800; cursor: pointer; transition: 0.3s;
         }
+        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--primary); }
 
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.8rem; }
-        }
     </style>
 </head>
-<body id="b" class="lang-en">
+<body class="lang-en">
 
     <canvas id="matrix"></canvas>
 
     <nav>
-        <div class="logo">KOWSHIK<span>.PRO</span></div>
-        <div class="nav-btns">
-            <button class="ios-btn" onclick="toggleLang()" id="lBtn">BN</button>
-            <button class="ios-btn" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+        <div class="logo"><i class="fa-solid fa-terminal"></i> KOWSHIK<span>.PRO</span></div>
+        <div class="nav-actions">
+            <button class="n-btn" onclick="toggleLang()"><i class="fa-solid fa-language"></i> <span id="lText">BN</span></button>
+            <button class="n-btn" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
         </div>
     </nav>
 
     <div class="status-pill">
-        <div class="dot"></div> <span id="online">218 Agents Online</span>
+        <div class="dot"></div> <span id="counter">218 Agents Online</span>
     </div>
 
-    <a href="https://wa.me/8801611215511" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fa-brands fa-whatsapp"></i></a>
 
     <section class="hero">
-        <h1 class="en">Code. Scale.<br><span style="color:var(--accent)">Dominate.</span></h1>
-        <h1 class="bn">কোড। স্কেল।<br><span style="color:var(--accent)">ডমিনেট।</span></h1>
-        <p class="en">Elite Developer crafting high-performance digital systems for global brands.</p>
-        <p class="bn">গ্লোবাল ব্র্যান্ডের জন্য উচ্চ-ক্ষমতাসম্পন্ন ডিজিটাল সিস্টেম তৈরি করছি।</p>
+        <div class="avatar-wrap">
+            <img src="https://i.ibb.co/6P6Xn6k/kowshik-avatar.jpg" alt="Kowshik">
+        </div>
+        <h1 class="en">Code. Scale.<br><span>Dominate.</span></h1>
+        <h1 class="bn">কোড। স্কেল।<br><span>ডমিনেট।</span></h1>
+        <p class="en">Elite Full-Stack Architect crafting future-ready digital systems.</p>
+        <p class="bn">ভবিষ্যতের উপযোগী ডিজিটাল সিস্টেম তৈরিতে একজন এলিট ফুল-স্ট্যাক আর্কিটেক্ট।</p>
     </section>
 
-    <h2 class="section-title en">Expertise</h2>
-    <h2 class="section-title bn">দক্ষতা</h2>
-    
     <div class="grid">
         <div class="card">
-            <div class="icon-circle" style="background:#5856d6"><i class="fa-solid fa-bolt"></i></div>
-            <h3 class="en">Performance</h3><h3 class="bn">পারফরম্যান্স</h3>
-            <p class="en">Ultra-fast response times with zero lag architecture.</p>
-            <p class="bn">জিরো ল্যাগ আর্কিটেকচার সহ সুপার ফাস্ট রেসপন্স টাইম।</p>
+            <i class="fa-solid fa-microchip"></i>
+            <h3 class="en">System Design</h3><h3 class="bn">সিস্টেম ডিজাইন</h3>
+            <p class="en">Architecting robust backend structures with military-grade security.</p>
+            <p class="bn">মিলিটারি-গ্রেড সিকিউরিটি সহ শক্তিশালী ব্যাকএন্ড স্ট্রাকচার ডিজাইন।</p>
         </div>
+        
         <div class="card">
-            <div class="icon-circle" style="background:#ff3b30"><i class="fa-solid fa-shield-check"></i></div>
-            <h3 class="en">Security</h3><h3 class="bn">নিরাপত্তা</h3>
-            <p class="en">End-to-end encryption to protect your enterprise data.</p>
-            <p class="bn">আপনার এন্টারপ্রাইজ ডেটা সুরক্ষায় এন্ড-টু-এন্ড এনক্রিপশন।</p>
+            <img src="https://i.ibb.co/hR8Y4pS/boostzy.jpg" class="proj-img" alt="Project">
+            <h3>Boostzy.site</h3>
+            <p class="en">Scaling SMM solutions to handle 1M+ monthly requests.</p>
+            <p class="bn">প্রতি মাসে ১ মিলিয়নের বেশি রিকোয়েস্ট হ্যান্ডেল করার সমাধান।</p>
         </div>
-    </div>
 
-    <h2 class="section-title en">Start a Project</h2>
-    <h2 class="section-title bn">প্রজেক্ট শুরু করুন</h2>
-    <div class="grid" style="grid-template-columns: 1fr;">
         <div class="card">
-            <form action="https://formsubmit.co/info@kowshik.site" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" rows="4" placeholder="Your requirements..."></textarea>
-                <button type="submit" class="submit-btn en">Send Request</button>
-                <button type="submit" class="submit-btn bn">মেসেজ পাঠান</button>
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <h3 class="en">Let's Talk</h3><h3 class="bn">কথা বলা যাক</h3>
+            <form action="https://formsubmit.co/info@kowshik.site" method="POST" style="margin-top:20px">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" rows="3" placeholder="Project Details"></textarea>
+                <button type="submit" class="submit-btn en">Initiate Project</button>
+                <button type="submit" class="submit-btn bn">প্রজেক্ট শুরু করুন</button>
             </form>
         </div>
     </div>
 
-    <footer style="padding: 40px 6%; text-align: center; opacity: 0.4; font-size: 12px;">
-        © 2026 KOWSHIK.PRO | ARCHITECTED IN DHAKA
+    <footer style="padding: 60px 0; text-align: center; opacity: 0.3; font-family: 'JetBrains Mono'; font-size: 11px;">
+        <p>© 2026 KOWSHIK.PRO | ENCRYPTED & SECURED</p>
     </footer>
 
     <script>
@@ -179,28 +187,28 @@
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const chars = "01KOWSHIK";
-        const drops = Array(Math.floor(canvas.width/16)).fill(1);
+        const alphabet = "01KOWSHIKPRO";
+        const drops = Array(Math.floor(canvas.width/18)).fill(1);
 
         function draw() {
-            ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(242,242,247,0.1)' : 'rgba(0,0,0,0.1)';
+            ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(248,250,252,0.1)' : 'rgba(5,5,5,0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#0a84ff';
-            ctx.font = "15px monospace";
+            ctx.fillStyle = '#00ff88';
+            ctx.font = "14px 'JetBrains Mono'";
             drops.forEach((y, i) => {
-                const text = chars[Math.floor(Math.random()*chars.length)];
-                ctx.fillText(text, i*16, y*16);
-                if(y*16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                const text = alphabet[Math.floor(Math.random()*alphabet.length)];
+                ctx.fillText(text, i*18, y*18);
+                if(y*18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             });
         }
         setInterval(draw, 50);
 
-        // Lang & Theme Toggle
+        // Controls
         function toggleLang() {
             const isEn = document.body.classList.contains('lang-en');
             document.body.className = isEn ? 'lang-bn' : 'lang-en';
-            document.getElementById('lBtn').innerText = isEn ? 'EN' : 'BN';
+            document.getElementById('lText').innerText = isEn ? 'EN' : 'BN';
         }
 
         function toggleTheme() {
@@ -208,10 +216,10 @@
             document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
         }
 
-        // Online count
+        // Live Counter
         setInterval(() => {
-            const count = 210 + Math.floor(Math.random()*15);
-            document.getElementById('online').innerText = count + " Agents Online";
+            const num = 210 + Math.floor(Math.random()*12);
+            document.getElementById('counter').innerText = num + " Agents Online";
         }, 3000);
     </script>
 </body>
