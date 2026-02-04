@@ -24,11 +24,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
         body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.5s ease; }
 
-        /* --- Backgrounds --- */
+        /* --- Background Matrix --- */
         #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.12; pointer-events: none; }
         .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1), transparent 70%); z-index: -2; pointer-events: none; }
 
-        /* --- Navigation --- */
+        /* --- Nav --- */
         nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
         .logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -1px; }
         .logo span { color: var(--secondary); }
@@ -40,65 +40,49 @@
         .lang-bn .sw-lang .sw-btn { left: 22px; }
         .light-mode .sw-theme .sw-btn { left: 22px; background: #f59e0b; }
 
-        /* --- Hero Section --- */
+        /* --- Hero --- */
         section.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 6% 60px; }
-        
-        /* Highlight Label */
         .highlight-tag { background: rgba(124, 58, 237, 0.1); border: 1px solid var(--primary); color: var(--secondary); padding: 5px 15px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 
         h1 { font-size: clamp(2.2rem, 7vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
         .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         p.desc { font-size: clamp(0.9rem, 2.5vw, 1.05rem); opacity: 0.7; max-width: 580px; line-height: 1.6; }
 
-        /* --- Tech Slider --- */
-        .tech-slide { width: 100%; max-width: 600px; overflow: hidden; margin-top: 35px; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
-        .tech-icons { display: flex; gap: 35px; animation: slide 25s infinite linear; font-size: 1.8rem; opacity: 0.4; width: max-content; }
-        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* --- Bento Cards --- */
+        /* --- Bento Sections --- */
         .section-box { padding: 60px 6%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; text-align: center; margin-bottom: 40px; font-weight: 800; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px 25px; border-radius: 24px; transition: 0.4s; backdrop-filter: blur(15px); height: 100%; text-align: left; }
+        
+        /* --- Cards --- */
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 24px; transition: 0.4s; backdrop-filter: blur(15px); height: 100%; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-8px); border-color: var(--primary); }
         .card i { font-size: 2.2rem; color: var(--secondary); margin-bottom: 20px; display: inline-block; }
-        .card h3 { font-size: 1.25rem; margin-bottom: 10px; }
-        .card p { font-size: 0.9rem; opacity: 0.6; line-height: 1.5; }
 
-        /* --- Project Card --- */
-        .project-img { height: 180px; border-radius: 16px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border); }
-        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .card:hover .project-img img { transform: scale(1.08); }
+        /* --- Deployment Showcase --- */
+        .deploy-badge { position: absolute; top: 15px; right: 15px; background: #22c55e; color: white; font-size: 10px; padding: 4px 10px; border-radius: 20px; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
+        .project-thumb { height: 160px; background: #0f172a; border-radius: 16px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border); }
+        .project-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .card:hover .project-thumb img { transform: scale(1.1); }
 
-        /* --- Smaller WhatsApp Floating --- */
-        .wa-btn { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 1000; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); transition: 0.3s; }
-        .wa-btn:hover { transform: scale(1.1); }
+        /* --- Verified & Footer --- */
+        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); }
+        .verified-badge { color: #3b82f6; font-size: 14px; margin-left: 4px; vertical-align: middle; }
+        .copyright { font-size: 0.85rem; opacity: 0.6; font-weight: 600; }
 
-        /* --- Visitor Float --- */
-        .visitor-float { position: fixed; bottom: 20px; left: 20px; background: var(--glass); border: 1px solid var(--border); padding: 6px 12px; border-radius: 100px; font-size: 0.65rem; font-weight: 700; backdrop-filter: blur(10px); z-index: 100; display: flex; align-items: center; gap: 8px; }
+        /* --- Widgets --- */
+        .wa-btn { position: fixed; bottom: 20px; right: 20px; width: 48px; height: 48px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+        .visitor-float { position: fixed; bottom: 20px; left: 20px; background: var(--glass); border: 1px solid var(--border); padding: 6px 12px; border-radius: 100px; font-size: 0.65rem; font-weight: 700; backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px; z-index: 999; }
         .v-pulse { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* --- CTA --- */
         .btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none; color: white; background: var(--grad); display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; font-size: 0.9rem; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.4); }
-
+        
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .bn { display: none; }
         .lang-bn .en { display: none; }
         .lang-bn .bn { display: block; font-family: var(--font-bn); }
-
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
-            nav { padding: 12px 5%; }
-            .section-box { padding: 40px 5%; }
-            .hero { padding-top: 80px; }
-            h1 { letter-spacing: -0.5px; }
-            .tech-icons { font-size: 1.5rem; gap: 25px; }
-            .card { padding: 25px 20px; }
-        }
     </style>
 </head>
 <body id="b">
@@ -120,96 +104,69 @@
 
     <div class="visitor-float">
         <div class="v-pulse"></div>
-        <span id="vCount">Syncing...</span>
+        <span id="vCount">Active...</span>
     </div>
 
-    <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <section class="hero reveal">
-        <div class="highlight-tag en">Featured: Boostzy.site Ecosystem</div>
-        <div class="highlight-tag bn">ফিচারড: Boostzy.site ইকোসিস্টেম</div>
+        <div class="highlight-tag en">Official Deployment: Boostzy.site</div>
+        <div class="highlight-tag bn">অফিসিয়াল ডেপ্লয়মেন্ট: Boostzy.site</div>
         
         <h1 class="en grad-text">Code. Scale.<br>Dominate.</h1>
         <h1 class="bn grad-text">কোড। স্কেল।<br>আধিপত্য।</h1>
         
-        <p class="en desc">Elite Developer & SMM Strategist crafting high-performance digital systems. Proud creator of <b>Boostzy.site</b>.</p>
+        <p class="en desc">Elite Developer & SMM Strategist building high-performance digital systems. Proud creator of <b>Boostzy.site</b>.</p>
         <p class="bn desc">হাই-পারফরম্যান্স ডিজিটাল সিস্টেম তৈরিতে বিশেষজ্ঞ। আমি <b>Boostzy.site</b> এর গর্বিত নির্মাতা।</p>
         
-        <div class="tech-slide">
-            <div class="tech-icons">
-                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-js"></i> <i class="fab fa-php"></i> <i class="fab fa-docker"></i>
-                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-js"></i> <i class="fab fa-php"></i> <i class="fab fa-docker"></i>
-            </div>
-        </div>
-
-        <div style="margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
-            <a href="https://boostzy.site" class="btn"><i class="fas fa-rocket"></i> Visit Boostzy</a>
-            <a href="https://wa.me/8801611215511" class="btn" style="background: var(--glass); border: 1px solid var(--border); color: var(--text);">Hire Me</a>
+        <div style="margin-top: 35px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+            <a href="https://boostzy.site" class="btn"><i class="fas fa-external-link-alt"></i> Visit Boostzy</a>
+            <a href="https://wa.me/8801611215511" class="btn" style="background: var(--glass); border: 1px solid var(--border); color: var(--text);">Start Project</a>
         </div>
     </section>
 
     <div class="section-box reveal">
-        <h2 class="en" style="text-align:center; margin-bottom:40px; font-size: 1.8rem;">Core Mastery</h2>
-        <h2 class="bn" style="text-align:center; margin-bottom:40px; font-size: 1.8rem;">আমার দক্ষতা</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-bolt"></i>
-                <h3 class="en">Turbo Speed</h3>
-                <p class="en">Ultra-optimized loading times for better retention.</p>
-                <h3 class="bn">বিদ্যুৎ গতি</h3>
-                <p class="bn">দ্রুততম লোডিং স্পিড এবং উন্নত পারফরম্যান্স।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-shield-halved"></i>
-                <h3 class="en">Top Security</h3>
-                <p class="en">Advanced protection for your data and users.</p>
-                <h3 class="bn">সর্বোচ্চ নিরাপত্তা</h3>
-                <p class="bn">আপনার ইউজার ও ডেটার জন্য আধুনিক সুরক্ষা ব্যবস্থা।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-chart-line"></i>
-                <h3 class="en">Growth Strategy</h3>
-                <p class="en">Strategies that convert traffic into revenue.</p>
-                <h3 class="bn">গ্রোথ স্ট্র্যাটেজি</h3>
-                <p class="bn">আপনার ট্রাফিককে বিক্রয়ে রূপান্তর করার কৌশল।</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-box reveal">
-        <h2 class="en" style="text-align:center; margin-bottom:40px; font-size: 1.8rem;">Portfolio</h2>
-        <h2 class="bn" style="text-align:center; margin-bottom:40px; font-size: 1.8rem;">পোর্টফোলিও</h2>
+        <h2 class="en section-title">Live Masterpieces</h2>
+        <h2 class="bn section-title">সফল প্রজেক্টসমূহ</h2>
         <div class="grid">
             <a href="https://boostzy.site" target="_blank" style="text-decoration:none; color:inherit;">
                 <div class="card">
-                    <div class="project-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600" alt="Boostzy"></div>
+                    <div class="deploy-badge"><i class="fas fa-circle" style="font-size: 6px;"></i> Live</div>
+                    <div class="project-thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600" alt="Boostzy"></div>
                     <h3 class="en">Boostzy.site</h3>
-                    <p class="en">The most advanced SMM solution in the market.</p>
                     <h3 class="bn">Boostzy.site</h3>
-                    <p class="bn">বর্তমানে মার্কেটের সবচেয়ে উন্নত এসএমএম সলিউশন।</p>
+                    <p class="en">A high-scale SMM ecosystem serving thousands of users daily.</p>
+                    <p class="bn">প্রতিদিন হাজার হাজার ইউজারদের সেবা দেওয়া একটি বড় মাপের এসএমএম ইকোসিস্টেম।</p>
                 </div>
             </a>
+            
             <a href="https://kowshik.pro.bd" target="_blank" style="text-decoration:none; color:inherit;">
                 <div class="card">
-                    <div class="project-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" alt="Portfolio"></div>
+                    <div class="deploy-badge" style="background: var(--primary);"><i class="fas fa-lock" style="font-size: 6px;"></i> Secure</div>
+                    <div class="project-thumb"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" alt="Identity"></div>
                     <h3 class="en">Elite Identity</h3>
-                    <p class="en">Premium brand design for personal influence.</p>
                     <h3 class="bn">এলিট আইডেন্টিটি</h3>
-                    <p class="bn">ব্যক্তিগত ব্র্যান্ডিংয়ের জন্য প্রিমিয়াম ডিজাইন।</p>
+                    <p class="en">Personal brand architecture designed for peak performance.</p>
+                    <p class="bn">সর্বোচ্চ পারফরম্যান্সের জন্য ডিজাইন করা ব্যক্তিগত ব্র্যান্ড আর্কিটেকচার।</p>
                 </div>
             </a>
         </div>
     </div>
 
-    <footer style="text-align:center; padding: 40px; opacity: 0.4; font-size: 0.75rem;">
-        <p>© 2026 KOWSHIK.PRO.BD | DESIGNED BY KOWSHIK</p>
+    <footer>
+        <p class="copyright">
+            © 2026 KOWSHIK 
+            <i class="fas fa-check-circle verified-badge" title="Verified Professional"></i>
+            | ALL RIGHTS RESERVED
+        </p>
+        <p style="font-size: 0.7rem; opacity: 0.4; margin-top: 10px; letter-spacing: 1px;">BUILT WITH PRECISION BY KOWSHIK</p>
     </footer>
 
     <script>
         const b = document.body;
         const ti = document.getElementById('ti');
 
-        // Storage Persistence
+        // Persistence Logic
         const load = () => {
             if(localStorage.getItem('th') === 'li') {
                 b.classList.add('light-mode');
@@ -231,14 +188,12 @@
             }
         };
 
-        // Live Visitor Counter
-        let vc = Math.floor(Math.random() * 30) + 140;
-        const updateV = () => {
+        // Visitor Count
+        let vc = Math.floor(Math.random() * 20) + 135;
+        setInterval(() => {
             vc += Math.floor(Math.random() * 3) - 1;
             document.getElementById('vCount').innerText = vc + " Active Now";
-        };
-        setInterval(updateV, 4000);
-        updateV();
+        }, 4000);
 
         // Matrix Rain
         const canvas = document.getElementById('code-bg');
@@ -248,8 +203,7 @@
 
         const chars = "01KOWSHIK".split("");
         const drops = Array(Math.floor(canvas.width/18)).fill(1);
-
-        const draw = () => {
+        function draw() {
             ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(241, 245, 249, 0.15)" : "rgba(2, 6, 23, 0.15)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#7c3aed";
@@ -260,20 +214,14 @@
                 if(y*18 > canvas.height && Math.random() > 0.98) drops[i] = 0;
                 drops[i]++;
             });
-        };
+        }
         setInterval(draw, 60);
 
-        // Scroll Reveal
+        // Observer
         const obs = new IntersectionObserver((es) => {
             es.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        }, {threshold: 0.05});
+        }, {threshold: 0.1});
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-        // Mouse Tracker
-        document.addEventListener('mousemove', (e) => {
-            const glow = document.getElementById('glow');
-            glow.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.15), transparent 70%)`;
-        });
     </script>
 </body>
 </html>
