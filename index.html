@@ -3,256 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KOWSHIK | Elite Digital Architect</title>
+    <title>KOWSHIK | Elite Developer</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Hind+Siliguri:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: #7c3aed; --secondary: #06b6d4; --bg: #020617;
             --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1); --font-bn: 'Hind Siliguri', sans-serif;
+            --border: rgba(255, 255, 255, 0.08); --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
         }
-
         .light-mode {
             --bg: #f8fafc; --text: #0f172a; --glass: rgba(0, 0, 0, 0.04);
-            --border: rgba(0, 0, 0, 0.08);
+            --border: rgba(0, 0, 0, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-        body { width: 100%; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.5s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; transition: 0.5s; scroll-behavior: smooth; }
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.1; pointer-events: none; }
 
-        /* --- Matrix Rain --- */
-        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
-        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.12), transparent 80%); z-index: -2; pointer-events: none; }
+        /* --- Nav --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .logo { font-size: 1.2rem; font-weight: 800; }
+        .controls { display: flex; gap: 15px; }
+        .sw-box { position: relative; width: 55px; height: 28px; background: var(--glass); border: 1px solid var(--border); border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; color: var(--text); font-size: 12px; }
+        .sw-btn { position: absolute; top: 3px; left: 4px; width: 20px; height: 20px; background: var(--grad); border-radius: 50%; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
+        .lang-bn .sw-lang .sw-btn { left: 30px; }
+        .light-mode .sw-theme .sw-btn { left: 30px; background: #f59e0b; }
 
-        /* --- Navbar --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(var(--bg), 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .logo { font-size: 1.2rem; font-weight: 900; }
-        .logo span { color: var(--secondary); }
-
-        /* --- Custom Controls (Switch Fix) --- */
-        .controls { display: flex; gap: 10px; }
-        .sw-box { position: relative; width: 45px; height: 24px; background: var(--glass); border: 1px solid var(--border); border-radius: 30px; cursor: pointer; }
-        .sw-btn { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 8px; transition: 0.4s; }
-        .lang-bn .sw-lang .sw-btn { left: 23px; background: var(--secondary); }
-        .light-mode .sw-theme .sw-btn { left: 23px; background: #f59e0b; }
-
-        /* --- Visitor Float (Live Fix) --- */
-        .visitor-float { position: fixed; bottom: 25px; left: 25px; background: var(--glass); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 8px; z-index: 999; backdrop-filter: blur(10px); }
-        .v-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; box-shadow: 0 0 5px #22c55e; } 50% { opacity: 0.4; } }
-
-        /* --- Hero --- */
-        section.hero { min-height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 6% 60px; }
+        /* --- Layout --- */
+        section { padding: 100px 6% 40px; max-width: 1200px; margin: 0 auto; }
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .grad { background: linear-gradient(90deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
 
-        /* --- Tech Slide --- */
-        .tech-slide { width: 100%; overflow: hidden; margin-top: 40px; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
-        .tech-icons { display: flex; gap: 40px; animation: slide 25s infinite linear; font-size: 2.2rem; opacity: 0.6; width: max-content; }
-        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* --- Layouts --- */
-        .section-box { padding: 80px 6%; max-width: 1200px; margin: 0 auto; }
+        /* --- Bento Grid --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 40px 30px; border-radius: 28px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; height: 100%; }
-        .card:hover { border-color: var(--primary); transform: translateY(-8px); }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 35px; border-radius: 30px; transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
 
-        /* --- Project Card Fix --- */
-        .project-img { height: 180px; background: #0f172a; border-radius: 18px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border); }
-        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover .project-img img { transform: scale(1.1); }
+        /* --- Boostzy Specific --- */
+        .boost-hero { background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent); border: 1.5px solid var(--primary); }
+        .live-tag { position: absolute; top: 20px; right: 20px; color: #22c55e; font-size: 10px; font-weight: 900; display: flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.1); padding: 5px 12px; border-radius: 20px; }
+        .dot-p { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- CTA --- */
-        .cta-box { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--primary); padding: 60px 30px; border-radius: 40px; text-align: center; }
-        
-        /* --- Buttons --- */
-        .btn { padding: 15px 30px; border-radius: 15px; font-weight: 800; text-decoration: none; color: white; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; margin-top: 20px; }
-        .btn:hover { transform: scale(1.05); }
+        /* --- Skill Bars --- */
+        .skill-item { margin-bottom: 20px; }
+        .skill-head { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
+        .bar-bg { height: 6px; background: var(--border); border-radius: 10px; }
+        .bar-fill { height: 100%; background: var(--grad); width: 0; transition: 2s ease-out; border-radius: 10px; }
 
-        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+        /* --- Contact Form --- */
+        input, textarea { width: 100%; padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: white; margin-bottom: 15px; outline: none; font-family: inherit; }
+        .submit-btn { width: 100%; padding: 12px; background: var(--grad); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; transition: 0.3s; }
 
-        /* --- Reveal --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        /* --- FAQ --- */
+        .faq-box { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 10px; cursor: pointer; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; opacity: 0; padding-top: 0; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+        .faq-box.active .faq-a { max-height: 100px; opacity: 1; padding-top: 15px; }
+
+        /* --- Floating UI --- */
+        .wa-btn { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 1000; box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+        .v-box { position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; gap: 8px; z-index: 1000; }
+
+        /* --- Footer --- */
+        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); font-family: 'Fira Code', monospace; }
+        .v-check { color: #3b82f6; margin-left: 5px; }
+        .credit { font-size: 0.7rem; opacity: 0.4; margin-top: 15px; letter-spacing: 1.5px; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* Language Toggle Fixes */
         .bn { display: none; }
-        .lang-bn .en { display: none; }
-        .lang-bn .bn { display: block; font-family: var(--font-bn); }
+        .lang-bn .en { display: none !important; }
+        .lang-bn .bn { display: block !important; font-family: 'Hind Siliguri', sans-serif; }
+        .lang-bn .section-title.bn, .lang-bn .card h3.bn, .lang-bn .card p.bn { display: block !important; }
+
+        @media (max-width: 600px) { h1 { font-size: 3rem; } }
     </style>
 </head>
 <body id="b">
 
-    <canvas id="code-bg"></canvas>
-    <div class="bg-glow" id="glow"></div>
+    <canvas id="matrix"></canvas>
 
     <nav>
         <div class="logo">KOWSHIK<span>.PRO</span></div>
         <div class="controls">
-            <div class="sw-box sw-lang" onclick="toggleSetting('lang')">
-                <div class="sw-btn"><i class="fas fa-language"></i></div>
-            </div>
-            <div class="sw-box sw-theme" onclick="toggleSetting('theme')">
-                <div class="sw-btn"><i class="fas fa-moon" id="ti"></i></div>
-            </div>
+            <div class="sw-box sw-lang" onclick="tg('lang')"><i class="fas fa-language"></i><span style="font-weight:900;font-size:8px">BN</span><div class="sw-btn"></div></div>
+            <div class="sw-box sw-theme" onclick="tg('theme')"><i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="sw-btn"></div></div>
         </div>
     </nav>
 
-    <div class="visitor-float">
-        <div class="v-dot"></div>
-        <span id="vCount">Checking...</span>
-    </div>
-
-    <a href="https://wa.me/8801611215511" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
+    <div class="v-box"><div class="dot-p"></div><span id="vc">Checking...</span></div>
+    <a href="https://wa.me/8801611215511" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <section class="hero reveal">
-        <h1 class="en grad">Code. Scale.<br>Dominate.</h1>
-        <h1 class="bn grad">কোড। স্কেল।<br>আধিপত্য।</h1>
-        <p class="en desc" style="max-width: 600px; opacity: 0.8;">Full-Stack Developer & SMM Strategist crafting elite digital ecosystems.</p>
-        <p class="bn desc" style="max-width: 600px; opacity: 0.8;">এলিট ডিজিটাল ইকোসিস্টেম নির্মাণকারী ফুল-স্ট্যাক ডেভেলপার এবং এসএমএম স্ট্র্যাটেজিস্ট।</p>
-        
-        <div class="tech-slide">
-            <div class="tech-icons">
-                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i> <i class="fab fa-docker"></i>
-                <i class="fab fa-react"></i> <i class="fab fa-node-js"></i> <i class="fab fa-laravel"></i> <i class="fab fa-python"></i> <i class="fab fa-php"></i> <i class="fab fa-js"></i> <i class="fab fa-docker"></i>
+        <h1 class="en">Code. Build.<br><span class="grad-text">Innovate.</span></h1>
+        <h1 class="bn">কোড। নির্মাণ।<br><span class="grad-text">উদ্ভাবন।</span></h1>
+        <p class="en" style="opacity:0.6">Elite full-stack architecture for modern web systems.</p>
+        <p class="bn" style="opacity:0.6">আধুনিক ওয়েব সিস্টেমের জন্য এলিট ফুল-স্ট্যাক আর্কিটেকচার।</p>
+    </section>
+
+    <section class="reveal">
+        <div class="card boost-hero">
+            <div class="live-tag"><div class="dot-p"></div> LIVE</div>
+            <i class="fas fa-rocket"></i>
+            <h2 style="font-size:2rem; margin-bottom:15px">Boostzy.site</h2>
+            <p class="en">Flagship SMM Panel processing thousands of daily API requests with zero lag.</p>
+            <p class="bn">ফ্ল্যাগশিপ এসএমএম প্যানেল যা প্রতিদিন হাজার হাজার এপিআই রিকোয়েস্ট প্রসেস করে।</p>
+            <a href="https://boostzy.site" style="color:var(--secondary); font-weight:800; text-decoration:none; display:block; margin-top:20px">Visit Platform →</a>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <h2 class="section-title en">Why Me?</h2>
+        <h2 class="section-title bn">কেন আমি?</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-bolt"></i>
+                <h3 class="en">Ultra Performance</h3>
+                <h3 class="bn">আল্ট্রা পারফরম্যান্স</h3>
+                <p class="en">Lightning fast systems with 99.9% uptime.</p>
+                <p class="bn">৯৯.৯% আপটাইম সহ সুপার ফাস্ট সিস্টেম।</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3 class="en">Military Security</h3>
+                <h3 class="bn">মিলিটারি সিকিউরিটি</h3>
+                <p class="en">End-to-end encryption to protect your data.</p>
+                <p class="bn">আপনার ডেটা সুরক্ষিত রাখতে এন্ড-টু-এন্ড এনক্রিপশন।</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-layer-group"></i>
+                <h3 class="en">Growth Driven</h3>
+                <h3 class="bn">গ্রোথ ড্রিভেন</h3>
+                <p class="en">Platforms designed to scale and generate ROI.</p>
+                <p class="bn">আপনার ব্যবসার উন্নতির জন্য স্কেলেবল প্ল্যাটফর্ম।</p>
             </div>
         </div>
     </section>
 
-    <div class="section-box reveal">
-        <h2 class="en" style="text-align:center; margin-bottom:40px;">Why Choose Me?</h2>
-        <h2 class="bn" style="text-align:center; margin-bottom:40px;">কেন আমাকে বেছে নেবেন?</h2>
+    <section class="reveal">
+        <h2 class="section-title en">Expertise</h2>
+        <h2 class="section-title bn">দক্ষতা</h2>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-bolt"></i>
-                <h3 class="en">Lightning Fast</h3>
-                <p class="en">Optimized for extreme speed and performance.</p>
-                <h3 class="bn">বিদ্যুৎ গতি</h3>
-                <p class="bn">চরম গতি এবং পারফরম্যান্সের জন্য অপ্টিমাইজড।</p>
+                <div class="skill-item"><div class="skill-head"><span>Laravel / Node</span><span>98%</span></div><div class="bar-bg"><div class="bar-fill" data-w="98%"></div></div></div>
+                <div class="skill-item"><div class="skill-head"><span>React / Next</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div></div>
+                <div class="skill-item"><div class="skill-head"><span>Cyber Security</span><span>95%</span></div><div class="bar-bg"><div class="bar-fill" data-w="95%"></div></div></div>
             </div>
-            <div class="card">
-                <i class="fas fa-shield-halved"></i>
-                <h3 class="en">Secure by Design</h3>
-                <p class="en">Advanced protection for your data and users.</p>
-                <h3 class="bn">নিরাপদ ডিজাইন</h3>
-                <p class="bn">আপনার তথ্য ও ইউজারদের জন্য উন্নত সুরক্ষা।</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-chart-pie"></i>
-                <h3 class="en">Data Driven</h3>
-                <p class="en">SMM strategies backed by real-time analytics.</p>
-                <h3 class="bn">ডেটা ভিত্তিক</h3>
-                <p class="bn">রিয়েল-টাইম অ্যানালিটিক্স ভিত্তিক এসএমএম কৌশল।</p>
+            <div class="card" style="display:flex;align-items:center;justify-content:center;text-align:center">
+                <div><i class="fas fa-terminal"></i><h3 class="en">Elite Coder</h3><h3 class="bn">এলিট কোডার</h3><p style="opacity:0.6">Available for Projects</p></div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section-box reveal">
-        <h2 class="en" style="text-align:center; margin-bottom:40px;">Selected Masterpieces</h2>
-        <h2 class="bn" style="text-align:center; margin-bottom:40px;">সেরা কাজসমূহ</h2>
+    <section class="reveal">
+        <h2 class="section-title en">Get In Touch</h2>
+        <h2 class="section-title bn">যোগাযোগ করুন</h2>
         <div class="grid">
-            <a href="https://boostzy.site" target="_blank" style="text-decoration:none; color:inherit;">
-                <div class="card">
-                    <div class="project-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500" alt="Work"></div>
-                    <h3 class="en">Boostzy.site</h3>
-                    <p class="en">Powerful SMM automation panel.</p>
-                    <h3 class="bn">Boostzy.site</h3>
-                    <p class="bn">শক্তিশালী এসএমএম অটোমেশন প্যানেল।</p>
+            <div class="card">
+                <i class="fas fa-paper-plane"></i>
+                <h3 class="en">Message Me</h3>
+                <h3 class="bn">মেসেজ দিন</h3>
+                
+                <form action="https://formsubmit.co/info@kowshik.site" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="3" placeholder="Project Details" required></textarea>
+                    
+                    <input type="hidden" name="_next" value="https://kowshik.pro.bd">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <button type="submit" class="submit-btn en">Send Message</button>
+                    <button type="submit" class="submit-btn bn">মেসেজ পাঠান</button>
+                </form>
+            </div>
+            <div class="card" style="display:flex; flex-direction:column; justify-content:center; gap:20px">
+                <div style="display:flex; align-items:center; gap:15px">
+                    <i class="fas fa-envelope" style="font-size:1.5rem; margin:0"></i>
+                    <span>info@kowshik.site</span>
                 </div>
-            </a>
-            <a href="https://kowshik.pro.bd" target="_blank" style="text-decoration:none; color:inherit;">
-                <div class="card">
-                    <div class="project-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500" alt="Work"></div>
-                    <h3 class="en">Elite Portfolio</h3>
-                    <p class="en">Premium design for personal branding.</p>
-                    <h3 class="bn">এলিট পোর্টফোলিও</h3>
-                    <p class="bn">ব্যক্তিগত ব্র্যান্ডিংয়ের জন্য প্রিমিয়াম ডিজাইন।</p>
+                <div style="display:flex; align-items:center; gap:15px">
+                    <i class="fab fa-telegram" style="font-size:1.5rem; margin:0"></i>
+                    <span>@kowshik_pro</span>
                 </div>
-            </a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section-box reveal">
-        <div class="cta-box">
-            <h2 class="en grad">Let's Build Your Empire</h2>
-            <h2 class="bn grad">আপনার সাম্রাজ্য গড়ে তুলুন</h2>
-            <a href="https://wa.me/8801611215511" class="btn"><i class="fab fa-whatsapp"></i> Contact Kowshik</a>
+    <section class="reveal">
+        <h2 class="section-title en">FAQ</h2>
+        <h2 class="section-title bn">জিজ্ঞাসিত প্রশ্ন</h2>
+        <div class="faq-box" onclick="this.classList.toggle('active')">
+            <div style="display:flex;justify-content:space-between">
+                <b class="en">Project Timeline?</b>
+                <b class="bn">প্রজেক্ট করতে কত সময় লাগে?</b>
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-a">
+                <span class="en">Standard projects take 7-10 days.</span>
+                <span class="bn">সাধারণত ৭-১০ দিন সময় লাগে।</span>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer style="text-align:center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
-        <p>© 2026 KOWSHIK.PRO.BD | DESIGNED BY KOWSHIK</p>
+    <footer>
+        <p>© 2026 KOWSHIK <i class="fas fa-check-circle v-check"></i></p>
+        <div class="credit">DESIGNED BY KOWSHIK<br><span style="color:var(--secondary)">// SYSTEM_ACTIVE</span></div>
     </footer>
 
     <script>
-        // Persistence & Toggles
-        const b = document.body;
-        const ti = document.getElementById('ti');
+        const b = document.getElementById('b');
+        if(localStorage.getItem('th') === 'li') b.classList.add('light-mode');
+        if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
 
-        function loadSettings() {
-            if(localStorage.getItem('th') === 'li') {
-                b.classList.add('light-mode');
-                ti.className = 'fas fa-sun';
-            }
-            if(localStorage.getItem('ln') === 'bn') b.classList.add('lang-bn');
-        }
-
-        function toggleSetting(type) {
-            if(type === 'theme') {
+        function tg(t) {
+            if(t === 'theme') {
                 b.classList.toggle('light-mode');
-                const isL = b.classList.contains('light-mode');
-                localStorage.setItem('th', isL ? 'li' : 'dk');
-                ti.className = isL ? 'fas fa-sun' : 'fas fa-moon';
+                localStorage.setItem('th', b.classList.contains('light-mode') ? 'li' : 'dk');
             } else {
                 b.classList.toggle('lang-bn');
                 localStorage.setItem('ln', b.classList.contains('lang-bn') ? 'bn' : 'en');
             }
         }
-        loadSettings();
 
-        // Real Live Visitor Counter
-        let baseCount = Math.floor(Math.random() * 50) + 120;
-        function updateVisitors() {
-            baseCount += Math.floor(Math.random() * 5) - 2;
-            document.getElementById('vCount').innerText = baseCount + " Users Online";
-        }
-        setInterval(updateVisitors, 3000);
-        updateVisitors();
-
-        // Matrix Rain
-        const canvas = document.getElementById('code-bg');
+        const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const charArr = "01KOWSHIKPRO".split("");
-        const drops = Array(Math.floor(canvas.width / 15)).fill(1);
-
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const drops = Array(Math.floor(canvas.width/20)).fill(1);
         function draw() {
-            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248, 250, 252, 0.1)" : "rgba(2, 6, 23, 0.1)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#7c3aed";
+            ctx.fillStyle = b.classList.contains('light-mode') ? "rgba(248,252,255,0.1)" : "rgba(2,6,23,0.1)";
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = "#7c3aed"; ctx.font = "15px monospace";
             drops.forEach((y, i) => {
-                const text = charArr[Math.floor(Math.random() * charArr.length)];
-                ctx.fillText(text, i * 15, y * 15);
-                if (y * 15 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                ctx.fillText("01KOWSHIK"[Math.floor(Math.random()*9)], i*20, y*20);
+                if(y*20 > canvas.height && Math.random() > 0.98) drops[i] = 0;
                 drops[i]++;
             });
         }
         setInterval(draw, 50);
 
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        }, {threshold: 0.1});
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => {
+                if(e.isIntersecting) {
+                    e.target.classList.add('active');
+                    e.target.querySelectorAll('.bar-fill').forEach(bar => bar.style.width = bar.getAttribute('data-w'));
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-        // Mouse Glow
-        document.addEventListener('mousemove', (e) => {
-            document.getElementById('glow').style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.15), transparent 80%)`;
-        });
+        let count = 200 + Math.floor(Math.random()*30);
+        setInterval(() => {
+            count += Math.floor(Math.random()*3) - 1;
+            document.getElementById('vc').innerText = count + " Agents Online";
+        }, 3000);
     </script>
 </body>
 </html>
